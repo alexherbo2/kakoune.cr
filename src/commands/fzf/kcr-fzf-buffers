@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Open buffers.
+#
+# Usage:
+#
+# kcr fzf buffers [patterns]
+
+# – fzf (https://github.com/junegunn/fzf)
+# – bat (https://github.com/sharkdp/bat)
+
+kcr get --raw %val{buflist} |
+grep -F "$@" |
+fzf --preview-window=down:60% --preview 'bat --style=numbers --color=always --line-range :500 {}' --prompt='(b)>' |
+
+# Open buffers
+while read name; do
+  kcr send buffer "$name"
+done

@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Start an interactive shell.
+#
+# Usage:
+#
+# kcr fzf shell [command] [arguments]
+
+# – fzf (https://github.com/junegunn/fzf)
+
+set_environment() {
+  session=$1 client=${2#null} buffer_name=${3#null} working_directory=$4
+}
+
+# Run fzf with the session list
+rows=$(
+  kcr list --raw |
+  fzf --prompt='(s)>'
+)
+
+IFS='
+'
+for row in $rows; do
+  IFS='	'
+  set_environment $row
+
+  # Start an interactive shell
+  KAKOUNE_SESSION=$session KAKOUNE_CLIENT=$client kcr shell "$@"
+done

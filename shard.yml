@@ -1,0 +1,9 @@
+name: kakoune.cr
+version: 0.1.0
+license: Unlicense
+targets:
+  kcr:
+    main: src/cli.cr
+dependencies:
+  fifo:
+    github: alexherbo2/fifo.cr
