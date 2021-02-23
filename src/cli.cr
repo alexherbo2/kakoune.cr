@@ -302,8 +302,11 @@ module Kakoune::CLI
 
     when :escape
       if !STDIN.tty?
-        arguments = Array(Argument).from_json(STDIN)
-        puts Arguments.escape(arguments)
+        input = STDIN.gets_to_end
+        if !input.empty?
+          arguments = Array(Argument).from_json(input)
+          puts Arguments.escape(arguments)
+        end
       end
 
       if argv.any?
