@@ -342,7 +342,7 @@ module Kakoune::CLI
   end
 
   def install_commands
-    command_paths = Dir[Path[__DIR__, "commands", "*", "*"]]
+    command_paths = Dir[Path[__DIR__, "commands", "*", "kcr-*"]]
     bin_path = Path["~/.local/bin"].expand(home: true)
 
     { command_paths, bin_path.to_s }.tap do |sources, destination|
