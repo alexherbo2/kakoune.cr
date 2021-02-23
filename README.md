@@ -54,7 +54,7 @@ Kakoune example configuration:
 map -docstring 'New client' global normal <c-t> ': new<ret>'
 map -docstring 'New terminal' global normal <c-n> ': connect-terminal<ret>'
 map -docstring 'New popup' global normal + ': connect-popup<ret>'
-map -docstring 'Open Dolphin' global normal <c-e> ': $ dolphin .<ret>'
+map -docstring 'Open Dolphin' global normal <c-o> ': $ dolphin .<ret>'
 map -docstring 'Open files' global normal <c-f> ': + kcr-fzf-files<ret>'
 map -docstring 'Open buffers' global normal <c-b> ': + kcr-fzf-buffers<ret>'
 map -docstring 'Open files by content' global normal <c-g> ': + kcr-fzf-grep<ret>'
