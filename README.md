@@ -123,7 +123,7 @@ kcr open [files] [input: fifo] ⇒ Open files
 kcr send <command> [arguments] [input: json-commands] ⇒ Send commands to client at session
 kcr get [expansions] [input: data-stream] ⇒ Get states from a client in session
 kcr escape [arguments] [input: json-arguments] ⇒ Escape arguments
-kcr help ⇒ Show help
+kcr help [command] ⇒ Show help
 ```
 
 ###### `init`
@@ -372,7 +372,7 @@ Output:
 ###### `help`
 
 ```
-kcr help
+kcr help [command]
 ```
 
 Show help.
