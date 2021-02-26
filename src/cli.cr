@@ -262,11 +262,14 @@ module Kakoune::CLI
       end
 
       if !STDIN.tty?
-        commands = Array(Array(Argument)).from_json(STDIN)
+        input = STDIN.gets_to_end
+        if !input.empty?
+          commands = Array(Array(Argument)).from_json(input)
 
-        commands.each do |arguments|
-          command = arguments.shift
-          context.send(command, arguments)
+          commands.each do |arguments|
+            command = arguments.shift
+            context.send(command, arguments)
+          end
         end
       end
 
