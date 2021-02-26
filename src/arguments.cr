@@ -19,9 +19,9 @@ module Kakoune::Arguments
   end
 
   def escape(strings : Iterable)
-    strings.map do |string|
+    strings.join(" ") do |string|
       escape(string)
-    end.join(" ")
+    end
   end
 
   # Returns a string.
