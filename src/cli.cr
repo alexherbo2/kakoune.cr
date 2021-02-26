@@ -2,6 +2,7 @@ require "option_parser"
 require "json"
 require "file_utils"
 require "./kakoune"
+require "./env"
 
 module Kakoune::CLI
   extend self
