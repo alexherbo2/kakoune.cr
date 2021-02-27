@@ -11,9 +11,11 @@ kakoune.cr (kcr) is a command-line tool for [Kakoune].
 [Dependencies]: #dependencies
 
 - [Crystal]
+- [Shards]
 - [jq]
 
 [Crystal]: https://crystal-lang.org
+[Shards]: https://github.com/crystal-lang/shards
 [jq]: https://stedolan.github.io/jq/
 
 ## Installation
