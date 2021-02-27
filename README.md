@@ -71,6 +71,7 @@ EDITOR='kcr edit'
 alias k='kcr edit'
 alias K='kcr-fzf-shell'
 alias ks='kcr shell --session'
+alias kl='kcr list'
 alias a='kcr attach'
 alias :='kcr send'
 ```
