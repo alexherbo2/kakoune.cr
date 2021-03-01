@@ -63,6 +63,8 @@ map -docstring 'Open files by content' global normal <c-g> ': + kcr-fzf-grep<ret
 map -docstring 'Open lazygit' global normal <c-l> ': + lazygit<ret>'
 ```
 
+See [#2] for `'connect' no such command: 'popup'` error.
+
 Bash example configuration:
 
 `~/.bashrc`
@@ -164,6 +166,10 @@ run <command> [arguments] ⇒ Run a program in a new session
 [>] connect-terminal [command] [arguments] ⇒ Connect a terminal
 [+] connect-popup [command] [arguments] ⇒ Connect a popup
 ```
+
+See [#2] for `'connect' no such command: 'popup'` error.
+
+[#2]: https://github.com/alexherbo2/kakoune.cr/issues/2
 
 ###### `init starship`
 
