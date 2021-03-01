@@ -10,7 +10,7 @@
 # – bat (https://github.com/sharkdp/bat)
 
 kcr get --raw %val{buflist} |
-grep -F "$@" |
+grep -F "$*" |
 fzf --preview-window=down:60% --preview 'bat --style=numbers --color=always --line-range :500 {}' --prompt='(b)>' |
 
 # Open buffers
