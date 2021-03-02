@@ -1,5 +1,6 @@
 require "./argument"
 require "./arguments"
+require "./buffer"
 require "./client"
 require "./command"
 require "./commands"

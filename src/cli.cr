@@ -314,20 +314,16 @@ module Kakoune::CLI
         exit(1)
       end
 
-      data = if argv.empty?
-        context.cat
+      buffer_contents = if argv.empty?
+        [options.context.client.current_buffer.content]
       else
-        context.cat(argv)
+        argv.map { |name| options.context.session.buffer(name).content }
       end
 
       if options.raw
-        text = data.join('\n') do |buffer|
-          buffer[:content]
-        end
-
-        puts text
+        puts buffer_contents.join('\n')
       else
-        print_json(data)
+        print_json(buffer_contents)
       end
 
     when :escape

@@ -1,6 +1,7 @@
 require "./commands"
 require "./arguments"
 require "./client"
+require "./buffer"
 
 class Kakoune::Session
   include Commands
@@ -53,5 +54,15 @@ class Kakoune::Session
 
   def client(name)
     Client.new(self, name)
+  end
+
+  def buffers
+    get("%val{buflist}").map do |buffer_name|
+      buffer(buffer_name)
+    end
+  end
+
+  def buffer(name)
+    Buffer.new(self, name)
   end
 end

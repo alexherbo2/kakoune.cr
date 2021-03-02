@@ -48,24 +48,4 @@ module Kakoune::Commands
       Process.run("tee", { fifo.path.to_s }, input: io)
     end
   end
-
-  def cat
-    FIFO.consume do |fifo|
-      send("write", ["-method", "overwrite", fifo.path.to_s])
-
-      content = fifo.reader.gets_to_end
-      [{ name: name, content: content }]
-    end
-  end
-
-  def cat(buffer_names)
-    FIFO.consume do |fifo|
-      send("evaluate-commands", ["-buffer", buffer_names.join(','), "write", "-method", "overwrite", fifo.path.to_s])
-
-      buffer_names.map do |name|
-        content = fifo.reader.gets_to_end
-        { name: name, content: content }
-      end
-    end
-  end
 end

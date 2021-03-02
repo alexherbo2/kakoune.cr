@@ -364,10 +364,7 @@ Output:
 
 ``` json
 [
-  {
-    "name": "kanto.json",
-    "content": "..."
-  }
+  "..."
 ]
 ```
 

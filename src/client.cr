@@ -1,5 +1,6 @@
 require "./session"
 require "./commands"
+require "./buffer"
 
 class Kakoune::Client
   include Commands
@@ -19,5 +20,10 @@ class Kakoune::Client
     session.clients.any? do |client|
       client.name == name
     end
+  end
+
+  def current_buffer
+    buffer_name = get("%val{bufname}")[0]
+    session.buffer(buffer_name)
   end
 end
