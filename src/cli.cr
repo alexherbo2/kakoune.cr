@@ -36,6 +36,10 @@ module Kakoune::CLI
         options.raw = true
       end
 
+      parser.on("-R", "--no-raw", "Do not use raw output") do
+        options.raw = false
+      end
+
       parser.on("-h", "--help", "Show help") do
         puts parser
         exit

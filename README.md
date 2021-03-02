@@ -108,6 +108,7 @@ file -b -i -L <file>
 -s, --session <name> ⇒ Session name
 -c, --client <name> ⇒ Client name
 -r, --raw ⇒ Use raw output
+-R, --no-raw ⇒ Do not use raw output
 -h, --help ⇒ Show help
 ```
 
