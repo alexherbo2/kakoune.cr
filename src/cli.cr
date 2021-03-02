@@ -101,6 +101,10 @@ module Kakoune::CLI
         options.command = :get
       end
 
+      parser.on("cat", "Print buffer content") do
+        options.command = :cat
+      end
+
       parser.on("escape", "Escape arguments") do
         options.command = :escape
       end
@@ -302,6 +306,28 @@ module Kakoune::CLI
         else
           print_json(data)
         end
+      end
+
+    when :cat
+      if !context
+        STDERR.puts "No session in context"
+        exit(1)
+      end
+
+      data = if argv.empty?
+        context.cat
+      else
+        context.cat(argv)
+      end
+
+      if options.raw
+        text = data.join('\n') do |buffer|
+          buffer[:content]
+        end
+
+        puts text
+      else
+        print_json(data)
       end
 
     when :escape

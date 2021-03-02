@@ -127,6 +127,7 @@ kcr edit [files] [input: fifo] ⇒ Edit files
 kcr open [files] [input: fifo] ⇒ Open files
 kcr send <command> [arguments] [input: json-commands] ⇒ Send commands to client at session
 kcr get [expansions] [input: data-stream] ⇒ Get states from a client in session
+kcr cat [buffers] ⇒ Print buffer content
 kcr escape [arguments] [input: json-arguments] ⇒ Escape arguments
 kcr help [command] ⇒ Show help
 ```
@@ -342,6 +343,31 @@ Output:
     "kanto.json",
     "johto.json"
   ]
+]
+```
+
+###### `cat`
+
+```
+kcr cat [buffers]
+```
+
+Print buffer content.
+
+**Example**
+
+``` sh
+kcr cat
+```
+
+Output:
+
+``` json
+[
+  {
+    "name": "kanto.json",
+    "content": "..."
+  }
 ]
 ```
 
