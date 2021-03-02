@@ -78,6 +78,7 @@ alias ks='kcr shell --session'
 alias kl='kcr list'
 alias a='kcr attach'
 alias :='kcr send'
+alias :cat='kcr cat --raw'
 ```
 
 [XDG MIME Applications] example configuration:
