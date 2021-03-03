@@ -19,7 +19,7 @@ module Kakoune::Arguments
   end
 
   def escape(strings : Iterable)
-    strings.join(" ") do |string|
+    strings.join(' ') do |string|
       escape(string)
     end
   end
