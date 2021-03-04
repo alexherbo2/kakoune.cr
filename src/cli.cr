@@ -101,6 +101,10 @@ module Kakoune::CLI
         options.command = :send
       end
 
+      parser.on("echo", "Get states from a client in session") do
+        options.command = :echo
+      end
+
       parser.on("get", "Get states from a client in session") do
         options.command = :get
       end
@@ -284,7 +288,7 @@ module Kakoune::CLI
       command = CommandBuilder.build(arguments)
       context.send(command)
 
-    when :get
+    when :echo, :get
       if !context
         STDERR.puts "No session in context"
         exit(1)

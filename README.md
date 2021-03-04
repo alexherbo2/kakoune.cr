@@ -128,7 +128,7 @@ kcr shell [command] [arguments] ⇒ Start an interactive shell
 kcr edit [files] [input: fifo] ⇒ Edit files
 kcr open [files] [input: fifo] ⇒ Open files
 kcr send <command> [arguments] [input: json-format] ⇒ Send commands to client at session
-kcr get [expansions] [input: data-stream] ⇒ Get states from a client in session
+kcr [echo|get] [expansions] [input: data-stream] ⇒ Get states from a client in session
 kcr cat [buffers] ⇒ Print buffer content
 kcr escape [arguments] [input: json-format] ⇒ Escape arguments
 kcr help [command] ⇒ Show help
@@ -297,16 +297,17 @@ kcr send echo tchou
 **Example** – Format commands:
 
 ``` sh
-kcr get -- evaluate-commands -draft {} |
-kcr get -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
+kcr echo -- evaluate-commands -draft {} |
+kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
 jq --slurp |
 kcr send
 ```
 
+###### `echo`
 ###### `get`
 
 ```
-kcr get [expansions] [input: data-stream]
+kcr [echo|get] [expansions] [input: data-stream]
 ```
 
 Get states from a client in session.
@@ -393,7 +394,7 @@ Output:
 **Example** – Format commands:
 
 ``` sh
-kcr get -- echo %val{buflist} |
+kcr echo -- echo %val{buflist} |
 jq --slurp |
 kcr escape
 ```
@@ -454,8 +455,8 @@ $ sh -c %{
 
 ``` kak
 $ sh -c %{
-  kcr get -- evaluate-commands -draft {} |
-  kcr get -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
+  kcr echo -- evaluate-commands -draft {} |
+  kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
   jq --slurp |
   kcr send
 }
