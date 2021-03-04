@@ -299,7 +299,6 @@ kcr send echo tchou
 ``` sh
 kcr echo -- evaluate-commands -draft {} |
 kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
-jq --slurp |
 kcr send
 ```
 
@@ -395,7 +394,6 @@ Output:
 
 ``` sh
 kcr echo -- echo %val{buflist} |
-jq --slurp |
 kcr escape
 ```
 
@@ -457,7 +455,6 @@ $ sh -c %{
 $ sh -c %{
   kcr echo -- evaluate-commands -draft {} |
   kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
-  jq --slurp |
   kcr send
 }
 ```

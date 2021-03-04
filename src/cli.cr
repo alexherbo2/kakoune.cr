@@ -281,8 +281,8 @@ module Kakoune::CLI
       end
 
       if !STDIN.tty?
-        input = STDIN.gets_to_end
-        arguments.concat(CommandConstructor.from_json(input)) unless input.empty?
+        process = Process.new("jq", { "--slurp" }, input: STDIN, output: :pipe)
+        arguments.concat(CommandConstructor.from_json(process.output))
       end
 
       command = CommandBuilder.build(arguments)
@@ -339,8 +339,8 @@ module Kakoune::CLI
       end
 
       if !STDIN.tty?
-        input = STDIN.gets_to_end
-        arguments.concat(CommandConstructor.from_json(input)) unless input.empty?
+        process = Process.new("jq", { "--slurp" }, input: STDIN, output: :pipe)
+        arguments.concat(CommandConstructor.from_json(process.output))
       end
 
       puts CommandBuilder.build(arguments)
