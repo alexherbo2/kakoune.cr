@@ -4,6 +4,9 @@ require "file_utils"
 require "./kakoune"
 require "./env"
 
+PROGRAM_PATH = Path[Process.executable_path || PROGRAM_NAME]
+RUNTIME_PATH = PROGRAM_PATH.join("../../share/kcr").expand
+
 module Kakoune::CLI
   extend self
 
@@ -377,7 +380,7 @@ module Kakoune::CLI
   end
 
   def install_commands
-    command_paths = Dir[Path[__DIR__, "commands", "*", "kcr-*"]]
+    command_paths = Dir[RUNTIME_PATH / "commands" / "*" / "kcr-*"]
     bin_path = Path["~/.local/bin"].expand(home: true)
 
     { command_paths, bin_path.to_s }.tap do |sources, destination|
@@ -402,7 +405,7 @@ module Kakoune::CLI
     end
 
     # Install the desktop application
-    kakoune_desktop_path = Path[__DIR__, "../share/applications/kakoune.desktop"]
+    kakoune_desktop_path = RUNTIME_PATH / "applications/kakoune.desktop"
     kakoune_desktop_install_path = Path[ENV["XDG_DATA_HOME"], "applications/kakoune.desktop"]
 
     { kakoune_desktop_path.to_s, kakoune_desktop_install_path.to_s, kakoune_desktop_install_path.dirname }.tap do |source, destination, directory|
@@ -413,7 +416,7 @@ module Kakoune::CLI
   end
 
   def read(part)
-    File.read(Path[__DIR__] / part)
+    File.read(RUNTIME_PATH / part)
   end
 
   def print_json(data)

@@ -150,7 +150,7 @@ kcr init kakoune
 
 Print [Kakoune definitions].
 
-[Kakoune definitions]: src/init/kakoune.kak
+[Kakoune definitions]: share/kcr/init/kakoune.kak
 
 **Example** – **kakrc** configuration:
 
@@ -183,7 +183,7 @@ kcr init starship
 Print [🚀][Starship] [Starship configuration].
 
 [Starship]: https://starship.rs
-[Starship configuration]: src/init/starship.toml
+[Starship configuration]: share/kcr/init/starship.toml
 
 ###### `install`
 
@@ -201,7 +201,7 @@ kcr install commands
 
 Install [commands][Shipped commands].
 
-[Shipped commands]: src/commands
+[Shipped commands]: share/kcr/commands
 
 ###### `install desktop`
 
@@ -211,7 +211,7 @@ kcr install desktop
 
 Install [desktop application].
 
-[Desktop application]: share/applications/kakoune.desktop
+[Desktop application]: share/kcr/applications/kakoune.desktop
 
 ###### `create`
 
