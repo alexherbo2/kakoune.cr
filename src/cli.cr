@@ -270,22 +270,19 @@ module Kakoune::CLI
         exit(1)
       end
 
-      if !STDIN.tty?
-        input = STDIN.gets_to_end
-        if !input.empty?
-          commands = Array(Array(Argument)).from_json(input)
-
-          commands.each do |arguments|
-            command = arguments.shift
-            context.send(command, arguments)
-          end
-        end
-      end
+      arguments = CommandConstructor.new
 
       if argv.any?
-        command = argv.shift
-        context.send(command, argv)
+        arguments.concat([argv])
       end
+
+      if !STDIN.tty?
+        input = STDIN.gets_to_end
+        arguments.concat(CommandConstructor.from_json(input)) unless input.empty?
+      end
+
+      command = CommandBuilder.build(arguments)
+      context.send(command)
 
     when :get
       if !context
@@ -331,17 +328,18 @@ module Kakoune::CLI
       end
 
     when :escape
-      if !STDIN.tty?
-        input = STDIN.gets_to_end
-        if !input.empty?
-          arguments = Array(Argument).from_json(input)
-          puts Arguments.escape(arguments)
-        end
-      end
+      arguments = CommandConstructor.new
 
       if argv.any?
-        puts Arguments.escape(argv)
+        arguments.concat([argv])
       end
+
+      if !STDIN.tty?
+        input = STDIN.gets_to_end
+        arguments.concat(CommandConstructor.from_json(input)) unless input.empty?
+      end
+
+      puts CommandBuilder.build(arguments)
 
     when :help
       option_parser.parse(argv + ["--help"])

@@ -1,15 +1,10 @@
 require "string_scanner"
-require "./argument"
 
 module Kakoune::Arguments
   extend self
 
   # Returns a string.
   # Wraps each argument in single quotes, doubling-up embedded quotes.
-  def escape(argument : Argument)
-    escape(argument.to_s)
-  end
-
   def escape(string : String)
     "'" + string.gsub("'", "''") + "'"
   end

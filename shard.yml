@@ -7,3 +7,5 @@ targets:
 dependencies:
   fifo:
     github: alexherbo2/fifo.cr
+  rsub:
+    github: alexherbo2/rsub.cr

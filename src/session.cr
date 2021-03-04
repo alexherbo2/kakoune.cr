@@ -11,10 +11,14 @@ class Kakoune::Session
   def initialize(@name)
   end
 
-  def send(command, arguments)
-    script = Arguments.escape([command] + arguments)
-    input = IO::Memory.new(script)
+  def send(command)
+    input = IO::Memory.new(command)
     Process.run("kak", { "-p", name }, input: input)
+  end
+
+  def send(command, arguments)
+    command = Arguments.escape([command] + arguments)
+    send(command)
   end
 
   def create

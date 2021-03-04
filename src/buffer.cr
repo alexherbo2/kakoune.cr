@@ -1,5 +1,6 @@
 require "./session"
 require "./commands"
+require "./arguments"
 
 class Kakoune::Buffer
   include Commands
@@ -18,6 +19,12 @@ class Kakoune::Buffer
   end
 
   # Add a few switches to evaluate-commands for perfect command forwarding to another context.
+  def send(command)
+    session.send <<-EOF
+      evaluate-commands -buffer #{Arguments.escape name} -verbatim -- #{command}
+    EOF
+  end
+
   def send(command, arguments)
     session.send("evaluate-commands", ["-buffer", name, "-verbatim", "--", command] + arguments)
   end
