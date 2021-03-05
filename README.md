@@ -490,6 +490,16 @@ $ sh -c %{
 
 ``` kak
 $ sh -c %{
+  kcr echo -- echo kanto |
+  kcr echo -- echo johto |
+  kcr send
+}
+```
+
+**Example** – Async communication (4):
+
+``` kak
+$ sh -c %{
   kcr echo -- evaluate-commands -draft {} |
   kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
   kcr send

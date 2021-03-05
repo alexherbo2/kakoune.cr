@@ -1,5 +1,6 @@
 require "./session"
 require "./commands"
+require "./arguments"
 require "./buffer"
 
 class Kakoune::Client
@@ -11,13 +12,13 @@ class Kakoune::Client
   def initialize(@session, @name)
   end
 
-  # Add a few switches to evaluate-commands for perfect command forwarding to another context.
   def send(command)
     session.send <<-EOF
-      evaluate-commands -try-client #{name} -verbatim -- #{command}
+      evaluate-commands -try-client #{Arguments.escape name} -- #{Arguments.escape command}
     EOF
   end
 
+  # Add a few switches to evaluate-commands for perfect command forwarding to another context.
   def send(command, arguments)
     session.send("evaluate-commands", ["-try-client", name, "-verbatim", "--", command] + arguments)
   end

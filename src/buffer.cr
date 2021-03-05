@@ -18,13 +18,13 @@ class Kakoune::Buffer
     end
   end
 
-  # Add a few switches to evaluate-commands for perfect command forwarding to another context.
   def send(command)
     session.send <<-EOF
-      evaluate-commands -buffer #{Arguments.escape name} -verbatim -- #{command}
+      evaluate-commands -buffer #{Arguments.escape name} -- #{Arguments.escape command}
     EOF
   end
 
+  # Add a few switches to evaluate-commands for perfect command forwarding to another context.
   def send(command, arguments)
     session.send("evaluate-commands", ["-buffer", name, "-verbatim", "--", command] + arguments)
   end

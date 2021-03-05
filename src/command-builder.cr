@@ -41,6 +41,6 @@ class Kakoune::CommandBuilder
       stack.unshift escape(arguments)
     end
 
-    command = stack.pop
+    command = stack.join('\n')
   end
 end
