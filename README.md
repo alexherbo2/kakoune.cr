@@ -128,7 +128,8 @@ kcr shell [command] [arguments] ⇒ Start an interactive shell
 kcr edit [files] [input: fifo] ⇒ Edit files
 kcr open [files] [input: fifo] ⇒ Open files
 kcr send <command> [arguments] [input: json-format] ⇒ Send commands to client at session
-kcr [echo|get] [expansions] [input: data-stream] ⇒ Get states from a client in session
+kcr echo [arguments] [input: data-stream] ⇒ Print arguments
+kcr get [expansions] [input: data-stream] ⇒ Get states from a client in session
 kcr cat [buffers] ⇒ Print buffer content
 kcr escape [arguments] [input: json-format] ⇒ Escape arguments
 kcr help [command] ⇒ Show help
@@ -303,10 +304,46 @@ kcr send
 ```
 
 ###### `echo`
+
+```
+kcr echo [arguments] [input: data-stream]
+```
+
+Print arguments.
+
+**Example**
+
+``` sh
+kcr echo -- echo tchou
+```
+
+Output:
+
+``` json
+["echo", "tchou"]
+```
+
+**Example** – Streaming data:
+
+``` sh
+kcr echo -- evaluate-commands -draft {} |
+kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
+jq --slurp
+```
+
+Output:
+
+``` json
+[
+  ["evaluate-commands", "-draft", "{}"],
+  ["execute-keys", "<a-i>b", "i<backspace><esc>", "a<del><esc>"]
+]
+```
+
 ###### `get`
 
 ```
-kcr [echo|get] [expansions] [input: data-stream]
+kcr get [expansions] [input: data-stream]
 ```
 
 Get states from a client in session.

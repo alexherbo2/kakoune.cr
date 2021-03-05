@@ -104,7 +104,7 @@ module Kakoune::CLI
         options.command = :send
       end
 
-      parser.on("echo", "Get states from a client in session") do
+      parser.on("echo", "Print arguments") do
         options.command = :echo
       end
 
@@ -295,7 +295,21 @@ module Kakoune::CLI
       command = CommandBuilder.build(arguments)
       context.send(command)
 
-    when :echo, :get
+    when :echo
+      # Streaming data
+      #
+      # Example:
+      #
+      # kcr echo -- evaluate-commands -draft {} |
+      # kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
+      # jq --slurp
+      IO.copy(STDIN, STDOUT) unless STDIN.tty?
+
+      if argv.any?
+        print_json(argv)
+      end
+
+    when :get
       if !context
         STDERR.puts "No session in context"
         exit(1)
