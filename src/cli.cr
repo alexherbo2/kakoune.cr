@@ -285,11 +285,7 @@ module Kakoune::CLI
 
       if !STDIN.tty?
         input = STDIN.gets_to_end
-
-        if input.presence
-          process = Process.new("jq", { "--slurp" }, input: IO::Memory.new(input), output: :pipe)
-          arguments.concat(CommandConstructor.from_json(process.output))
-        end
+        arguments.concat(parse_command_constructor(input)) if input.presence
       end
 
       command = CommandBuilder.build(arguments)
@@ -361,11 +357,7 @@ module Kakoune::CLI
 
       if !STDIN.tty?
         input = STDIN.gets_to_end
-
-        if input.presence
-          process = Process.new("jq", { "--slurp" }, input: IO::Memory.new(input), output: :pipe)
-          arguments.concat(CommandConstructor.from_json(process.output))
-        end
+        arguments.concat(parse_command_constructor(input)) if input.presence
       end
 
       puts CommandBuilder.build(arguments)
@@ -467,6 +459,30 @@ module Kakoune::CLI
     end
 
     arguments.replace(unhandled_arguments)
+  end
+
+  # Parses command constructor from JSON.
+  #
+  # Example:
+  #
+  # [
+  #   ["echo", "kanto"],
+  #   ["echo", "johto"]
+  # ]
+  #
+  # Accepts chunks.
+  # Reads the entire input stream into a large array.
+  #
+  # Example:
+  #
+  # ["echo", "kanto"]
+  # ["echo", "johto"]
+  def parse_command_constructor(json)
+    CommandConstructor.from_json(json)
+  rescue
+    json.each_line.map do |json|
+      Array(String).from_json(json)
+    end
   end
 end
 
