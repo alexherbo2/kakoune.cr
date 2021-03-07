@@ -38,9 +38,9 @@ class Kakoune::CommandBuilder
         end
       end.to_a.reverse
 
-      stack.unshift escape(arguments)
+      stack << escape(arguments)
     end
 
-    command = stack.join('\n')
+    command = stack.reverse.join('\n')
   end
 end
