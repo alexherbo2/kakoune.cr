@@ -17,6 +17,17 @@ module Kakoune::CLI
     property context = Context.new(session: ENV["KAKOUNE_SESSION"]?, client: ENV["KAKOUNE_CLIENT"]?)
     property position = Position.new
     property raw = false
+    property debug = false
+  end
+
+  def debug(context, arguments)
+    message = {
+      session: context.session_name,
+      client: context.client_name,
+      arguments: arguments
+    }
+    print_json(message)
+    context.session.send("echo", ["-debug", "kcr", message.to_json])
   end
 
   def start(argv)
@@ -41,6 +52,10 @@ module Kakoune::CLI
 
       parser.on("-R", "--no-raw", "Do not use raw output") do
         options.raw = false
+      end
+
+      parser.on("-d", "--debug", "Debug mode") do
+        options.debug = true
       end
 
       parser.on("-h", "--help", "Show help") do
@@ -287,6 +302,8 @@ module Kakoune::CLI
         input = STDIN.gets_to_end
         arguments.concat(parse_command_constructor(input)) if input.presence
       end
+
+      debug(options.context, arguments) if options.debug
 
       command = CommandBuilder.build(arguments)
       context.send(command)

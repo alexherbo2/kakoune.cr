@@ -1,6 +1,6 @@
 # kakoune.cr
 
-###### [Installation] | [Usage] | [Configuration] | [Commands] | [Extending kcr] | [Writing plugins]
+###### [Installation] | [Usage] | [Configuration] | [Commands] | [Extending kcr] | [Writing plugins] | [Troubleshooting]
 
 kakoune.cr (kcr) is a command-line tool for [Kakoune].
 
@@ -109,6 +109,7 @@ file -b -i -L <file>
 -c, --client <name> ⇒ Client name
 -r, --raw ⇒ Use raw output
 -R, --no-raw ⇒ Do not use raw output
+-d, --debug ⇒ Debug mode
 -h, --help ⇒ Show help
 ```
 
@@ -503,5 +504,27 @@ $ sh -c %{
   kcr echo -- evaluate-commands -draft {} |
   kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
   kcr send
+}
+```
+
+## Troubleshooting
+
+[Troubleshooting]: #troubleshooting
+
+Use the `--debug` (`-d`) flag to write a log message in the terminal and in Kakoune if available (see the `*debug*` buffer).
+
+**Example**
+
+``` sh
+kcr --debug send -- echo tchou
+```
+
+Output:
+
+``` json
+{
+  "session": "kanto",
+  "client": "main",
+  "arguments": [["echo", "tchou"]]
 }
 ```
