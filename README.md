@@ -44,7 +44,7 @@ evaluate-commands %sh{
 kcr [-s, --session <name>] [-c, --client <name>] [-r, --raw] <command> [arguments]
 ```
 
-Open Kakoune, then a connected terminal with `>` or `+` or a GUI program with `$`.
+Open Kakoune, then a connected terminal with [`>`] or [`+`] or a GUI program with [`$`].
 Edit files with [`kcr edit`][`edit`] and see them being opened in the Kakoune client.
 You can set your `$EDITOR` to [`kcr edit`][`edit`] and configure your graphical applications to open files with Kakoune.
 
@@ -174,7 +174,11 @@ evaluate-commands %sh{
 }
 ```
 
-**Commands**
+### Kakoune commands
+
+###### [`connect`] | [`run`] | [`$`] [`connect-program`] | [`>`] [`connect-terminal`] | [`+`] [`connect-popup`]
+
+[Kakoune commands]: #kakoune-commands
 
 ```
 connect <command> [arguments] ⇒ Run a command as <command> sh -c {connect} -- [arguments].  Example: connect terminal sh.
@@ -183,6 +187,73 @@ run <command> [arguments] ⇒ Run a program in a new session
 [>] connect-terminal [command] [arguments] ⇒ Connect a terminal
 [+] connect-popup [command] [arguments] ⇒ Connect a popup
 ```
+
+###### `connect`
+
+[`connect`]: #connect
+
+```
+connect <command> [arguments]
+```
+
+Run a command as `<command> sh -c {connect} -- [arguments]`.
+
+**Example**
+
+``` kak
+connect terminal sh
+```
+
+###### `run`
+
+[`run`]: #run
+
+```
+run <command> [arguments]
+```
+
+Run a program in a new session.
+
+###### `connect-program`
+
+[`$`]: #connect-program
+[`connect-program`]: #connect-program
+
+```
+[$] connect-program <command> [arguments]
+```
+
+Connect a program.
+
+**Example** – Connect [Dolphin]:
+
+``` kak
+$ dolphin
+```
+
+[Dolphin]: https://apps.kde.org/en/dolphin
+
+###### `connect-terminal`
+
+[`>`]: #connect-terminal
+[`connect-terminal`]: #connect-terminal
+
+```
+[>] connect-terminal [command] [arguments]
+```
+
+Connect a terminal.
+
+###### `connect-popup`
+
+[`+`]: #connect-popup
+[`connect-popup`]: #connect-popup
+
+```
+[+] connect-popup [command] [arguments]
+```
+
+Connect a popup.
 
 See [#2] for `'connect' no such command: 'popup'` error.
 
