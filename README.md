@@ -6,6 +6,14 @@ kakoune.cr (kcr) is a command-line tool for [Kakoune].
 
 [Kakoune]: https://kakoune.org
 
+###### What can I do?
+
+- Connect applications to Kakoune.
+- Control Kakoune from the command-line.
+- Write plugins.
+
+Give it a spin: [`kcr play`][`play`]
+
 ## Dependencies
 
 [Dependencies]: #dependencies
