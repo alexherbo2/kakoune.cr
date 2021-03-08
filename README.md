@@ -25,7 +25,7 @@ kcr edit --session=kanto --client=main pokemon.json
 ```
 
 Most of the time, you don’t need to specify them.
-[`>`] will [`connect terminal`][`connect-terminal`] and forward `$KAKOUNE_SESSION` and `$KAKOUNE_CLIENT` environment variables,
+[`>`] will [`connect terminal`][`connect-terminal`] and forward [`$KAKOUNE_SESSION`] and [`$KAKOUNE_CLIENT`] environment variables,
 which will be used by [`kcr`] to run commands in the specified context.
 
 ## Dependencies
@@ -137,8 +137,8 @@ file -b -i -L <file>
 **Options**
 
 ```
--s, --session <name> ⇒ Session name
--c, --client <name> ⇒ Client name
+-s, --session <name> ⇒ Session name (Default: $KAKOUNE_SESSION)
+-c, --client <name> ⇒ Client name (Default: $KAKOUNE_CLIENT)
 -r, --raw ⇒ Use raw output
 -R, --no-raw ⇒ Do not use raw output
 -d, --debug ⇒ Debug mode
@@ -147,6 +147,9 @@ file -b -i -L <file>
 
 [`--session`]: #commands
 [`--client`]: #commands
+
+[`$KAKOUNE_SESSION`]: #commands
+[`$KAKOUNE_CLIENT`]: #commands
 
 **Commands**
 
