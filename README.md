@@ -14,6 +14,20 @@ kakoune.cr (kcr) is a command-line tool for [Kakoune].
 
 Give it a spin: [`kcr play`][`play`]
 
+###### How does it work?
+
+kakoune.cr is based around the concept of contexts, which can be set via the [`--session`] and [`--client`] options.
+
+For example, the following command will open the file in the main client of the Kanto session.
+
+``` sh
+kcr edit --session=kanto --client=main pokemon.json
+```
+
+Most of the time, you don’t need to specify them.
+[`>`] will [`connect terminal`][`connect-terminal`] and forward `$KAKOUNE_SESSION` and `$KAKOUNE_CLIENT` environment variables,
+which will be used by [`kcr`] to run commands in the specified context.
+
 ## Dependencies
 
 [Dependencies]: #dependencies
@@ -51,6 +65,8 @@ evaluate-commands %sh{
 ```
 kcr [-s, --session <name>] [-c, --client <name>] [-r, --raw] <command> [arguments]
 ```
+
+[`kcr`]: #usage
 
 Open Kakoune, then a connected terminal with [`>`] or [`+`] or a GUI program with [`$`].
 Edit files with [`kcr edit`][`edit`] and see them being opened in the Kakoune client.
@@ -128,6 +144,9 @@ file -b -i -L <file>
 -d, --debug ⇒ Debug mode
 -h, --help ⇒ Show help
 ```
+
+[`--session`]: #commands
+[`--client`]: #commands
 
 **Commands**
 
