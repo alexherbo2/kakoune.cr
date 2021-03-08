@@ -100,6 +100,8 @@ file -b -i -L <file>
 
 ## Commands
 
+###### [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`escape`] | [`help`]
+
 [Commands]: #commands
 
 **Options**
@@ -140,6 +142,8 @@ kcr help [command] ⇒ Show help
 
 ###### `init`
 
+[`init`]: #init
+
 ```
 kcr init <name>
 ```
@@ -147,6 +151,8 @@ kcr init <name>
 Print functions.
 
 ###### `init kakoune`
+
+[`init kakoune`]: #init-kakoune
 
 ```
 kcr init kakoune
@@ -180,6 +186,8 @@ See [#2] for `'connect' no such command: 'popup'` error.
 
 ###### `init starship`
 
+[`init starship`]: #init-starship
+
 ```
 kcr init starship
 ```
@@ -191,6 +199,8 @@ Print [🚀][Starship] [Starship configuration].
 
 ###### `install`
 
+[`install`]: #install
+
 ```
 kcr install <name>
 ```
@@ -198,6 +208,8 @@ kcr install <name>
 Install files.
 
 ###### `install commands`
+
+[`install commands`]: #install-commands
 
 ```
 kcr install commands
@@ -209,6 +221,8 @@ Install [commands][Shipped commands].
 
 ###### `install desktop`
 
+[`install desktop`]: #install-desktop
+
 ```
 kcr install desktop
 ```
@@ -218,6 +232,8 @@ Install [desktop application].
 [Desktop application]: share/kcr/applications/kakoune.desktop
 
 ###### `env`
+
+[`env`]: #env
 
 ```
 kcr env
@@ -239,6 +255,8 @@ Start playground with [`example.kak`] by default.
 
 ###### `create`
 
+[`create`]: #create
+
 ```
 kcr create [session]
 ```
@@ -247,6 +265,8 @@ Create a new session.
 
 ###### `attach`
 
+[`attach`]: #attach
+
 ```
 kcr attach [session]
 ```
@@ -254,6 +274,8 @@ kcr attach [session]
 Connect to session.
 
 ###### `list`
+
+[`list`]: #list
 
 ```
 kcr list
@@ -276,6 +298,8 @@ Output example:
 
 ###### `shell`
 
+[`shell`]: #shell
+
 ```
 kcr shell [command] [arguments]
 ```
@@ -290,6 +314,8 @@ kcr shell kcr attach
 
 ###### `edit`
 
+[`edit`]: #edit
+
 ```
 kcr edit [files] [input: fifo]
 ```
@@ -298,6 +324,8 @@ Edit files.
 
 ###### `open`
 
+[`open`]: #open
+
 ```
 kcr open [files] [input: fifo]
 ```
@@ -305,6 +333,8 @@ kcr open [files] [input: fifo]
 Open files.
 
 ###### `send`
+
+[`send`]: #send
 
 ```
 kcr send <command> [arguments] [input: json-format]
@@ -327,6 +357,8 @@ kcr send
 ```
 
 ###### `echo`
+
+[`echo`]: #echo
 
 ```
 kcr echo [arguments] [input: data-stream]
@@ -364,6 +396,8 @@ Output:
 ```
 
 ###### `get`
+
+[`get`]: #get
 
 ```
 kcr get [expansions] [input: data-stream]
@@ -410,6 +444,8 @@ Output:
 
 ###### `cat`
 
+[`cat`]: #cat
+
 ```
 kcr cat [buffers]
 ```
@@ -431,6 +467,8 @@ Output:
 ```
 
 ###### `escape`
+
+[`escape`]: #escape
 
 ```
 kcr escape [arguments] [input: json-format]
@@ -464,6 +502,8 @@ Output:
 ```
 
 ###### `help`
+
+[`help`]: #help
 
 ```
 kcr help [command]
