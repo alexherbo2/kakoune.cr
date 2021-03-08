@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Get expansions from a client in session.
+#
+# Usage:
+#
+# kcr get-expansion <type> <name> [input: data-stream]
+
+type=$1 name=$2
+shift 2
+kcr get "$@" "%${type}{${name}}"

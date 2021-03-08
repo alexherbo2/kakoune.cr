@@ -81,6 +81,10 @@ alias kl='kcr list'
 alias a='kcr attach'
 alias :='kcr send'
 alias :cat='kcr cat --raw'
+
+alias val='kcr get-expansion val'
+alias opt='kcr get-expansion opt'
+alias reg='kcr get-expansion reg'
 ```
 
 [XDG MIME Applications] example configuration:
