@@ -44,6 +44,10 @@ evaluate-commands %sh{
 kcr [-s, --session <name>] [-c, --client <name>] [-r, --raw] <command> [arguments]
 ```
 
+Open Kakoune, then a connected terminal with `>` or `+` or a GUI program with `$`.
+Edit files with [`kcr edit`][`edit`] and see them being opened in the Kakoune client.
+You can set your `$EDITOR` to [`kcr edit`][`edit`] and configure your graphical applications to open files with Kakoune.
+
 ## Configuration
 
 [Configuration]: #configuration
