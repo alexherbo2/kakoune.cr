@@ -91,6 +91,10 @@ module Kakoune::CLI
         end
       end
 
+      parser.on("play", "Start playground") do
+        options.command = :play
+      end
+
       parser.on("create", "Create a new session") do
         options.command = :create
       end
@@ -178,6 +182,21 @@ module Kakoune::CLI
 
     when :install_desktop_application
       install_desktop_application
+
+    when :play
+      file = if argv.first?
+        argv.first
+      else
+        RUNTIME_PATH / "init/example.kak"
+      end
+
+      config = <<-EOF
+        source #{RUNTIME_PATH / "init/kakoune.kak"}
+        source #{RUNTIME_PATH / "init/playground.kak"}
+        initialize #{file}
+      EOF
+
+      Process.run("kak", ["-e", config], input: :inherit, output: :inherit, error: :inherit)
 
     when :create
       session_name = argv.fetch(0, options.context.session_name)

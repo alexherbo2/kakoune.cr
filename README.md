@@ -122,6 +122,7 @@ kcr init starship ⇒ Print Starship configuration
 kcr install <name> ⇒ Install files
 kcr install commands ⇒ Install commands
 kcr install desktop ⇒ Install desktop application
+kcr play [file] ⇒ Start playground
 kcr create [session] ⇒ Create a new session
 kcr attach [session] ⇒ Connect to session
 kcr list ⇒ List sessions
@@ -214,6 +215,18 @@ kcr install desktop
 Install [desktop application].
 
 [Desktop application]: share/kcr/applications/kakoune.desktop
+
+###### `play`
+
+[`play`]: #play
+
+```
+kcr play [file]
+```
+
+Start playground with [`example.kak`] by default.
+
+[`example.kak`]: share/kcr/init/example.kak
 
 ###### `create`
 
@@ -463,49 +476,11 @@ See the [shipped commands] for examples.
 
 [Writing plugins]: #writing-plugins
 
-**Example** – Escape arguments:
-
-``` kak
-evaluate-commands %sh{
-  kcr escape -- echo "maïs'mélange'bientôt"
-}
+``` sh
+kcr play
 ```
 
-**Example** – Async communication (1):
-
-``` kak
-$ sh -c %{
-  kcr send -- echo tchou
-}
-```
-
-**Example** – Async communication (2):
-
-``` kak
-$ sh -c %{
-  kcr send -- echo "$1" and "$2"
-} -- %val{session} %val{client}
-```
-
-**Example** – Async communication (3):
-
-``` kak
-$ sh -c %{
-  kcr echo -- echo kanto |
-  kcr echo -- echo johto |
-  kcr send
-}
-```
-
-**Example** – Async communication (4):
-
-``` kak
-$ sh -c %{
-  kcr echo -- evaluate-commands -draft {} |
-  kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
-  kcr send
-}
-```
+See the [`play`] command and [`example.kak`] file.
 
 ## Troubleshooting
 
