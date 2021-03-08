@@ -122,6 +122,7 @@ kcr init starship ⇒ Print Starship configuration
 kcr install <name> ⇒ Install files
 kcr install commands ⇒ Install commands
 kcr install desktop ⇒ Install desktop application
+kcr env ⇒ Print Kakoune environment information
 kcr play [file] ⇒ Start playground
 kcr create [session] ⇒ Create a new session
 kcr attach [session] ⇒ Connect to session
@@ -215,6 +216,14 @@ kcr install desktop
 Install [desktop application].
 
 [Desktop application]: share/kcr/applications/kakoune.desktop
+
+###### `env`
+
+```
+kcr env
+```
+
+Print Kakoune environment information.
 
 ###### `play`
 

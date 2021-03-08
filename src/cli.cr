@@ -91,6 +91,10 @@ module Kakoune::CLI
         end
       end
 
+      parser.on("env", "Print Kakoune environment information") do
+        options.command = :env
+      end
+
       parser.on("play", "Start playground") do
         options.command = :play
       end
@@ -182,6 +186,22 @@ module Kakoune::CLI
 
     when :install_desktop_application
       install_desktop_application
+
+    when :env
+      environment = {
+        "KAKOUNE_SESSION" => options.context.session_name,
+        "KAKOUNE_CLIENT" => options.context.client_name
+      }
+
+      if options.raw
+        text = environment.join('\n') do |key, value|
+          "#{key}=#{value}"
+        end
+
+        puts text
+      else
+        print_json(environment)
+      end
 
     when :play
       file = if argv.first?
