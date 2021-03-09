@@ -53,6 +53,8 @@ make install
 ```
 
 Add `static=yes` or `make release` for static builds.
+In that case, you don’t need [Crystal] but [Docker] for building.
+The latter creates a package at `target/release.zip` location.
 
 Add the [Kakoune definitions] to your **kakrc**.
 
