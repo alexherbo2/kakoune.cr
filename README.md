@@ -34,10 +34,12 @@ which will be used by [`kcr`] to run commands in the specified context.
 
 - [Crystal]
 - [Shards]
+- [Docker] (for static builds)
 - [jq]
 
 [Crystal]: https://crystal-lang.org
 [Shards]: https://github.com/crystal-lang/shards
+[Docker]: https://docker.com
 [jq]: https://stedolan.github.io/jq/
 
 ## Installation
@@ -49,6 +51,8 @@ Run the following in your terminal:
 ``` sh
 make install
 ```
+
+Add `static=yes` for static builds.
 
 Add the [Kakoune definitions] to your **kakrc**.
 
