@@ -346,6 +346,17 @@ kcr env
 
 Print Kakoune environment information.
 
+Output example:
+
+``` json
+{
+  "KAKOUNE_SESSION": "kanto",
+  "KAKOUNE_CLIENT": "main",
+  "KAKOUNE_DEBUG": "0",
+  "KAKOUNE_VERSION": "*******"
+}
+```
+
 ###### `play`
 
 [`play`]: #play
