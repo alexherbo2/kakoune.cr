@@ -167,6 +167,13 @@ module Kakoune::CLI
     # Current context
     context = options.context.scope
 
+    # Environment variables
+    environment = {
+      "KAKOUNE_SESSION" => options.context.session_name,
+      "KAKOUNE_CLIENT" => options.context.client_name,
+      "KAKOUNE_DEBUG" => options.debug ? "1" : "0"
+    }
+
     # Run command
     case options.command
     when :init
@@ -188,11 +195,6 @@ module Kakoune::CLI
       install_desktop_application
 
     when :env
-      environment = {
-        "KAKOUNE_SESSION" => options.context.session_name,
-        "KAKOUNE_CLIENT" => options.context.client_name
-      }
-
       if options.raw
         text = environment.join('\n') do |key, value|
           "#{key}=#{value}"
@@ -217,10 +219,9 @@ module Kakoune::CLI
       EOF
 
       # Forward the --debug flag
-      environment = {
-        "KAKOUNE_DEBUG" => "1"
-      }
+      environment["KAKOUNE_DEBUG"] = "1"
 
+      # Start playground
       Process.run("kak", ["-e", config], env: environment, input: :inherit, output: :inherit, error: :inherit)
 
     when :create
@@ -284,15 +285,10 @@ module Kakoune::CLI
         session.create
       end
 
-      # Forward session and client options
-      environment = {
-        "KAKOUNE_SESSION" => options.context.session_name,
-        "KAKOUNE_CLIENT" => options.context.client_name
-      }
-
       working_directory = session.get("%sh{pwd}")[0]
 
       # Start an interactive shell
+      # – Forward options and working directory
       Process.run(command, arguments, env: environment, chdir: working_directory, input: :inherit, output: :inherit, error: :inherit)
 
     when :edit
@@ -443,13 +439,8 @@ module Kakoune::CLI
         exit(1)
       end
 
-      # Forward session and client options
-      environment = {
-        "KAKOUNE_SESSION" => options.context.session_name,
-        "KAKOUNE_CLIENT" => options.context.client_name
-      }
-
       # Run subcommand
+      # – Forward options
       Process.run(command, argv, env: environment, input: :inherit, output: :inherit, error: :inherit)
     end
   end
