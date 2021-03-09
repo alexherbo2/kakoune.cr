@@ -6,6 +6,8 @@ else
   build = build
 endif
 
+default: $(build)
+
 build:
 	shards build --release
 
