@@ -17,7 +17,7 @@ module Kakoune::CLI
     property context = Context.new(session: ENV["KAKOUNE_SESSION"]?, client: ENV["KAKOUNE_CLIENT"]?)
     property position = Position.new
     property raw = false
-    property debug = false
+    property debug = ENV.has_key?("KAKOUNE_DEBUG")
   end
 
   def debug(context, arguments)
@@ -216,7 +216,12 @@ module Kakoune::CLI
         initialize #{file}
       EOF
 
-      Process.run("kak", ["-e", config], input: :inherit, output: :inherit, error: :inherit)
+      # Forward the --debug flag
+      environment = {
+        "KAKOUNE_DEBUG" => "1"
+      }
+
+      Process.run("kak", ["-e", config], env: environment, input: :inherit, output: :inherit, error: :inherit)
 
     when :create
       session_name = argv.fetch(0, options.context.session_name)

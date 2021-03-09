@@ -1,35 +1,37 @@
 # Edit me and press F5 to reload.
 # Type in insert mode (), {}, []…
-# Inspect the *debug* buffer populated with `kcr send --debug`.
-# Open a connected terminal with [>] or [+] and try the `send` command with the --debug flag.
+# Inspect the *debug* buffer populated with `kcr send --debug` or via `export KAKOUNE_DEBUG=1`.
+# Open a connected terminal with [>] or [+] and try the following commands.
 #
 # Examples:
+#
+# export KAKOUNE_DEBUG=1
 #
 # kcr get %val{buflist}
 #
 # kcr echo -- echo kanto | kcr echo -- echo johto | kcr escape
 # kcr echo -- kanto johto | kcr escape -- echo {}
 #
-# kcr echo -- echo kanto | kcr echo -- echo johto | kcr send -d
-# kcr echo -- kanto johto | kcr send -d -- echo {}
+# kcr echo -- echo kanto | kcr echo -- echo johto | kcr send
+# kcr echo -- kanto johto | kcr send -- echo {}
 
 $ sh -c %{
   time=$1
 
-  kcr --debug send -- info 'Go ahead and experiment.'
+  kcr send -- info 'Go ahead and experiment.'
   sleep $((time))
 
-  kcr --debug send -- info 'Don’t think too much.'
+  kcr send -- info 'Don’t think too much.'
   sleep $((time))
 
-  kcr --debug send -- info 'Let intuition be your guide.'
+  kcr send -- info 'Let intuition be your guide.'
   sleep $((time))
 
-  kcr --debug send -- info 'Baten Kaitos: Eternal Wings and the Lost Ocean, in the Moonguile Forest, 2003.'
+  kcr send -- info 'Baten Kaitos: Eternal Wings and the Lost Ocean, in the Moonguile Forest, 2003.'
   sleep $((time * 2))
 
   kcr get %reg{.} |
-  kcr --debug send -- info 'You have selected: {}'
+  kcr send -- info 'You have selected: {}'
 } -- 2
 
 declare-option str-list pairs ( ) { } [ ]
@@ -60,7 +62,7 @@ define-command -override map-pairs %{
     '
     kcr get %opt{pairs} |
     jq "[$filter]" |
-    kcr send --debug
+    kcr send
   }
 }
 
@@ -68,7 +70,7 @@ define-command -override unmap-pairs %{
   $ sh -c %{
     kcr get %opt{pairs} |
     jq 'map(["unmap", "global", "insert", .])' |
-    kcr send --debug
+    kcr send
   }
 }
 

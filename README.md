@@ -141,7 +141,7 @@ file -b -i -L <file>
 -c, --client <name> ⇒ Client name (Default: $KAKOUNE_CLIENT)
 -r, --raw ⇒ Use raw output
 -R, --no-raw ⇒ Do not use raw output
--d, --debug ⇒ Debug mode
+-d, --debug ⇒ Debug mode (Default: $KAKOUNE_DEBUG)
 -h, --help ⇒ Show help
 ```
 
@@ -150,6 +150,7 @@ file -b -i -L <file>
 
 [`$KAKOUNE_SESSION`]: #commands
 [`$KAKOUNE_CLIENT`]: #commands
+[`$KAKOUNE_DEBUG`]: #commands
 
 **Commands**
 
@@ -653,7 +654,7 @@ See the [`play`] command and [`example.kak`] file.
 
 [Troubleshooting]: #troubleshooting
 
-Use the `--debug` (`-d`) flag to write a log message in the terminal and in Kakoune if available (see the `*debug*` buffer).
+Use the `--debug` (`-d`) flag or set [`$KAKOUNE_DEBUG`] to write a log message in the terminal and in Kakoune if available (see the `*debug*` buffer).
 
 **Example**
 
