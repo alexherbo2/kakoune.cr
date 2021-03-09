@@ -14,6 +14,10 @@ build:
 build-static:
 	./scripts/build-static
 
+release: build-static
+	mkdir -p target
+	zip -r target/release.zip bin share
+
 install: $(build)
 	mkdir -p ~/.local/bin
 	ln -sf "${PWD}/bin/kcr" ~/.local/bin
@@ -24,4 +28,4 @@ uninstall:
 	rm -f ~/.local/bin/kcr
 
 clean:
-	rm -Rf bin lib shard.lock
+	rm -Rf bin lib target shard.lock

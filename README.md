@@ -52,7 +52,7 @@ Run the following in your terminal:
 make install
 ```
 
-Add `static=yes` for static builds.
+Add `static=yes` or `make release` for static builds.
 
 Add the [Kakoune definitions] to your **kakrc**.
 
