@@ -58,6 +58,11 @@ module Kakoune::CLI
         options.debug = true
       end
 
+      parser.on("-v", "--version", "Display version") do
+        puts VERSION
+        exit
+      end
+
       parser.on("-h", "--help", "Show help") do
         puts parser
         exit
@@ -171,7 +176,8 @@ module Kakoune::CLI
     environment = {
       "KAKOUNE_SESSION" => options.context.session_name,
       "KAKOUNE_CLIENT" => options.context.client_name,
-      "KAKOUNE_DEBUG" => options.debug ? "1" : "0"
+      "KAKOUNE_DEBUG" => options.debug ? "1" : "0",
+      "KAKOUNE_VERSION" => VERSION
     }
 
     # Run command

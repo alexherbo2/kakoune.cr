@@ -142,6 +142,7 @@ file -b -i -L <file>
 -r, --raw ⇒ Use raw output
 -R, --no-raw ⇒ Do not use raw output
 -d, --debug ⇒ Debug mode (Default: $KAKOUNE_DEBUG, 1 for true)
+-v, --version ⇒ Display version
 -h, --help ⇒ Show help
 ```
 
