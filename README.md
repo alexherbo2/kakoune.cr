@@ -141,7 +141,7 @@ file -b -i -L <file>
 -c, --client <name> ⇒ Client name (Default: $KAKOUNE_CLIENT)
 -r, --raw ⇒ Use raw output
 -R, --no-raw ⇒ Do not use raw output
--d, --debug ⇒ Debug mode (Default: $KAKOUNE_DEBUG)
+-d, --debug ⇒ Debug mode (Default: $KAKOUNE_DEBUG, 1 for true)
 -h, --help ⇒ Show help
 ```
 

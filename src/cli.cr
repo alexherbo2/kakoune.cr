@@ -17,7 +17,7 @@ module Kakoune::CLI
     property context = Context.new(session: ENV["KAKOUNE_SESSION"]?, client: ENV["KAKOUNE_CLIENT"]?)
     property position = Position.new
     property raw = false
-    property debug = ENV.has_key?("KAKOUNE_DEBUG")
+    property debug = ENV["KAKOUNE_DEBUG"]? == "1"
   end
 
   def debug(context, arguments)
