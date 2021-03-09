@@ -1,12 +1,8 @@
 # `get`
 
-`get` related commands for **kcr**.
+[`get`] related commands for **kcr**.
 
-## Usage
-
-```
-kcr [-s, --session <name>] [-c, --client <name>] [-r, --raw] get [expansions] [input: data-stream]
-```
+[`get`]: https://github.com/alexherbo2/kakoune.cr#get
 
 ## Configuration
 
@@ -23,26 +19,17 @@ alias reg='kcr get-expansion reg'
 ## Commands
 
 ```
-kcr get [expansions] [input: data-stream] ⇒ Get states from a client in session
-kcr get-expansion <type> <name> [input: data-stream] ⇒ Get expansions from a client in session
+kcr get-expansion <type> <name> ⇒ Get expansions from a client in session
 ```
-
-###### `get`
-
-```
-kcr get [expansions] [input: data-stream]
-```
-
-Get states from a client in session.
 
 ###### `get-expansion`
 
 ```
-kcr get-expansion <type> <name> [input: data-stream]
+kcr get-expansion <type> <name>
 ```
 
 Get [expansions] from a client in session.
 
-Useful to create aliases.
+**Note**: This command is only meant to be useful for creating aliases.
 
 [Expansions]: https://github.com/mawww/kakoune/blob/master/doc/pages/expansions.asciidoc

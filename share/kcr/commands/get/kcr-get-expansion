@@ -4,7 +4,7 @@
 #
 # Usage:
 #
-# kcr get-expansion <type> <name> [input: data-stream]
+# kcr get-expansion <type> <name>
 
 type=$1 name=$2
 shift 2

@@ -1,27 +1,14 @@
 # `edit`
 
-`edit` related commands for **kcr**.
+[`edit`] related commands for **kcr**.
 
-## Usage
-
-```
-kcr [-s, --session <name>] [-c, --client <name>] edit [files] [input: fifo]
-```
+[`edit`]: https://github.com/alexherbo2/kakoune.cr#edit
 
 ## Commands
 
 ```
-kcr edit [files] [input: fifo] ⇒ Edit files
 kcr edit-search [input: <file>:<line>:<column>:<text>] ⇒ Open files from search results
 ```
-
-###### `edit`
-
-```
-kcr edit [files] [input: fifo]
-```
-
-Edit files.
 
 ###### `edit-search`
 
@@ -30,3 +17,8 @@ kcr edit-search [input: <file>:<line>:<column>:<text>]
 ```
 
 Open files from search results.
+
+**Note**: This command is only meant to be useful for scripting.
+See [`kcr-fzf-grep`] for example.
+
+[`kcr-fzf-grep`]: ../fzf/kcr-fzf-grep
