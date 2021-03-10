@@ -15,7 +15,7 @@ module Kakoune::CLI
   struct Options
     property command = :command
     property context = Context.new(session: ENV["KAKOUNE_SESSION"]?, client: ENV["KAKOUNE_CLIENT"]?)
-    property position = Position.new
+    property position : Position?
     property raw = false
     property debug : Bool = ENV["KAKOUNE_DEBUG"]? == "1"
   end
@@ -162,12 +162,13 @@ module Kakoune::CLI
     # Parse options
     option_parser.parse(argv)
 
-    parse_position(argv) do |line, column|
-      options.position.line = line
-      options.position.column = column
-    end
+    # Kakoune command-line options
+    kakoune_options = [] of String
 
-    position_option = "+#{options.position.line}:#{options.position.column}"
+    parse_position(argv) do |line, column|
+      options.position = Position.new(line, column)
+      kakoune_options << "+%d:%d" % { line, column }
+    end
 
     # Current context
     context = options.context.scope
@@ -308,9 +309,9 @@ module Kakoune::CLI
         end
 
         context.edit(absolute_paths)
-        context.edit(absolute_paths.first, options.position)
+        context.edit(absolute_paths.first, options.position) if options.position
       else
-        Process.run("kak", [position_option, "--"] + argv, input: :inherit, output: :inherit, error: :inherit)
+        Process.run("kak", kakoune_options + ["--"] + argv, input: :inherit, output: :inherit, error: :inherit)
       end
 
     when :open
@@ -322,14 +323,14 @@ module Kakoune::CLI
         end
 
         context.edit(absolute_paths)
-        context.edit(absolute_paths.first, options.position)
+        context.edit(absolute_paths.first, options.position) if options.position
       else
         open_client = <<-EOF
           rename-client dummy
           new evaluate-commands -client dummy quit
         EOF
 
-        Process.new("setsid", ["kak", "-ui", "dummy", "-e", open_client, position_option, "--"] + argv)
+        Process.new("setsid", ["kak", "-ui", "dummy", "-e", open_client] + kakoune_options + ["--"] + argv)
       end
 
     when :send
