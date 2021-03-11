@@ -568,7 +568,7 @@ Output:
 [`get`]: #get
 
 ```
-kcr get [-v, --value <name>] [-o, --option <name>] [-r, --register <name>] [expansions] [input: data-stream]
+kcr get [-V, --value <name>] [-O, --option <name>] [-R, --register <name>] [expansions] [input: data-stream]
 ```
 
 Get [states][Expansions] from a client in session.
