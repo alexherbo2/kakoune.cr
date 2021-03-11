@@ -198,7 +198,7 @@ kcr edit [files] [input: fifo] ⇒ Edit files
 kcr open [files] [input: fifo] ⇒ Open files
 kcr send <command> [arguments] [input: json-format] ⇒ Send commands to client at session
 kcr echo [arguments] [input: data-stream] ⇒ Print arguments
-kcr get [expansions] [input: data-stream] ⇒ Get states from a client in session
+kcr get [-V, --value <name>] [-O, --option <name>] [-R, --register <name>] [expansions] [input: data-stream] ⇒ Get states from a client in session
 kcr cat [buffers] ⇒ Print buffer content
 kcr escape [arguments] [input: json-format] ⇒ Escape arguments
 kcr help [command] ⇒ Show help
