@@ -139,6 +139,18 @@ module Kakoune::CLI
 
       parser.on("get", "Get states from a client in session") do
         options.command = :get
+
+        parser.on("-v NAME", "--value=NAME", "Value name") do |name|
+          options.kakoune_arguments << "%val{#{name}}"
+        end
+
+        parser.on("-o NAME", "--option=NAME", "Option name") do |name|
+          options.kakoune_arguments << "%opt{#{name}}"
+        end
+
+        parser.on("-r NAME", "--register=NAME", "Register name") do |name|
+          options.kakoune_arguments << "%reg{#{name}}"
+        end
       end
 
       parser.on("cat", "Print buffer content") do
@@ -382,8 +394,10 @@ module Kakoune::CLI
       # jq --slurp
       IO.copy(STDIN, STDOUT) unless STDIN.tty?
 
-      if argv.any?
-        data = context.get(argv)
+      arguments = options.kakoune_arguments + argv
+
+      if arguments.any?
+        data = context.get(arguments)
 
         if options.raw
           puts data.join('\n')

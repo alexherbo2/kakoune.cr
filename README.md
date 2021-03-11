@@ -130,9 +130,9 @@ alias a='kcr attach'
 alias :='kcr send'
 alias :cat='kcr cat --raw'
 
-alias val='kcr get-expansion val'
-alias opt='kcr get-expansion opt'
-alias reg='kcr get-expansion reg'
+alias val='kcr get --value'
+alias opt='kcr get --option'
+alias reg='kcr get --register'
 ```
 
 [XDG MIME Applications] example configuration:
@@ -568,10 +568,12 @@ Output:
 [`get`]: #get
 
 ```
-kcr get [expansions] [input: data-stream]
+kcr get [-v, --value <name>] [-o, --option <name>] [-r, --register <name>] [expansions] [input: data-stream]
 ```
 
-Get states from a client in session.
+Get [states][Expansions] from a client in session.
+
+[Expansions]: https://github.com/mawww/kakoune/blob/master/doc/pages/expansions.asciidoc
 
 **Example**
 
