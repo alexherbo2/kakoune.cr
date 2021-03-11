@@ -13,7 +13,7 @@ class Kakoune::Buffer
 
   def content
     FIFO.consume do |fifo|
-      send("write", ["-method", "overwrite", fifo.path.to_s])
+      send("write", [fifo.path.to_s])
       fifo.reader.gets_to_end
     end
   end
