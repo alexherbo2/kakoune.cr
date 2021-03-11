@@ -170,6 +170,8 @@ file -b -i -L <file>
 
 [`--session`]: #commands
 [`--client`]: #commands
+[`-d`]: #commands
+[`--debug`]: #commands
 
 [`$KAKOUNE_SESSION`]: #commands
 [`$KAKOUNE_CLIENT`]: #commands
@@ -688,7 +690,7 @@ See the [`play`] command and [`example.kak`] file.
 
 [Troubleshooting]: #troubleshooting
 
-Use the `--debug` (`-d`) flag or set [`$KAKOUNE_DEBUG`] to write a log message in the terminal and in Kakoune if available (see the `*debug*` buffer).
+Use the [`--debug`] ([`-d`]) flag or set [`$KAKOUNE_DEBUG`] to write a log message in the terminal and in Kakoune if available (see the `*debug*` buffer).
 
 **Example**
 
