@@ -18,6 +18,7 @@ module Kakoune::CLI
     property position : Position?
     property raw = false
     property debug : Bool = ENV["KAKOUNE_DEBUG"]? == "1"
+    property kakoune_arguments = [] of String
   end
 
   def debug(context, arguments)
@@ -162,12 +163,9 @@ module Kakoune::CLI
     # Parse options
     option_parser.parse(argv)
 
-    # Kakoune command-line options
-    kakoune_options = [] of String
-
     parse_position(argv) do |line, column|
       options.position = Position.new(line, column)
-      kakoune_options << "+%d:%d" % { line, column }
+      options.kakoune_arguments << "+%d:%d" % { line, column }
     end
 
     # Current context
@@ -311,7 +309,7 @@ module Kakoune::CLI
         context.edit(absolute_paths)
         context.edit(absolute_paths.first, options.position) if options.position
       else
-        Process.run("kak", kakoune_options + ["--"] + argv, input: :inherit, output: :inherit, error: :inherit)
+        Process.run("kak", options.kakoune_arguments + ["--"] + argv, input: :inherit, output: :inherit, error: :inherit)
       end
 
     when :open
@@ -330,7 +328,7 @@ module Kakoune::CLI
           new evaluate-commands -client dummy quit
         EOF
 
-        Process.new("setsid", ["kak", "-ui", "dummy", "-e", open_client] + kakoune_options + ["--"] + argv)
+        Process.new("setsid", ["kak", "-ui", "dummy", "-e", open_client] + options.kakoune_arguments + ["--"] + argv)
       end
 
     when :send
