@@ -60,9 +60,15 @@ Run the following in your terminal:
 make install
 ```
 
-Add `static=yes` or `make release` for static builds.
+#### Static builds
+
+Linux only: Add `static=yes` or `make release` for static builds.
 In that case, you don’t need [Crystal] but [Docker] for building.
 The latter creates a package at `target/release.zip` location.
+
+See [Static linking] for reference.
+
+[Static linking]: https://crystal-lang.org/reference/guides/static_linking.html
 
 ### Kakoune definitions
 
