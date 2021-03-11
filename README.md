@@ -92,7 +92,9 @@ kcr [-s, --session <name>] [-c, --client <name>] [-r, --raw] <command> [argument
 
 Open Kakoune, then a connected terminal with [`>`] or [`+`] or a GUI program with [`$`].
 Edit files with [`kcr edit`][`edit`] and see them being opened in the Kakoune client.
-You can set your `$EDITOR` to [`kcr edit`][`edit`] and configure your graphical applications to open files with Kakoune.
+You can set your [`$EDITOR`] to [`kcr edit`][`edit`] and configure your graphical applications to open files with Kakoune.
+
+[`$EDITOR`]: https://wiki.archlinux.org/index.php/Environment_variables#Default_programs
 
 ## Configuration
 
