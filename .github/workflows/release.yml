@@ -1,0 +1,35 @@
+# GitHub Actions
+# – https://github.com/features/actions
+#
+# Environment variables
+# – https://git-scm.com/book/en/v2/Git-Internals-Environment-Variables
+# – https://cli.github.com/manual/gh_help_environment
+#
+# Errors
+# – Release tag name already exists ⇒ `gh release delete latest`
+# – Permission denied for system-wide Git config ⇒ `GIT_CONFIG_NOSYSTEM=1`
+name: Release CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    name: Create release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install packages
+        run: sudo snap install gh
+
+      - name: Build release
+        run: make release
+
+      - name: Create release
+        run: |
+          gh release delete latest --yes || true
+          gh release create latest --title 'Latest release' target/release.zip
+        env:
+          GIT_CONFIG_NOSYSTEM: 1
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

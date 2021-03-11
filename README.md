@@ -46,6 +46,14 @@ which will be used by [`kcr`] to run commands in the specified context.
 
 [Installation]: #installation
 
+### Linux
+
+Download the [Latest release].
+
+[Latest release]: https://github.com/alexherbo2/kakoune.cr/releases/latest
+
+### Build from source
+
 Run the following in your terminal:
 
 ``` sh
@@ -55,6 +63,8 @@ make install
 Add `static=yes` or `make release` for static builds.
 In that case, you don’t need [Crystal] but [Docker] for building.
 The latter creates a package at `target/release.zip` location.
+
+### Kakoune definitions
 
 Add the [Kakoune definitions] to your **kakrc**.
 
