@@ -1,3 +1,18 @@
+Installation:
+
+	kcr install commands
+	kcr install desktop
+
+Kakoune definitions:
+
+	evaluate-commands %sh{
+		kcr init kakoune
+	}
+
+Open Kakoune, then a connected terminal with [>] or [+] or a GUI program with [$].
+Edit files with `kcr edit` and see them being opened in the Kakoune client.
+You can set your $EDITOR to `kcr edit` and configure your graphical applications to open files with Kakoune.
+
 Start a new session:
 	ks kanto
 	kcr shell --session kanto
