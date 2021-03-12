@@ -124,6 +124,7 @@ EDITOR='kcr edit'
 
 alias k='kcr edit'
 alias K='kcr-fzf-shell'
+alias KK='kcr-fzf-shell --working-directory .'
 alias ks='kcr shell --session'
 alias kl='kcr list'
 alias a='kcr attach'
@@ -193,7 +194,7 @@ kcr play [file] ⇒ Start playground
 kcr create [session] ⇒ Create a new session
 kcr attach [session] ⇒ Connect to session
 kcr list ⇒ List sessions
-kcr shell [command] [arguments] ⇒ Start an interactive shell
+kcr shell [-d, --working-directory <path>] [command] [arguments] ⇒ Start an interactive shell
 kcr edit [files] [input: fifo] ⇒ Edit files
 kcr open [files] [input: fifo] ⇒ Open files
 kcr send <command> [arguments] [input: json-format] ⇒ Send commands to client at session
@@ -443,7 +444,7 @@ Output example:
 [`shell`]: #shell
 
 ```
-kcr shell [command] [arguments]
+kcr shell [-d, --working-directory <path>] [command] [arguments]
 ```
 
 Start an interactive shell.

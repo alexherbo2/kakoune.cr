@@ -15,6 +15,7 @@ module Kakoune::CLI
   struct Options
     property command = :command
     property context = Context.new(session: ENV["KAKOUNE_SESSION"]?, client: ENV["KAKOUNE_CLIENT"]?)
+    property working_directory : Path?
     property position : Position?
     property raw = false
     property debug : Bool = ENV["KAKOUNE_DEBUG"]? == "1"
@@ -119,6 +120,10 @@ module Kakoune::CLI
 
       parser.on("shell", "Start an interactive shell") do
         options.command = :shell
+
+        parser.on("-d PATH", "--working-directory=PATH", "Working directory") do |path|
+          options.working_directory = Path[path]
+        end
       end
 
       parser.on("edit", "Edit files") do
@@ -302,11 +307,11 @@ module Kakoune::CLI
         session.create
       end
 
-      working_directory = session.get("%sh{pwd}")[0]
+      working_directory = options.working_directory || session.get("%sh{pwd}")[0]
 
       # Start an interactive shell
       # – Forward options and working directory
-      Process.run(command, arguments, env: environment, chdir: working_directory, input: :inherit, output: :inherit, error: :inherit)
+      Process.run(command, arguments, env: environment, chdir: working_directory.to_s, input: :inherit, output: :inherit, error: :inherit)
 
     when :edit
       if context
