@@ -109,6 +109,7 @@ map -docstring 'New client' global normal <c-t> ': new<ret>'
 map -docstring 'New terminal' global normal <c-n> ': connect-terminal<ret>'
 map -docstring 'New popup' global normal + ': connect-popup<ret>'
 map -docstring 'Open Dolphin' global normal <c-o> ': $ dolphin .<ret>'
+map -docstring 'Open nnn' global normal <c-e> ': > nnn<ret>'
 map -docstring 'Open files' global normal <c-f> ': + kcr-fzf-files<ret>'
 map -docstring 'Open buffers' global normal <c-b> ': + kcr-fzf-buffers<ret>'
 map -docstring 'Open files by content' global normal <c-g> ': + kcr-fzf-grep<ret>'
@@ -318,6 +319,14 @@ $ dolphin
 ```
 
 Connect a terminal.
+
+**Example** – Connect [nnn]:
+
+``` kak
+> nnn
+```
+
+[nnn]: https://github.com/jarun/nnn
 
 ###### `connect-popup`
 
