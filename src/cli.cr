@@ -70,6 +70,10 @@ module Kakoune::CLI
         exit
       end
 
+      parser.on("tldr", "Show usage") do
+        options.command = :tldr
+      end
+
       parser.on("init", "Print functions") do
         options.command = :init
 
@@ -198,6 +202,9 @@ module Kakoune::CLI
 
     # Run command
     case options.command
+    when :tldr
+      puts read("pages/tldr.txt")
+
     when :init
       option_parser.parse(["init", "--help"])
 

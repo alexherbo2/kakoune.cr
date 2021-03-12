@@ -12,7 +12,7 @@ kakoune.cr (kcr) is a command-line tool for [Kakoune].
 - Control Kakoune from the command-line.
 - Write plugins.
 
-Give it a spin: [`kcr play`][`play`]
+Give it a spin: [`kcr tldr`][`tldr`] & [`kcr play`][`play`]
 
 ###### How does it work?
 
@@ -124,11 +124,12 @@ EDITOR='kcr edit'
 
 alias k='kcr edit'
 alias K='kcr-fzf-shell'
-alias KK='kcr-fzf-shell --working-directory .'
+alias KK='K --working-directory .'
 alias ks='kcr shell --session'
 alias kl='kcr list'
 alias a='kcr attach'
 alias :='kcr send'
+alias :n='KK nnn'
 alias :cat='kcr cat --raw'
 
 alias val='kcr get --value'
@@ -155,7 +156,7 @@ file -b -i -L <file>
 
 ## Commands
 
-###### [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`escape`] | [`help`]
+###### [`tldr`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`escape`] | [`help`]
 
 [Commands]: #commands
 
@@ -183,6 +184,7 @@ file -b -i -L <file>
 **Commands**
 
 ```
+kcr tldr ⇒ Show usage
 kcr init <name> ⇒ Print functions
 kcr init kakoune ⇒ Print Kakoune definitions
 kcr init starship ⇒ Print Starship configuration
@@ -204,6 +206,18 @@ kcr cat [buffers] ⇒ Print buffer content
 kcr escape [arguments] [input: json-format] ⇒ Escape arguments
 kcr help [command] ⇒ Show help
 ```
+
+###### `tldr`
+
+[`tldr`]: #tldr
+
+```
+kcr tldr
+```
+
+Show [usage][`tldr.txt`].
+
+[`tldr.txt`]: share/kcr/pages/tldr.txt
 
 ###### `init`
 

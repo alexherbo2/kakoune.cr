@@ -1,0 +1,30 @@
+Start a new session:
+	ks kanto
+	kcr shell --session kanto
+
+Connect to the current session:
+	a
+	kcr attach
+
+Connect to a session:
+	K
+	kcr-fzf-shell
+
+List sessions:
+	kl
+	kcr list
+
+Open a file:
+	k pokemon.json
+	kcr edit pokemon.json
+
+Open files to a session:
+	:n
+	kcr-fzf-shell --working-directory . nnn
+
+Print the current buffer:
+	:cat
+	kcr cat --raw
+
+https://github.com/alexherbo2/kakoune.cr
+https://github.com/alexherbo2/kakoune.cr#configuration
