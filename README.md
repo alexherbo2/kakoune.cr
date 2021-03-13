@@ -339,6 +339,14 @@ Connect a terminal.
 
 Connect a popup.
 
+**Example** – Open buffers with [fzf integration]:
+
+``` kak
++ kcr-fzf-buffers
+```
+
+[fzf integration]: https://github.com/alexherbo2/kakoune.cr/tree/master/share/kcr/commands/fzf
+
 ###### `init starship`
 
 [`init starship`]: #init-starship
