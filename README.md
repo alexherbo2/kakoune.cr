@@ -131,7 +131,7 @@ map -docstring 'New client' global normal <c-t> ': new<ret>'
 map -docstring 'New terminal' global normal <c-n> ': connect-terminal<ret>'
 map -docstring 'New popup' global normal + ': connect-popup<ret>'
 map -docstring 'Open Dolphin' global normal <c-o> ': $ dolphin .<ret>'
-map -docstring 'Open nnn' global normal <c-e> ': > nnn<ret>'
+map -docstring 'Open Broot' global normal <c-e> ': > broot<ret>'
 map -docstring 'Open files' global normal <c-f> ': + kcr-fzf-files<ret>'
 map -docstring 'Open buffers' global normal <c-b> ': + kcr-fzf-buffers<ret>'
 map -docstring 'Open files by content' global normal <c-g> ': + kcr-fzf-grep<ret>'
@@ -152,7 +152,7 @@ alias ks='kcr shell --session'
 alias kl='kcr list'
 alias a='kcr attach'
 alias :='kcr send'
-alias :n='KK nnn'
+alias :br='KK broot'
 alias :cat='kcr cat --raw'
 
 alias val='kcr get --value'
@@ -342,13 +342,16 @@ $ dolphin
 
 Connect a terminal.
 
-**Example** – Connect [nnn]:
+**Example** – Connect [Broot]:
 
 ``` kak
-> nnn
+> broot
 ```
 
-[nnn]: https://github.com/jarun/nnn
+**ProTip!** You probably want Broot being [modal][Broot – Modal].
+
+[Broot]: https://dystroy.org/broot/
+[Broot – Modal]: https://dystroy.org/broot/vim_mode/
 
 ###### `connect-popup`
 
