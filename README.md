@@ -97,6 +97,27 @@ You can set your [`$EDITOR`] to [`kcr edit`][`edit`] and configure your graphica
 
 [`$EDITOR`]: https://wiki.archlinux.org/index.php/Environment_variables#Default_programs
 
+###### Workflows
+
+kakoune.cr has a lot of commands and options, but you only need to remember a few things to be productive.
+
+Terminal:
+
+- `k` ⇒ Open files.
+- `K[K]` ⇒ Open shell or program.
+- `ks` ⇒ Create session.
+- `kl` ⇒ List sessions.
+- `a` ⇒ Attach session.
+
+Kakoune:
+
+- <kbd>Control</kbd> + <kbd>o</kbd> ⇒ Open files with GUI program.
+- <kbd>Control</kbd> + <kbd>e</kbd> ⇒ Open files with TUI program.
+- <kbd>Control</kbd> + <kbd>f</kbd> ⇒ Open files with fuzzy finder.
+- <kbd>Control</kbd> + <kbd>b</kbd> ⇒ Open buffers with fuzzy finder.
+
+See [Configuration] for aliases and mappings.
+
 ## Configuration
 
 [Configuration]: #configuration

@@ -41,5 +41,23 @@ Print the current buffer:
 	:cat
 	kcr cat --raw
 
+kakoune.cr has a lot of commands and options, but you only need to remember a few things to be productive.
+
+Terminal:
+	k ⇒ Open files.
+	K[K] ⇒ Open shell or program.
+	ks ⇒ Create session.
+	kl ⇒ List sessions.
+	a ⇒ Attach session.
+
+Kakoune:
+	Ctrl-o ⇒ Open files with GUI program.
+	Ctrl-e ⇒ Open files with TUI program.
+	Ctrl-f ⇒ Open files with fuzzy finder.
+	Ctrl-b ⇒ Open buffers with fuzzy finder.
+
+See [Configuration] for aliases and mappings.
+
 https://github.com/alexherbo2/kakoune.cr
 https://github.com/alexherbo2/kakoune.cr#configuration
+https://github.com/alexherbo2/kakoune.cr#workflows
