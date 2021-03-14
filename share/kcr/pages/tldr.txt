@@ -18,32 +18,32 @@ You can set your $EDITOR to `kcr edit` and configure your graphical applications
 ────────────────────────────────────────────────────────────────────────────────
 
 Start a new session:
+	alias ks='kcr shell --session'
 	ks kanto
-	kcr shell --session kanto
 
 Connect to the current session:
+	alias a='kcr attach'
 	a
-	kcr attach
 
 Connect to a session:
+	alias K='kcr-fzf-shell'
 	K
-	kcr-fzf-shell
+
+Connect a program to a session:
+	alias KK='K --working-directory .'
+	KK nnn
 
 List sessions:
+	alias kl='kcr list'
 	kl
-	kcr list
 
 Open a file:
+	alias k='kcr edit'
 	k pokemon.json
-	kcr edit pokemon.json
-
-Open files to a session:
-	:n
-	kcr-fzf-shell --working-directory . nnn
 
 Print the current buffer:
+	alias :cat='kcr cat --raw'
 	:cat
-	kcr cat --raw
 
 See [Configuration] for aliases.
 
