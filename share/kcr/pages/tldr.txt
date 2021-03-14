@@ -9,9 +9,13 @@ Kakoune definitions:
 		kcr init kakoune
 	}
 
+────────────────────────────────────────────────────────────────────────────────
+
 Open Kakoune, then a connected terminal with [>] or [+] or a GUI program with [$].
 Edit files with `kcr edit` and see them being opened in the Kakoune client.
 You can set your $EDITOR to `kcr edit` and configure your graphical applications to open files with Kakoune.
+
+────────────────────────────────────────────────────────────────────────────────
 
 Start a new session:
 	ks kanto
@@ -41,6 +45,10 @@ Print the current buffer:
 	:cat
 	kcr cat --raw
 
+See [Configuration] for aliases.
+
+────────────────────────────────────────────────────────────────────────────────
+
 kakoune.cr has a lot of commands and options, but you only need to remember a few things to be productive.
 
 Terminal:
@@ -57,6 +65,8 @@ Kakoune:
 	Ctrl-b ⇒ Open buffers with fuzzy finder.
 
 See [Configuration] for aliases and mappings.
+
+────────────────────────────────────────────────────────────────────────────────
 
 https://github.com/alexherbo2/kakoune.cr
 https://github.com/alexherbo2/kakoune.cr#configuration
