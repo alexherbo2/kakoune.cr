@@ -1,24 +1,25 @@
+name := kakoune.cr
+version := $(shell git describe --tags --always)
+target := $(shell llvm-config --host-target)
 static ?= no
 
 ifeq ($(static),yes)
-  build = build-static
-else
-  build = build
+  flags += --static
 endif
 
-default: $(build)
-
 build:
-	shards build --release
+	shards build --release $(flags)
 
-build-static:
-	./scripts/build-static
+x86_64-unknown-linux-musl:
+	scripts/build-linux
 
-release: build-static
-	mkdir -p target
-	zip -r target/release.zip bin share
+x86_64-apple-darwin: build
 
-install: $(build)
+release: $(target)
+	mkdir -p releases
+	zip -r releases/$(name)-$(version)-$(target).zip bin share
+
+install: build
 	mkdir -p ~/.local/bin
 	ln -sf "${PWD}/bin/kcr" ~/.local/bin
 	bin/kcr install commands
@@ -28,4 +29,4 @@ uninstall:
 	rm -f ~/.local/bin/kcr
 
 clean:
-	rm -Rf bin lib target shard.lock
+	rm -Rf bin lib releases shard.lock

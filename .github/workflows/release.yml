@@ -1,19 +1,15 @@
 # GitHub Actions
-# – https://github.com/features/actions
-#
-# Environment variables
-# – https://git-scm.com/book/en/v2/Git-Internals-Environment-Variables
-# – https://cli.github.com/manual/gh_help_environment
-#
-# Errors
-# – Release tag name already exists ⇒ `gh release delete latest`
-# – Permission denied for system-wide Git config ⇒ `GIT_CONFIG_NOSYSTEM=1`
+# https://github.com/features/actions
+
+# GitHub CLI
+# https://cli.github.com
+
 name: Release CI
 
 on: [push, pull_request]
 
 jobs:
-  build:
+  release:
     name: Create release
     runs-on: ubuntu-latest
     steps:
@@ -23,13 +19,41 @@ jobs:
       - name: Install packages
         run: sudo snap install gh
 
-      - name: Build release
-        run: make release
-
       - name: Create release
         run: |
-          gh release delete latest --yes || true
-          gh release create latest --title 'Latest release' target/release.zip
+          git tag --force nightly
+          git push --force origin nightly
+
+          gh release delete nightly --yes || true
+          gh release create nightly --title 'Nightly builds' --notes-file CHANGELOG.md --prerelease
         env:
           GIT_CONFIG_NOSYSTEM: 1
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  build:
+    name: Build release
+    strategy:
+      matrix:
+        include:
+          - os: ubuntu-latest
+            target: x86_64-unknown-linux-musl
+            install-packages: sudo snap install docker gh
+          - os: macos-latest
+            target: x86_64-apple-darwin
+            install-packages: brew install crystal gh
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install packages
+        run: ${{ matrix.install-packages }}
+
+      - name: Build release
+        run: make release name=kakoune.cr version=nightly target=${{ matrix.target }}
+
+      - name: Upload release
+        run: gh release upload nightly releases/kakoune.cr-nightly-${{ matrix.target }}.zip
+        env:
+          GIT_CONFIG_NOSYSTEM: 1
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

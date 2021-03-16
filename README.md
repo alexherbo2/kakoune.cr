@@ -35,23 +35,21 @@ which will be used by [`kcr`] to run commands in the specified context.
 
 - [Crystal]
 - [Shards]
-- [Docker] (for static builds)
 - [jq]
 
 [Crystal]: https://crystal-lang.org
 [Shards]: https://github.com/crystal-lang/shards
-[Docker]: https://docker.com
 [jq]: https://stedolan.github.io/jq/
 
 ## Installation
 
 [Installation]: #installation
 
-### Linux
+### Nightly builds
 
-Download the [Latest release].
+Download the [Nightly builds].
 
-[Latest release]: https://github.com/alexherbo2/kakoune.cr/releases/latest
+[Nightly builds]: https://github.com/alexherbo2/kakoune.cr/releases/nightly
 
 ### Build from source
 
@@ -60,16 +58,6 @@ Run the following in your terminal:
 ``` sh
 make install
 ```
-
-#### Static builds
-
-Linux only: Add `static=yes` or `make release` for static builds.
-In that case, you don’t need [Crystal] but [Docker] for building.
-The latter creates a package at `target/release.zip` location.
-
-See [Static linking] for reference.
-
-[Static linking]: https://crystal-lang.org/reference/guides/static_linking.html
 
 ### Kakoune definitions
 
