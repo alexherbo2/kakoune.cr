@@ -16,9 +16,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Install packages
-        run: sudo snap install gh
-
       - name: Create release
         run: |
           git tag --force nightly
@@ -38,10 +35,10 @@ jobs:
         include:
           - os: ubuntu-latest
             target: x86_64-unknown-linux-musl
-            install-packages: sudo snap install docker gh
+            install-packages:
           - os: macos-latest
             target: x86_64-apple-darwin
-            install-packages: brew install crystal gh
+            install-packages: brew install crystal
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout code
