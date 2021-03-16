@@ -32,6 +32,7 @@ jobs:
 
   build:
     name: Build release
+    needs: release
     strategy:
       matrix:
         include:
