@@ -11,7 +11,7 @@ build:
 	shards build --release $(flags)
 
 x86_64-unknown-linux-musl:
-	scripts/build-linux
+	scripts/docker-run make static=yes
 
 x86_64-apple-darwin: build
 

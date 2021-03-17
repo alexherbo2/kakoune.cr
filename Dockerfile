@@ -1,4 +1,4 @@
 FROM alpine
-RUN apk add --update make crystal shards libc-dev
+RUN apk add --update make crystal shards libc-dev yaml-static
 WORKDIR /app
-CMD make static=yes
+CMD sh

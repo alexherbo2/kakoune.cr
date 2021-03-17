@@ -1,4 +1,0 @@
-#!/bin/sh
-
-docker build --tag kakoune.cr .
-docker run --mount "type=bind,source=$PWD,destination=/app" kakoune.cr
