@@ -1,4 +1,4 @@
 #!/bin/sh
 
 docker build --tag crystal .
-docker run --interactive --tty --mount "type=bind,source=$PWD,destination=/app" crystal "$@"
+docker run --mount "type=bind,source=$PWD,destination=/app" crystal "$@"
