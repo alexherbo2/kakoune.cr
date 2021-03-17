@@ -34,6 +34,19 @@ $ sh -c %{
   kcr send -- info 'You have selected: {}'
 } -- 2
 
+define-command -override sort-selections %{
+  map-selections sort
+}
+
+define-command -override map-selections -params 1.. %{
+  $ sh -c %{
+    kcr get %val{selections} |
+    jq "$*" |
+    jq '[["set-register", "dquote", .[]], ["execute-keys", "R"]]' |
+    kcr send
+  } -- %arg{@}
+}
+
 declare-option str-list pairs ( ) { } [ ]
 
 define-command -override insert-opening-pair -params 2 %{
