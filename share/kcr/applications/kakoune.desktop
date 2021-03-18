@@ -2,4 +2,4 @@
 Type=Application
 Name=Kakoune
 Exec=kcr open %F
-Icon=kakoune.svg
+Icon=kakoune
