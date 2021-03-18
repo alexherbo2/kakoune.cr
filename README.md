@@ -15,6 +15,10 @@ kakoune.cr (kcr) is a command-line tool for [Kakoune].
 
 Give it a spin: [`kcr tldr`][`tldr`] & [`kcr play`][`play`]
 
+See what’s new with [`kcr --version-notes`][`--version-notes`] or read the [changelog].
+
+[Changelog]: CHANGELOG.md
+
 ###### How does it work?
 
 kakoune.cr is based around the concept of contexts, which can be set via the [`--session`] and [`--client`] options.
@@ -180,6 +184,7 @@ file -b -i -L <file>
 -R, --no-raw ⇒ Do not use raw output
 -d, --debug ⇒ Debug mode (Default: $KAKOUNE_DEBUG, 1 for true, 0 for false)
 -v, --version ⇒ Display version
+-V, --version-notes ⇒ Display version notes
 -h, --help ⇒ Show help
 ```
 
@@ -187,6 +192,8 @@ file -b -i -L <file>
 [`--client`]: #commands
 [`-d`]: #commands
 [`--debug`]: #commands
+[`-V`]: #commands
+[`--version-notes`]: #commands
 
 [`$KAKOUNE_SESSION`]: #commands
 [`$KAKOUNE_CLIENT`]: #commands

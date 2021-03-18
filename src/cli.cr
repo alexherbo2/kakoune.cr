@@ -65,6 +65,21 @@ module Kakoune::CLI
         exit
       end
 
+      parser.on("-V", "--version-notes", "Display version notes") do
+        changelog = read("pages/changelog.md")
+
+        # Print version notes
+        puts <<-EOF
+        ---
+        version: #{VERSION}
+        ---
+
+        #{changelog}
+        EOF
+
+        exit
+      end
+
       parser.on("-h", "--help", "Show help") do
         puts parser
         exit
