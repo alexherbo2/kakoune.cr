@@ -31,10 +31,10 @@ class Kakoune::Context
   end
 
   def session?
-    session_name.is_a?(String)
+    session_name.is_a?(String) && session_name.presence
   end
 
   def client?
-    session? && client_name.is_a?(String)
+    session? && client_name.is_a?(String) && client_name.presence
   end
 end
