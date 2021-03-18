@@ -167,7 +167,7 @@ file -b -i -L <file>
 
 ## Commands
 
-###### [`tldr`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`escape`] | [`help`]
+###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`escape`] | [`help`]
 
 [Commands]: #commands
 
@@ -196,6 +196,7 @@ file -b -i -L <file>
 
 ```
 kcr tldr ⇒ Show usage
+kcr prompt ⇒ Print prompt
 kcr init <name> ⇒ Print functions
 kcr init kakoune ⇒ Print Kakoune definitions
 kcr init starship ⇒ Print Starship configuration
@@ -229,6 +230,16 @@ kcr tldr
 Show [usage][`tldr.txt`].
 
 [`tldr.txt`]: share/kcr/pages/tldr.txt
+
+###### `prompt`
+
+[`prompt`]: #prompt
+
+```
+kcr prompt
+```
+
+Print prompt.  Returns 1 if no session.
 
 ###### `init`
 

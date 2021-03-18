@@ -74,6 +74,10 @@ module Kakoune::CLI
         options.command = :tldr
       end
 
+      parser.on("prompt", "Print prompt") do
+        options.command = :prompt
+      end
+
       parser.on("init", "Print functions") do
         options.command = :init
 
@@ -204,6 +208,16 @@ module Kakoune::CLI
     case options.command
     when :tldr
       puts read("pages/tldr.txt")
+
+    when :prompt
+      case context
+      when Client
+        print "%s@%s" % { options.context.client_name, options.context.session_name }
+      when Session
+        print "null@%s" % options.context.session_name
+      else
+        exit(1)
+      end
 
     when :init
       option_parser.parse(["init", "--help"])

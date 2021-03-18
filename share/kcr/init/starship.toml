@@ -1,7 +1,7 @@
 [custom.kakoune]
 symbol = '🐈'
-command = 'printf "%s@%s" "${KAKOUNE_CLIENT:-null}" "$KAKOUNE_SESSION"'
-when = '[ "$KAKOUNE_SESSION" ] || [ "$KAKOUNE_CLIENT" ]'
+command = 'kcr prompt'
+when = 'kcr prompt'
 shell = ['sh']
 description = 'The current Kakoune session and client'
 style = 'green'
