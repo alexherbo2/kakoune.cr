@@ -1,5 +1,11 @@
 [Desktop Entry]
 Type=Application
 Name=Kakoune
-Exec=kcr open %F
+GenericName=Text Editor
+Comment=Edit text files
 Icon=kakoune
+TryExec=kcr
+Exec=kcr open %F
+Terminal=false
+Categories=Utility;TextEditor;Development;
+MimeType=text/plain;
