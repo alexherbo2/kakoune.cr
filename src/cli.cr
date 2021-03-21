@@ -22,11 +22,12 @@ module Kakoune::CLI
     property kakoune_arguments = [] of String
   end
 
-  def debug(context, arguments)
+  def debug(context, builder)
     message = {
       session: context.session_name,
       client: context.client_name,
-      arguments: arguments
+      constructor: builder.constructor,
+      command: builder.build
     }
     print_json(message)
     context.session.send("echo", ["-debug", "kcr", message.to_json])
@@ -390,20 +391,15 @@ module Kakoune::CLI
         exit(1)
       end
 
-      arguments = CommandConstructor.new
-
-      if argv.any?
-        arguments.concat([argv])
+      command_builder = CommandBuilder.new do |builder|
+        builder.handle(argv)
+        builder.handle(STDIN)
       end
 
-      if !STDIN.tty?
-        input = STDIN.gets_to_end
-        arguments.concat(parse_command_constructor(input)) if input.presence
-      end
+      command = command_builder.build
 
-      debug(options.context, arguments) if options.debug
+      debug(options.context, command_builder) if options.debug
 
-      command = CommandBuilder.build(arguments)
       context.send(command)
 
     when :echo
@@ -466,18 +462,12 @@ module Kakoune::CLI
       end
 
     when :escape
-      arguments = CommandConstructor.new
-
-      if argv.any?
-        arguments.concat([argv])
+      command = CommandBuilder.build do |builder|
+        builder.handle(argv)
+        builder.handle(STDIN)
       end
 
-      if !STDIN.tty?
-        input = STDIN.gets_to_end
-        arguments.concat(parse_command_constructor(input)) if input.presence
-      end
-
-      puts CommandBuilder.build(arguments)
+      puts command
 
     when :help
       option_parser.parse(argv + ["--help"])
@@ -571,30 +561,6 @@ module Kakoune::CLI
     end
 
     arguments.replace(unhandled_arguments)
-  end
-
-  # Parses command constructor from JSON.
-  #
-  # Example:
-  #
-  # [
-  #   ["echo", "kanto"],
-  #   ["echo", "johto"]
-  # ]
-  #
-  # Accepts chunks.
-  # Reads the entire input stream into a large array.
-  #
-  # Example:
-  #
-  # ["echo", "kanto"]
-  # ["echo", "johto"]
-  def parse_command_constructor(json)
-    CommandConstructor.from_json(json)
-  rescue
-    json.each_line.map do |json|
-      Array(String).from_json(json)
-    end
   end
 end
 
