@@ -22,15 +22,21 @@ module Kakoune::CLI
     property kakoune_arguments = [] of String
   end
 
-  def debug(context, builder)
+  def debug(context, message extended_message)
     message = {
       session: context.session_name,
-      client: context.client_name,
-      constructor: builder.constructor,
-      command: builder.build
+      client: context.client_name
     }
+    message = message.merge(extended_message)
+
+    # Write a log message in the terminal.
     print_json(message)
-    context.session.send("echo", ["-debug", "kcr", message.to_json])
+
+    # Write a log message in Kakoune if available.
+    session = context.session
+    if session.exists?
+      session.send("echo", ["-debug", "kcr", message.to_json])
+    end
   end
 
   def start(argv)
@@ -398,7 +404,14 @@ module Kakoune::CLI
 
       command = command_builder.build
 
-      debug(options.context, command_builder) if options.debug
+      if options.debug
+        message = {
+          constructor: command_builder.constructor,
+          command: command
+        }
+
+        debug(options.context, message)
+      end
 
       context.send(command)
 
