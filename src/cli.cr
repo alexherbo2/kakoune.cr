@@ -397,12 +397,15 @@ module Kakoune::CLI
         exit(1)
       end
 
-      command_builder = CommandBuilder.new do |builder|
-        builder.handle(argv)
-        builder.handle(STDIN)
-      end
+      command_builder = CommandBuilder.new
 
-      command = command_builder.build
+      command = if options.raw
+        STDIN.gets_to_end
+      else
+        command_builder.handle(argv)
+        command_builder.handle(STDIN)
+        command_builder.build
+      end
 
       if options.debug
         message = {
