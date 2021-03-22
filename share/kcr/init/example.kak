@@ -47,6 +47,8 @@ define-command -override map-selections -params 1.. %{
   } -- %arg{@}
 }
 
+# ["Squirtle", "Bulbasaur", "Charmander"]
+
 declare-option str-list pairs ( ) { } [ ]
 
 define-command -override insert-opening-pair -params 2 %{
