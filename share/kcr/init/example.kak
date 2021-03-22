@@ -15,25 +15,6 @@
 # kcr echo -- echo kanto | kcr echo -- echo johto | kcr send
 # kcr echo -- kanto johto | kcr send -- echo {}
 
-$ sh -c %{
-  time=$1
-
-  kcr send -- info 'Go ahead and experiment.'
-  sleep $((time))
-
-  kcr send -- info 'Don’t think too much.'
-  sleep $((time))
-
-  kcr send -- info 'Let intuition be your guide.'
-  sleep $((time))
-
-  kcr send -- info 'Baten Kaitos: Eternal Wings and the Lost Ocean, in the Moonguile Forest, 2003.'
-  sleep $((time * 2))
-
-  kcr get %reg{.} |
-  kcr send -- info 'You have selected: {}'
-} -- 2
-
 define-command -override sort-selections %{
   map-selections sort
 }
