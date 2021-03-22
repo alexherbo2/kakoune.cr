@@ -15,6 +15,25 @@
 # kcr echo -- echo kanto | kcr echo -- echo johto | kcr send
 # kcr echo -- kanto johto | kcr send -- echo {}
 
+# fzf integration with Nushell
+#
+# https://github.com/junegunn/fzf
+# https://nushell.sh
+define-command -override fzf-files %{
+  + nu --commands %{
+    fzf --preview 'cat {}' | lines | each { kcr edit $it }
+  }
+}
+
+define-command -override fzf-buffers %{
+  + nu --commands %{
+    kcr get --raw --value buflist | fzf --preview 'kcr cat --raw {}' | lines | each { kcr send buffer $it }
+  }
+}
+
+map global normal <c-f> ': fzf-files<ret>'
+map global normal <c-b> ': fzf-buffers<ret>'
+
 define-command -override sort-selections %{
   map-selections sort
 }
