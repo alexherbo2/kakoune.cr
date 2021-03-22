@@ -28,6 +28,8 @@ define-command -override map-selections -params 1.. %{
   } -- %arg{@}
 }
 
+map global normal <a-|> ': map-selections<space>'
+
 # ["Squirtle", "Bulbasaur", "Charmander"]
 
 declare-option str-list pairs ( ) { } [ ]
