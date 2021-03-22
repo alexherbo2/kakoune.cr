@@ -169,6 +169,31 @@ file -b -i -L <file>
 
 [XDG MIME Applications]: https://wiki.archlinux.org/index.php/XDG_MIME_Applications
 
+Here is a list of [common MIME types], with all types I have personally experimented:
+
+`~/.config/mimeapps.list`
+
+```
+[Default Applications]
+application/csv=kakoune.desktop
+application/json=kakoune.desktop
+application/postscript=kakoune.desktop
+text/html=kakoune.desktop
+text/plain=kakoune.desktop
+text/troff=kakoune.desktop
+text/x-c++=kakoune.desktop
+text/x-c=kakoune.desktop
+text/x-java=kakoune.desktop
+text/x-lisp=kakoune.desktop
+text/x-makefile=kakoune.desktop
+text/xml=kakoune.desktop
+text/x-ruby=kakoune.desktop
+text/x-script.python=kakoune.desktop
+text/x-shellscript=kakoune.desktop
+```
+
+[Common MIME types]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
+
 ## Commands
 
 ###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`escape`] | [`help`]
