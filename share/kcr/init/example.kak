@@ -1,19 +1,20 @@
 # Edit me and press F5 to reload.
 #
 # Inspect the *debug* buffer populated with `kcr send --debug` or via `export KAKOUNE_DEBUG=1`.
-# Open a connected terminal with [>] or [+] and try the following commands.
 #
-# Examples:
+# Open a connected terminal with [>] or [+] and experiment the following commands.
 #
-# export KAKOUNE_DEBUG=1
-#
-# kcr get %val{buflist}
-#
-# kcr echo -- echo kanto | kcr echo -- echo johto | kcr escape
-# kcr echo -- kanto johto | kcr escape -- echo {}
-#
-# kcr echo -- echo kanto | kcr echo -- echo johto | kcr send
-# kcr echo -- kanto johto | kcr send -- echo {}
+# [1] kcr get %val{buflist}
+# [2] kcr get --value buflist
+# [3] kcr get --raw --value buflist
+# [4] kcr get --raw --value buflist | fzf
+# [5] kcr cat
+# [6] kcr cat --raw
+# [7] kcr cat --raw '*scratch*'
+# [8] kcr get --raw --value buflist | fzf --preview 'kcr cat --raw {}'
+# [9] kcr get --raw --value buflist | fzf --preview 'kcr cat --raw {}' | while read name
+# do kcr send buffer "$name"
+# done
 
 # ──────────────────────────────────────────────────────────────────────────────
 
