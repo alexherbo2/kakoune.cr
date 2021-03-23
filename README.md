@@ -135,8 +135,6 @@ Bash example configuration:
 `~/.bashrc`
 
 ``` sh
-EDITOR='kcr edit'
-
 alias k='kcr edit'
 alias K='kcr-fzf-shell'
 alias KK='K --working-directory .'
@@ -157,6 +155,7 @@ alias reg='kcr get --register'
 `~/.profile`
 
 ``` sh
+export EDITOR='kcr edit'
 export FZF_DEFAULT_OPTS='--multi --layout=reverse --preview-window=down:60%'
 ```
 
