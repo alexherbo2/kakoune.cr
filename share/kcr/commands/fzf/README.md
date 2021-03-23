@@ -40,6 +40,14 @@ Bash example configuration:
 alias K='kcr-fzf-shell'
 ```
 
+Environment variables example configuration:
+
+`~/.profile`
+
+``` sh
+export FZF_DEFAULT_OPTS='--multi --layout=reverse --preview-window=down:60%'
+```
+
 ## Commands
 
 ```

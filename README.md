@@ -152,6 +152,16 @@ alias opt='kcr get --option'
 alias reg='kcr get --register'
 ```
 
+[Environment variables] example configuration:
+
+`~/.profile`
+
+``` sh
+export FZF_DEFAULT_OPTS='--multi --layout=reverse --preview-window=down:60%'
+```
+
+[Environment variables]: https://wiki.archlinux.org/index.php/Environment_variables
+
 [XDG MIME Applications] example configuration:
 
 `~/.config/mimeapps.list`

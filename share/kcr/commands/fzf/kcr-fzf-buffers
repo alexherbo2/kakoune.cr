@@ -11,7 +11,7 @@
 
 kcr get --raw %val{buflist} |
 grep -F "$*" |
-fzf --preview-window=down:60% --preview 'kcr cat --raw {} | bat --style=numbers --color=always --line-range :500' --prompt='(b)>' |
+fzf --preview 'kcr cat --raw {} | bat --style=numbers --color=always --line-range :500' --prompt='(b)>' |
 
 # Open buffers
 while read name; do
