@@ -9,7 +9,7 @@
 # – fzf (https://github.com/junegunn/fzf)
 # – bat (https://github.com/sharkdp/bat)
 
-kcr get --raw %val{buflist} |
+kcr get --raw --value buflist |
 grep -F "$*" |
 fzf --preview 'kcr cat --raw {} | bat --style=numbers --color=always --line-range :500' --header='Select a buffer to open' --prompt='(b)>' |
 
