@@ -15,7 +15,7 @@ set_environment() {
 # Run fzf with the session list
 rows=$(
   kcr list --raw |
-  fzf --prompt='(s)>'
+  fzf --header='Select a session to switch to' --prompt='(s)>'
 )
 
 IFS='

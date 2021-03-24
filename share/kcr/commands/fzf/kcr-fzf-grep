@@ -10,5 +10,5 @@
 # – ripgrep (https://github.com/BurntSushi/ripgrep)
 
 rg --column --with-filename '.+' "$@" |
-fzf --prompt='(g)>' |
+fzf --header='Select a file to open' --prompt='(g)>' |
 kcr edit-search

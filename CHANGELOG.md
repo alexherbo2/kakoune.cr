@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-03-24
+
+- Add `--header` to fzf commands
+
 ## 2021-03-23
 
 - Respect `fzf --preview-window` value in `FZF_DEFAULT_OPTS`
