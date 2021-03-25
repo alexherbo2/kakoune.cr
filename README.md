@@ -205,7 +205,7 @@ text/x-shellscript=kakoune.desktop
 
 ## Commands
 
-###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`escape`] | [`help`]
+###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`kill`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`escape`] | [`help`]
 
 [Commands]: #commands
 
@@ -248,6 +248,7 @@ kcr env ⇒ Print Kakoune environment information
 kcr play [file] ⇒ Start playground
 kcr create [session] ⇒ Create a new session
 kcr attach [session] ⇒ Connect to session
+kcr kill [session] ⇒ Kill session
 kcr list ⇒ List sessions
 kcr shell [-d, --working-directory <path>] [command] [arguments] ⇒ Start an interactive shell
 kcr edit [files] [input: fifo] ⇒ Edit files
@@ -511,6 +512,16 @@ kcr attach [session]
 ```
 
 Connect to session.
+
+###### `kill`
+
+[`kill`]: #kill
+
+```
+kcr kill [session]
+```
+
+Kill session.
 
 ###### `list`
 

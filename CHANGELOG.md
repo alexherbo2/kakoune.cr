@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-03-25
+
+- Add `kcr kill` command
+
 ## 2021-03-24
 
 - Add `--header` to fzf commands

@@ -144,6 +144,10 @@ module Kakoune::CLI
         options.command = :attach
       end
 
+      parser.on("kill", "Kill session") do
+        options.command = :kill
+      end
+
       parser.on("list", "List sessions") do
         options.command = :list
       end
@@ -305,6 +309,16 @@ module Kakoune::CLI
       end
 
       Session.new(session_name).attach
+
+    when :kill
+      session_name = argv.fetch(0, options.context.session_name)
+
+      if !session_name
+        STDERR.puts "No session in context"
+        exit(1)
+      end
+
+      Session.new(session_name).kill
 
     when :list
       data = Session.all.flat_map do |session|

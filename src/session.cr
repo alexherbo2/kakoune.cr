@@ -33,6 +33,10 @@ class Kakoune::Session
     Process.run("kak", { "-c", name }, input: :inherit, output: :inherit, error: :inherit)
   end
 
+  def kill
+    send("kill")
+  end
+
   def self.all
     output = IO::Memory.new
 
