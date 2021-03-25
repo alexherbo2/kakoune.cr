@@ -6,6 +6,9 @@ kakoune.cr (kcr) is a command-line tool for [Kakoune].
 
 [Kakoune]: https://kakoune.org
 
+[![kakoune.cr](https://img.youtube.com/vi_webp/FUndUED1O7Q/maxresdefault.webp)](https://youtube.com/playlist?list=PLdr-HcjEDx_klQYqXIAmBpywj7ggsDPer "YouTube – kakoune.cr")
+[![YouTube Play Button](https://www.iconfinder.com/icons/317714/download/png/16)](https://youtube.com/playlist?list=PLdr-HcjEDx_klQYqXIAmBpywj7ggsDPer) · [kakoune.cr](https://youtube.com/playlist?list=PLdr-HcjEDx_klQYqXIAmBpywj7ggsDPer)
+
 ###### What can I do?
 
 - Connect applications to Kakoune.
