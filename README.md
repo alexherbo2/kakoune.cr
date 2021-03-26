@@ -318,7 +318,7 @@ evaluate-commands %sh{
 
 ### Kakoune commands
 
-###### [`connect`] | [`run`] | [`$`] [`connect-program`] | [`>`] [`connect-terminal`] | [`+`] [`connect-popup`]
+###### [`connect`] | [`run`] | [`$`] [`connect-program`] | [`>`] [`connect-terminal`] | [`+`] [`connect-popup`] | [`|`] [`pipe`]
 
 [Kakoune commands]: #kakoune-commands
 
@@ -328,6 +328,7 @@ run <command> [arguments] ⇒ Run a program in a new session
 [$] connect-program <command> [arguments] ⇒ Connect a program
 [>] connect-terminal [command] [arguments] ⇒ Connect a terminal
 [+] connect-popup [command] [arguments] ⇒ Connect a popup
+[|] pipe <program> [arguments] ⇒ Pipe selections to a program
 ```
 
 ###### `connect`
@@ -415,6 +416,23 @@ Connect a popup.
 ```
 
 [fzf integration]: https://github.com/alexherbo2/kakoune.cr/tree/master/share/kcr/commands/fzf
+
+###### `pipe`
+
+[`|`]: #pipe
+[`pipe`]: #pipe
+
+```
+[|] pipe <program> [arguments]
+```
+
+Pipe selections to a program.
+
+**Example** – Sort selections:
+
+``` kak
+| jq sort
+```
 
 ###### `init starship`
 

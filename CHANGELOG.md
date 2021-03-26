@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-03-26
+
+- Add `pipe` command
+
 ## 2021-03-25
 
 - Add `kcr kill` command

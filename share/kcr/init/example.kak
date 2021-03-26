@@ -52,39 +52,6 @@ map global normal <c-b> ': fzf-buffers<ret>'
 
 # ──────────────────────────────────────────────────────────────────────────────
 
-# Map selections with jq.
-#
-# Usage:
-#
-# Select each Pokémon:
-#
-# ["Squirtle", "Bulbasaur", "Charmander"]
-#
-# Run the following command with Alt-pipe:
-#
-# map-selections sort | reverse
-#
-# Dependencies:
-#
-# – jq (https://stedolan.github.io/jq/)
-
-define-command -override sort-selections %{
-  map-selections sort
-}
-
-define-command -override map-selections -params 1.. %{
-  $ sh -c %{
-    kcr get %val{selections} |
-    jq "$*" |
-    jq '[["set-register", "dquote", .[]], ["execute-keys", "R"]]' |
-    kcr send
-  } -- %arg{@}
-}
-
-map global normal <a-|> ': map-selections<space>'
-
-# ──────────────────────────────────────────────────────────────────────────────
-
 # Auto-paired characters with jq.
 #
 # Usage:

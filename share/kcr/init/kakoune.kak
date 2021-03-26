@@ -28,7 +28,17 @@ define-command -override connect-popup -params .. -shell-completion -docstring '
   connect popup %arg{@}
 }
 
+define-command -override pipe -params 1.. -shell-completion -docstring 'Pipe selections to a program' %{
+  $ sh -c %{
+    kcr get --value selections |
+    "$@" |
+    jq '[["set-register", "dquote", .[]], ["execute-keys", "R"]]' |
+    kcr send
+  } -- %arg{@}
+}
+
 # Aliases
 alias global $ connect-program
 alias global > connect-terminal
 alias global + connect-popup
+alias global | pipe
