@@ -208,7 +208,7 @@ text/x-shellscript=kakoune.desktop
 
 ## Commands
 
-###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`kill`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`escape`] | [`help`]
+###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`kill`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`pipe`] | [`escape`] | [`help`]
 
 [Commands]: #commands
 
@@ -260,6 +260,7 @@ kcr send <command> [arguments] [input: json-format] ⇒ Send commands to client 
 kcr echo [arguments] [input: data-stream] ⇒ Print arguments
 kcr get [-V, --value <name>] [-O, --option <name>] [-R, --register <name>] [expansions] [input: data-stream] ⇒ Get states from a client in session
 kcr cat [buffers] ⇒ Print buffer content
+kcr pipe <program> [arguments] ⇒ Pipe selections to a program
 kcr escape [arguments] [input: json-format] ⇒ Escape arguments
 kcr help [command] ⇒ Show help
 ```
@@ -763,6 +764,22 @@ Output:
 [
   "..."
 ]
+```
+
+###### `pipe`
+
+[`pipe`]: #pipe
+
+```
+kcr pipe <program> [arguments]
+```
+
+Pipe selections to a program.
+
+**Example** – Sort selections:
+
+``` sh
+kcr pipe jq sort
 ```
 
 ###### `escape`

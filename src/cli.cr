@@ -196,6 +196,10 @@ module Kakoune::CLI
         options.command = :cat
       end
 
+      parser.on("pipe", "Pipe selections to a program") do
+        options.command = :pipe
+      end
+
       parser.on("escape", "Escape arguments") do
         options.command = :escape
       end
@@ -490,6 +494,15 @@ module Kakoune::CLI
       else
         print_json(buffer_contents)
       end
+
+    when :pipe
+      if !context
+        STDERR.puts "No session in context"
+        exit(1)
+      end
+
+      command = argv.shift
+      context.pipe(command, argv)
 
     when :escape
       command = CommandBuilder.build do |builder|

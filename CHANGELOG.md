@@ -2,7 +2,7 @@
 
 ## 2021-03-26
 
-- Add `pipe` command
+- Add `kcr pipe` command
 
 ## 2021-03-25
 
