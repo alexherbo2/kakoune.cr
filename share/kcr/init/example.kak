@@ -52,6 +52,30 @@ map global normal <c-b> ': fzf-buffers<ret>'
 
 # ──────────────────────────────────────────────────────────────────────────────
 
+# Reimplementation of rotate_selections_content().
+#
+# https://github.com/mawww/kakoune/blob/master/src/normal.cc#:~:text=rotate_selections_content
+#
+# Usage:
+#
+# Select each Pokémon:
+#
+# ["Squirtle", "Bulbasaur", "Charmander"]
+#
+# Run the following command:
+#
+# rotate-selections-content
+#
+# Dependencies:
+#
+# – jq (https://stedolan.github.io/jq/)
+
+define-command -override rotate-selections-content %{
+  $ kcr pipe jq '.[-1:] + .[:-1]'
+}
+
+# ──────────────────────────────────────────────────────────────────────────────
+
 # Auto-paired characters with jq.
 #
 # Usage:
