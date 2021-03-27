@@ -18,6 +18,7 @@ module Kakoune::CLI
     property working_directory : Path?
     property position : Position?
     property raw = false
+    property stdin = false
     property debug : Bool = ENV["KAKOUNE_DEBUG"]? == "1"
     property kakoune_arguments = [] of String
   end
@@ -94,6 +95,11 @@ module Kakoune::CLI
 
       parser.on("--", "Stop handling options") do
         parser.stop
+      end
+
+      parser.on("-", "Stop handling options and read stdin") do
+        parser.stop
+        options.stdin = true
       end
 
       parser.on("tldr", "Show usage") do

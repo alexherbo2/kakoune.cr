@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-03-28
+
+- Add `-` option to handle `stdin`
+
 ## 2021-03-26
 
 - Add `kcr pipe` command
