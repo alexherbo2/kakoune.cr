@@ -52,6 +52,16 @@ map global normal <c-b> ': fzf-buffers<ret>'
 
 # ──────────────────────────────────────────────────────────────────────────────
 
+# Pipe selections to an external filter program
+# and replace the selections with its output.
+#
+# [1] kcr pipe jq sort
+# [2] kcr pipe jq reverse
+# [3] kcr pipe jq 'sort | reverse'
+# [4] kcr get --value selections | jq sort | kcr pipe -
+
+# ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
 # Reimplementation of rotate_selections_content().
 #
 # https://github.com/mawww/kakoune/blob/master/src/normal.cc#:~:text=rotate_selections_content
@@ -72,6 +82,28 @@ map global normal <c-b> ': fzf-buffers<ret>'
 
 define-command -override rotate-selections-content %{
   $ kcr pipe jq '.[-1:] + .[:-1]'
+}
+
+# ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+# TL;DR
+#
+# curl -sSL https://github.com/rxi/json.lua/raw/master/json.lua -o json.lua
+#
+# Dependencies:
+#
+# – json.lua (https://github.com/rxi/json.lua)
+
+define-command -override lua-index-selections %{
+  $ kcr pipe lua -l json -e %{
+    local selections = json.decode(io.read('*a'))
+
+    for index, selection in ipairs(selections) do
+      selections[index] = string.format('%d. %s', index, selection)
+    end
+
+    io.write(json.encode(selections))
+  }
 }
 
 # ──────────────────────────────────────────────────────────────────────────────
