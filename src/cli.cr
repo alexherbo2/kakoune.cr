@@ -386,7 +386,7 @@ module Kakoune::CLI
 
     when :edit
       if context
-        context.fifo(STDIN) unless STDIN.tty?
+        context.fifo(STDIN) if options.stdin
 
         return if argv.empty?
 
@@ -454,7 +454,7 @@ module Kakoune::CLI
       # kcr echo -- evaluate-commands -draft {} |
       # kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
       # jq --slurp
-      IO.copy(STDIN, STDOUT) unless STDIN.tty?
+      IO.copy(STDIN, STDOUT) if options.stdin
 
       if argv.any?
         print_json(argv)
@@ -473,7 +473,7 @@ module Kakoune::CLI
       # kcr get %val{bufname} |
       # kcr get %val{buflist} |
       # jq --slurp
-      IO.copy(STDIN, STDOUT) unless STDIN.tty?
+      IO.copy(STDIN, STDOUT) if options.stdin
 
       arguments = options.kakoune_arguments + argv
 
