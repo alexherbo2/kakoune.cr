@@ -406,7 +406,7 @@ module Kakoune::CLI
           new evaluate-commands -client dummy quit
         EOF
 
-        Process.new("setsid", ["kak", "-ui", "dummy", "-e", open_client] + options.kakoune_arguments + ["--"] + argv)
+        Process.setsid("kak", ["-ui", "dummy", "-e", open_client] + options.kakoune_arguments + ["--"] + argv)
       end
 
     when :send
