@@ -55,6 +55,10 @@ module Kakoune::Commands
     input = IO::Memory.new(selections.to_json)
     process = Process.new(command, arguments, input: input, output: :pipe)
     selections = Array(String).from_json(process.output)
+    set_selections_content(selections)
+  end
+
+  def set_selections_content(selections)
     pipe_selections = <<-EOF
       set-register dquote #{Arguments.escape selections}
       execute-keys R
