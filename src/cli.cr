@@ -92,6 +92,10 @@ module Kakoune::CLI
         exit
       end
 
+      parser.on("--", "Stop handling options") do
+        parser.stop
+      end
+
       parser.on("tldr", "Show usage") do
         options.command = :tldr
       end

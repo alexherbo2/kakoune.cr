@@ -223,6 +223,7 @@ text/x-shellscript=kakoune.desktop
 -v, --version ⇒ Display version
 -V, --version-notes ⇒ Display version notes
 -h, --help ⇒ Show help
+-- ⇒ Stop handling options
 ```
 
 [`--session`]: #commands
