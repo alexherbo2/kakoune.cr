@@ -38,24 +38,6 @@ class Kakoune::CommandBuilder
     builder.build
   end
 
-  # Handles command for adding to the constructor.
-  def handle(command : Array(String))
-    return if command.empty?
-
-    add(command)
-  end
-
-  # Handles commands from a JSON stream for adding to the constructor.
-  def handle(io : IO)
-    return if io.tty?
-
-    input = io.gets_to_end
-
-    return unless input.presence
-
-    add(from_json(input))
-  end
-
   # Adds a single command to the constructor.
   def add(command : String, arguments : Array(String))
     command = [command] + arguments
@@ -69,6 +51,11 @@ class Kakoune::CommandBuilder
   # Adds multiple commands to the constructor.
   def add(commands : Array(Array(String)))
     constructor.concat(commands)
+  end
+
+  # Adds commands from a JSON stream to the constructor.
+  def add(io : IO)
+    add(from_json(io))
   end
 
   # Builds command.

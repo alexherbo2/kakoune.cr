@@ -430,8 +430,8 @@ module Kakoune::CLI
       command = if options.raw
         STDIN.gets_to_end
       else
-        command_builder.handle(argv)
-        command_builder.handle(STDIN)
+        command_builder.add(argv) if argv.any?
+        command_builder.add(STDIN) if options.stdin
         command_builder.build
       end
 
@@ -516,8 +516,8 @@ module Kakoune::CLI
 
     when :escape
       command = CommandBuilder.build do |builder|
-        builder.handle(argv)
-        builder.handle(STDIN)
+        builder.add(argv) if argv.any?
+        builder.add(STDIN) if options.stdin
       end
 
       puts command
