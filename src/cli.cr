@@ -511,8 +511,13 @@ module Kakoune::CLI
         exit(1)
       end
 
-      command = argv.shift
-      context.pipe(command, argv)
+      if options.stdin
+        selections = Array(String).from_json(STDIN)
+        context.set_selections_content(selections)
+      else
+        command = argv.shift
+        context.pipe(command, argv)
+      end
 
     when :escape
       command = CommandBuilder.build do |builder|
