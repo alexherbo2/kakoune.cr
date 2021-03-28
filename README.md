@@ -262,7 +262,7 @@ kcr send <command> [arguments] [input: json-format] ⇒ Send commands to client 
 kcr echo [arguments] [input: data-stream] ⇒ Print arguments
 kcr get [-V, --value <name>] [-O, --option <name>] [-R, --register <name>] [expansions] [input: data-stream] ⇒ Get states from a client in session
 kcr cat [buffers] ⇒ Print buffer content
-kcr pipe <program> [arguments] ⇒ Pipe selections to a program
+kcr pipe <program> [arguments] [input: json-selections] ⇒ Pipe selections to a program
 kcr escape [arguments] [input: json-format] ⇒ Escape arguments
 kcr help [command] ⇒ Show help
 ```
@@ -773,7 +773,7 @@ Output:
 [`pipe`]: #pipe
 
 ```
-kcr pipe <program> [arguments]
+kcr pipe <program> [arguments] [input: json-selections]
 ```
 
 Pipe selections to a program.
@@ -782,6 +782,12 @@ Pipe selections to a program.
 
 ``` sh
 kcr pipe jq sort
+```
+
+You can also finalize with a pipe:
+
+``` sh
+kcr get --value selections | jq sort | kcr pipe -
 ```
 
 ###### `escape`
