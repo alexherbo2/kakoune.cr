@@ -146,7 +146,7 @@ define-command -override map-pairs %{
     '
     kcr get %opt{pairs} |
     jq "[$filter]" |
-    kcr send
+    kcr send -
   }
 }
 
@@ -154,7 +154,7 @@ define-command -override unmap-pairs %{
   $ sh -c %{
     kcr get %opt{pairs} |
     jq 'map(["unmap", "global", "insert", .])' |
-    kcr send
+    kcr send -
   }
 }
 

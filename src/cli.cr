@@ -452,7 +452,7 @@ module Kakoune::CLI
       # Example:
       #
       # kcr echo -- evaluate-commands -draft {} |
-      # kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
+      # kcr echo - execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
       # jq --slurp
       IO.copy(STDIN, STDOUT) if options.stdin
 
@@ -471,7 +471,7 @@ module Kakoune::CLI
       # Example:
       #
       # kcr get %val{bufname} |
-      # kcr get %val{buflist} |
+      # kcr get - %val{buflist} |
       # jq --slurp
       IO.copy(STDIN, STDOUT) if options.stdin
 

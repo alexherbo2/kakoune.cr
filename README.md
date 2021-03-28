@@ -630,8 +630,8 @@ It is possible to send multiple commands in a single request with pipes.
 
 ``` sh
 kcr echo -- echo kanto |
-kcr echo -- echo johto |
-kcr send
+kcr echo - echo johto |
+kcr send -
 ```
 
 ### Nested commands
@@ -642,8 +642,8 @@ It is possible to create nested commands with `{}` placeholders and pipes.
 
 ``` sh
 kcr echo -- evaluate-commands -draft {} |
-kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
-kcr send
+kcr echo - execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
+kcr send -
 ```
 
 The `{}` denotes a block for the next pipe.
@@ -682,7 +682,7 @@ Output:
 
 ``` sh
 kcr echo -- evaluate-commands -draft {} |
-kcr echo -- execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
+kcr echo - execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
 jq --slurp
 ```
 
@@ -726,7 +726,7 @@ Output:
 
 ``` sh
 kcr get %val{bufname} |
-kcr get %val{buflist} |
+kcr get - %val{buflist} |
 jq --slurp
 ```
 
