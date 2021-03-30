@@ -168,7 +168,7 @@ export FZF_DEFAULT_OPTS='--multi --layout=reverse --preview-window=down:60%'
 
 `~/.config/mimeapps.list`
 
-```
+``` ini
 [Default Applications]
 text/plain=kakoune.desktop
 ```
@@ -185,7 +185,7 @@ Here is a list of [common MIME types], with all types I have personally experime
 
 `~/.config/mimeapps.list`
 
-```
+``` ini
 [Default Applications]
 application/csv=kakoune.desktop
 application/json=kakoune.desktop
