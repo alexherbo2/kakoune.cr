@@ -7,5 +7,6 @@ Icon=kakoune
 TryExec=kcr
 Exec=kcr open %F
 Terminal=false
+StartupNotify=false
 Categories=Utility;TextEditor;Development;
 MimeType=text/plain;
