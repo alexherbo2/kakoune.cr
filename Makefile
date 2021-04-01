@@ -7,8 +7,9 @@ ifeq ($(static),yes)
   flags += --static
 endif
 
+# Ignore Crystal version until `1.0.0` is available
 build:
-	shards build --release $(flags)
+	shards build --release --ignore-crystal-version $(flags)
 
 x86_64-unknown-linux-musl:
 	scripts/docker-run make static=yes
