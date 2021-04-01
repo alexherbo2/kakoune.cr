@@ -130,7 +130,7 @@ map -docstring 'Open Broot' global normal <c-e> ': > broot<ret>'
 map -docstring 'Open files' global normal <c-f> ': + kcr-fzf-files<ret>'
 map -docstring 'Open buffers' global normal <c-b> ': + kcr-fzf-buffers<ret>'
 map -docstring 'Open files by content' global normal <c-g> ': + kcr-fzf-grep<ret>'
-map -docstring 'Open lazygit' global normal <c-l> ': + lazygit<ret>'
+map -docstring 'Open gitui' global normal <c-l> ': + gitui<ret>'
 ```
 
 Bash example configuration:
