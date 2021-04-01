@@ -49,6 +49,8 @@ jobs:
 
       - name: Build release
         run: make release name=kakoune.cr version=nightly target=${{ matrix.target }}
+        env:
+          SHARDS_OPTS: --ignore-crystal-version
 
       - name: Upload release
         run: gh release upload nightly releases/kakoune.cr-nightly-${{ matrix.target }}.zip
