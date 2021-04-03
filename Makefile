@@ -21,8 +21,8 @@ release: $(target)
 	zip -r releases/$(name)-$(version)-$(target).zip bin share
 
 install: build
-	mkdir -p ~/.local/bin
-	ln -sf "${PWD}/bin/kcr" ~/.local/bin
+	install -d ~/.local/bin
+	install bin/kcr ~/.local/bin
 	bin/kcr install commands
 	bin/kcr install desktop
 
