@@ -22,7 +22,7 @@ release: $(target)
 
 install: build
 	install -d ~/.local/bin
-	install bin/kcr ~/.local/bin
+	ln -sf ${PWD}/bin/kcr ~/.local/bin
 	bin/kcr install commands
 	bin/kcr install desktop
 
