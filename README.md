@@ -4,6 +4,8 @@
 
 kakoune.cr (kcr) is a command-line tool for [Kakoune].
 
+It is a great companion to work with projects, multiple files and headless sessions.
+
 [Kakoune]: https://kakoune.org
 
 [![kakoune.cr](https://img.youtube.com/vi_webp/FUndUED1O7Q/maxresdefault.webp)](https://youtube.com/playlist?list=PLdr-HcjEDx_klQYqXIAmBpywj7ggsDPer "YouTube – kakoune.cr")
