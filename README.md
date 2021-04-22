@@ -129,11 +129,16 @@ map -docstring 'New terminal' global normal <c-n> ': connect-terminal<ret>'
 map -docstring 'New popup' global normal + ': connect-popup<ret>'
 map -docstring 'Open Dolphin' global normal <c-o> ': $ dolphin .<ret>'
 map -docstring 'Open Broot' global normal <c-e> ': > broot<ret>'
+map -docstring 'Open sidetree' global normal <c-e> ': > sidetree<ret>'
 map -docstring 'Open files' global normal <c-f> ': + kcr-fzf-files<ret>'
 map -docstring 'Open buffers' global normal <c-b> ': + kcr-fzf-buffers<ret>'
 map -docstring 'Open files by content' global normal <c-g> ': + kcr-fzf-grep<ret>'
 map -docstring 'Open gitui' global normal <c-l> ': + gitui<ret>'
 ```
+
+**Note**: If you are feeling adventurous, you can try [sidetree] as a project drawer.
+
+[sidetree]: https://github.com/topisani/sidetree
 
 Bash example configuration:
 
@@ -148,6 +153,7 @@ alias kl='kcr list'
 alias a='kcr attach'
 alias :='kcr send'
 alias :br='KK broot'
+alias :st='KK sidetree'
 alias :cat='kcr cat --raw'
 
 alias val='kcr get --value'
