@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-04-30
+
+- Add `kcr get --shell` option
+
 ## 2021-03-28
 
 - Add `-` option to handle `stdin`

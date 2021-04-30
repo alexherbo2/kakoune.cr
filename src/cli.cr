@@ -200,6 +200,10 @@ module Kakoune::CLI
         parser.on("-R NAME", "--register=NAME", "Register name") do |name|
           options.kakoune_arguments << "%reg{#{name}}"
         end
+
+        parser.on("-S COMMAND", "--shell=COMMAND", "Shell command") do |command|
+          options.kakoune_arguments << "%sh{#{command}}"
+        end
       end
 
       parser.on("cat", "Print buffer content") do
