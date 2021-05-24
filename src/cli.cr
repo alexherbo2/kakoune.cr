@@ -10,7 +10,7 @@ RUNTIME_PATH = PROGRAM_PATH.join("../../share/kcr").expand
 module Kakoune::CLI
   extend self
 
-  KAKOUNE_LOGO_URL = "https://github.com/mawww/kakoune/raw/master/doc/kakoune_logo.svg"
+  KCR_LOGO_URL = "https://github.com/alexherbo2/kcr-resources/raw/master/logo/kcr.svg"
 
   struct Options
     property command = :command
@@ -569,10 +569,10 @@ module Kakoune::CLI
   end
 
   def install_desktop_application
-    # Download Kakoune logo
-    kakoune_logo_install_path = Path[ENV["XDG_DATA_HOME"], "icons/hicolor/scalable/apps/kakoune.svg"]
+    # Download kakoune.cr logo
+    kcr_logo_install_path = Path[ENV["XDG_DATA_HOME"], "icons/hicolor/scalable/apps/kcr.svg"]
 
-    { KAKOUNE_LOGO_URL, kakoune_logo_install_path.to_s }.tap do |source, destination|
+    { KCR_LOGO_URL, kcr_logo_install_path.to_s }.tap do |source, destination|
       status = Process.run("curl", { "-sSL", source, "--create-dirs", "-o", destination })
 
       if status.success?
@@ -583,10 +583,10 @@ module Kakoune::CLI
     end
 
     # Install the desktop application
-    kakoune_desktop_path = RUNTIME_PATH / "applications/kakoune.desktop"
-    kakoune_desktop_install_path = Path[ENV["XDG_DATA_HOME"], "applications/kakoune.desktop"]
+    kcr_desktop_path = RUNTIME_PATH / "applications/kcr.desktop"
+    kcr_desktop_install_path = Path[ENV["XDG_DATA_HOME"], "applications/kcr.desktop"]
 
-    { kakoune_desktop_path.to_s, kakoune_desktop_install_path.to_s, kakoune_desktop_install_path.dirname }.tap do |source, destination, directory|
+    { kcr_desktop_path.to_s, kcr_desktop_install_path.to_s, kcr_desktop_install_path.dirname }.tap do |source, destination, directory|
       Dir.mkdir_p(directory) unless Dir.exists?(directory)
       FileUtils.cp(source, destination)
       puts "Copied #{source} to #{destination}"

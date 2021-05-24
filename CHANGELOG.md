@@ -1,5 +1,10 @@
 # Changelog
 
+## 2021-05-24
+
+- Add kakoune.cr logo
+- Rename `kakoune.desktop` → `kcr.desktop`
+
 ## 2021-04-30
 
 - Add `kcr get --shell` option

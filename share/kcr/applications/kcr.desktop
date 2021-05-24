@@ -1,9 +1,9 @@
 [Desktop Entry]
 Type=Application
-Name=Kakoune
+Name=kakoune.cr
 GenericName=Text Editor
 Comment=Edit text files
-Icon=kakoune
+Icon=kcr
 TryExec=kcr
 Exec=kcr open %F
 Terminal=false

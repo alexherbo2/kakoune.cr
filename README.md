@@ -180,7 +180,7 @@ export FZF_DEFAULT_OPTS='--multi --layout=reverse --preview-window=down:60%'
 
 ``` ini
 [Default Applications]
-text/plain=kakoune.desktop
+text/plain=kcr.desktop
 ```
 
 You can get the MIME type with:
@@ -197,21 +197,21 @@ Here is a list of [common MIME types], with all types I have personally experime
 
 ``` ini
 [Default Applications]
-application/csv=kakoune.desktop
-application/json=kakoune.desktop
-application/postscript=kakoune.desktop
-text/html=kakoune.desktop
-text/plain=kakoune.desktop
-text/troff=kakoune.desktop
-text/x-c++=kakoune.desktop
-text/x-c=kakoune.desktop
-text/x-java=kakoune.desktop
-text/x-lisp=kakoune.desktop
-text/x-makefile=kakoune.desktop
-text/xml=kakoune.desktop
-text/x-ruby=kakoune.desktop
-text/x-script.python=kakoune.desktop
-text/x-shellscript=kakoune.desktop
+application/csv=kcr.desktop
+application/json=kcr.desktop
+application/postscript=kcr.desktop
+text/html=kcr.desktop
+text/plain=kcr.desktop
+text/troff=kcr.desktop
+text/x-c++=kcr.desktop
+text/x-c=kcr.desktop
+text/x-java=kcr.desktop
+text/x-lisp=kcr.desktop
+text/x-makefile=kcr.desktop
+text/xml=kcr.desktop
+text/x-ruby=kcr.desktop
+text/x-script.python=kcr.desktop
+text/x-shellscript=kcr.desktop
 ```
 
 [Common MIME types]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
@@ -492,7 +492,7 @@ kcr install desktop
 
 Install [desktop application].
 
-[Desktop application]: share/kcr/applications/kakoune.desktop
+[Desktop application]: share/kcr/applications/kcr.desktop
 
 ###### `env`
 
