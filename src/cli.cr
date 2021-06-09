@@ -106,6 +106,10 @@ module Kakoune::CLI
         options.command = :tldr
       end
 
+      parser.on("doc", "Display documentation") do
+        options.command = :doc
+      end
+
       parser.on("prompt", "Print prompt") do
         options.command = :prompt
       end
@@ -253,6 +257,13 @@ module Kakoune::CLI
     when :tldr
       puts read("pages/tldr.txt")
 
+    when :doc
+      documentation = Dir[RUNTIME_PATH / "pages" / "*.asciidoc"].join('\n') do |file|
+        File.read(file)
+      end
+
+      puts documentation
+
     when :prompt
       case context
       when Client
@@ -268,6 +279,12 @@ module Kakoune::CLI
 
     when :init_kakoune
       puts read("init/kakoune.kak")
+
+      script = Dir[RUNTIME_PATH / "rc" / "*.kak"].join('\n') do |file|
+        File.read(file)
+      end
+
+      puts script
 
     when :init_starship
       puts read("init/starship.toml")

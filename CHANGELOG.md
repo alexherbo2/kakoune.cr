@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-06-12
+
+- Add scripts
+
 ## 2021-05-24
 
 - Add kakoune.cr logo

@@ -124,16 +124,108 @@ Kakoune example configuration:
 `~/.config/kak/kakrc`
 
 ``` kak
-map -docstring 'New client' global normal <c-t> ': new<ret>'
-map -docstring 'New terminal' global normal <c-n> ': connect-terminal<ret>'
-map -docstring 'New popup' global normal + ': connect-popup<ret>'
-map -docstring 'Open Dolphin' global normal <c-o> ': $ dolphin .<ret>'
-map -docstring 'Open Broot' global normal <c-e> ': > broot<ret>'
-map -docstring 'Open sidetree' global normal <c-e> ': > sidetree<ret>'
-map -docstring 'Open files' global normal <c-f> ': + kcr-fzf-files<ret>'
-map -docstring 'Open buffers' global normal <c-b> ': + kcr-fzf-buffers<ret>'
-map -docstring 'Open files by content' global normal <c-g> ': + kcr-fzf-grep<ret>'
-map -docstring 'Open gitui' global normal <c-l> ': + gitui<ret>'
+# Preamble ─────────────────────────────────────────────────────────────────────
+
+try %sh{
+  kcr init kakoune
+  kak-lsp --kakoune --session "$kak_session"
+}
+
+try lsp-enable
+
+# Options ──────────────────────────────────────────────────────────────────────
+
+# UI options
+set-option global startup_info_version 20211231
+set-option global ui_options terminal_assistant=none
+delete-scratch-message
+
+# Color scheme
+# Dracula – https://draculatheme.com/kakoune
+colorscheme dracula-transparent
+
+# Status line
+add-cursor-character-unicode-expansion
+set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}} {{mode_info}} - U+%opt{cursor_character_unicode} - %val{client}@%val{session}'
+
+# Indentation
+enable-detect-indent
+enable-auto-indent
+
+# Disable indentation hooks
+set-option global disabled_hooks '(?!auto)(?!detect)\K(.+)-(trim-indent|insert|indent)'
+
+# Highlighters
+add-highlighter -override global/number-lines number-lines
+add-highlighter -override global/show-matching show-matching
+
+# Show selections
+show-selected-text
+
+# Show whitespaces
+add-highlighter -override global/show-whitespaces show-whitespaces
+add-highlighter -override global/show-trailing-whitespaces regex '\h+$' '0:red+f'
+add-highlighter -override global/show-non-breaking-spaces regex ' +' '0:red+f'
+
+# Show characters
+add-highlighter -override global/show-unicode-2013 regex '–' '0:green+f'
+add-highlighter -override global/show-unicode-2014 regex '—' '0:green+bf'
+add-highlighter -override global/show-math-symbols regex '[−×]' '0:cyan+f'
+add-highlighter -override global/show-limit regex '(?S)^.{79}[=-─┈]\K\n' '0:green+f'
+
+# Clipboard
+synchronize-clipboard
+synchronize-buffer-directory-name-with-register d
+
+# Tools
+set-option global makecmd 'make -j 8'
+set-option global grepcmd 'rg --column'
+
+# Windowing
+remove-hooks global terminal
+hook -group terminal global ModuleLoaded wayland %{ alias global popup wayland-terminal }
+hook -group terminal global ModuleLoaded x11 %{ alias global popup x11-terminal }
+
+# Mappings ─────────────────────────────────────────────────────────────────────
+
+# Normal mode ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+# Editing
+map -docstring 'save' global normal <c-s> ':write<ret>'
+map -docstring 'quit' global normal <c-q> ':quit<ret>'
+map -docstring 'last buffer' global normal <c-a> ga
+
+# Search
+map -docstring 'search' global normal f ':search<ret>'
+map -docstring 'jump backward' global normal F <c-o>
+
+# Selection primitives
+map -docstring 'enter insert mode with main selection' global normal ^ ':enter-insert-mode-with-main-selection<ret>'
+map -docstring 'select next word' global normal w ':select-next-word<ret>'
+map -docstring 'surround' global normal q ':surround<ret>'
+map -docstring 'select objects' global normal S ':select-objects<ret>'
+map -docstring 'select all occurrences of current selection' global normal <a-percent> ':select-highlights<ret>'
+
+# Tools
+map -docstring 'math' global normal = ':math<ret>'
+
+# Windowing
+map -docstring 'new client' global normal <c-t> ':new<ret>'
+map -docstring 'terminal' global normal <c-n> ':connect-terminal<ret>'
+map -docstring 'file explorer' global normal <c-e> ':$ dolphin .<ret>'
+map -docstring 'file picker' global normal <c-f> ':+ kcr-fzf-files<ret>'
+map -docstring 'buffer picker' global normal <c-b> ':+ kcr-fzf-buffers<ret>'
+map -docstring 'grep picker' global normal <c-g> ':+ kcr-fzf-grep<ret>'
+map -docstring 'git' global normal <c-l> ':+ gitui<ret>'
+
+# Insert mode ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+map -docstring 'indent' global insert <tab> '<a-;><a-gt>'
+map -docstring 'deindent' global insert <s-tab> '<a-;><lt>'
+
+# View mode ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
+
+map -docstring 'show palette' global view p '<esc>:show-palette<ret>'
 ```
 
 **Note**: If you are feeling adventurous, you can try [sidetree] as a project drawer.
@@ -219,7 +311,7 @@ text/x-shellscript=kcr.desktop
 
 ## Commands
 
-###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`kill`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`pipe`] | [`escape`] | [`help`]
+###### [`tldr`] | [`doc`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`kill`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`pipe`] | [`escape`] | [`help`]
 
 [Commands]: #commands
 
@@ -253,6 +345,7 @@ text/x-shellscript=kcr.desktop
 
 ```
 kcr tldr ⇒ Show usage
+kcr doc ⇒ Display documentation
 kcr prompt ⇒ Print prompt
 kcr init <name> ⇒ Print functions
 kcr init kakoune ⇒ Print Kakoune definitions
@@ -289,6 +382,18 @@ kcr tldr
 Show [usage][`tldr.txt`].
 
 [`tldr.txt`]: share/kcr/pages/tldr.txt
+
+###### `doc`
+
+[`doc`]: #doc
+
+```
+kcr doc
+```
+
+Display [documentation][pages].
+
+[Pages]: share/kcr/pages
 
 ###### `prompt`
 
@@ -854,6 +959,8 @@ kcr play
 ```
 
 See the [`play`] command and [`example.kak`] file.
+
+Learn more with [`doc`] and [`init kakoune`].
 
 ## Troubleshooting
 

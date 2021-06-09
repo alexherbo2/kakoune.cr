@@ -1,0 +1,32 @@
+= Search
+
+Search command.
+
+== Usage
+
+Enter `search` and start typing to search.
+Press `Tab` to skim through the occurrences.
+
+== Configuration
+
+--------------------------------------------------------------------------------
+map -docstring 'search' global normal f ':search<ret>'
+map -docstring 'jump backward' global normal F <c-o>
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+set-face global SearchBackground 'white'
+set-face global SearchOccurrence 'yellow+b'
+--------------------------------------------------------------------------------
+
+== Prompt commands
+
+- `Tab` ⇒ Next
+- `Shift+Tab` ⇒ Previous
+- `Control+T` ⇒ Window top
+- `Control+B` ⇒ Window bottom
+
+== Faces
+
+- `SearchBackground`
+- `SearchOccurrence`

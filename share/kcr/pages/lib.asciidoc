@@ -1,0 +1,134 @@
+= Library
+
+== add-cursor-character-unicode-expansion
+
+--------------------------------------------------------------------------------
+add-cursor-character-unicode-expansion
+set-option global modelinefmt '%opt{cursor_character_unicode}'
+--------------------------------------------------------------------------------
+
+add `%opt{cursor_character_unicode}` expansion.
+
+== delete-scratch-message
+
+--------------------------------------------------------------------------------
+delete-scratch-message
+--------------------------------------------------------------------------------
+
+== find, f
+
+--------------------------------------------------------------------------------
+map -docstring 'open file' global normal <c-f> ':find<space>'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+set-option global find_command 'fd --type file'
+--------------------------------------------------------------------------------
+
+== open-kakrc
+
+== source-kakrc
+
+== evaluate-selections, =
+
+== execute-keys-with-register
+
+--------------------------------------------------------------------------------
+execute-keys-with-register p 'Hello, World!'
+--------------------------------------------------------------------------------
+
+== enter-insert-mode-with-main-selection
+
+--------------------------------------------------------------------------------
+map -docstring 'enter insert mode with main selection' global normal I ':enter-insert-mode-with-main-selection<ret>'
+map -docstring 'enter insert mode at line begin' global goto i '<esc>I'
+--------------------------------------------------------------------------------
+
+== select-next-word
+
+--------------------------------------------------------------------------------
+map -docstring 'select next word' global normal w ':select-next-word<ret>'
+--------------------------------------------------------------------------------
+
+move by word with `w`, `e` and `b` – which are symmetrical.
+
+== select-highlights
+
+--------------------------------------------------------------------------------
+map -docstring 'select all occurrences of current selection' global normal <a-percent> ':select-highlights<ret>'
+--------------------------------------------------------------------------------
+
+== sort-selections
+
+== reverse-selections
+
+== math
+
+--------------------------------------------------------------------------------
+map -docstring 'math' global normal = ':math<ret>'
+--------------------------------------------------------------------------------
+
+== show-selected-text
+
+--------------------------------------------------------------------------------
+show-selected-text
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+set-face global SelectedText 'default,bright-black'
+--------------------------------------------------------------------------------
+
+== hide-selected-text
+
+== show-search
+
+--------------------------------------------------------------------------------
+show-search
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+set-face global Search 'black,bright-yellow'
+--------------------------------------------------------------------------------
+
+== hide-search
+
+== show-palette
+
+--------------------------------------------------------------------------------
+map -docstring 'show palette' global view p '<esc>:show-palette<ret>'
+--------------------------------------------------------------------------------
+
+== enable-detect-indent
+
+--------------------------------------------------------------------------------
+enable-detect-indent
+--------------------------------------------------------------------------------
+
+automatically set indent level from buffer content.
+
+== detect-indent
+
+set indent level from buffer content.
+
+== enable-auto-indent
+
+--------------------------------------------------------------------------------
+set-option global disabled_hooks '(?!auto)(?!detect)\K(.+)-(trim-indent|insert|indent)'
+enable-auto-indent
+map -docstring 'indent' global insert <tab> '<a-;><a-gt>'
+map -docstring 'deindent' global insert <s-tab> '<a-;><lt>'
+--------------------------------------------------------------------------------
+
+== disable-auto-indent
+
+== synchronize-clipboard
+
+--------------------------------------------------------------------------------
+synchronize-clipboard
+--------------------------------------------------------------------------------
+
+== synchronize-buffer-directory-name-with-register
+
+--------------------------------------------------------------------------------
+synchronize-buffer-directory-name-with-register d
+--------------------------------------------------------------------------------
