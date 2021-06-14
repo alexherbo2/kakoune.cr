@@ -17,8 +17,8 @@ map -docstring 'select whole parenthesis blocks' global select ) ':select-whole-
 
 map -docstring 'select inner brace blocks' global select B ':select-inner-brace-blocks<ret>'
 map -docstring 'select whole brace blocks' global select <a-B> ':select-whole-brace-blocks<ret>'
-map -docstring 'select inner brace blocks' global select ( ':select-inner-brace-blocks<ret>'
-map -docstring 'select whole brace blocks' global select ) ':select-whole-brace-blocks<ret>'
+map -docstring 'select inner brace blocks' global select { ':select-inner-brace-blocks<ret>'
+map -docstring 'select whole brace blocks' global select } ':select-whole-brace-blocks<ret>'
 
 map -docstring 'select inner bracket blocks' global select r ':select-inner-bracket-blocks<ret>'
 map -docstring 'select whole bracket blocks' global select <a-r> ':select-whole-bracket-blocks<ret>'
