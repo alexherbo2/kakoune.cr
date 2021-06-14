@@ -191,6 +191,9 @@ hook -group terminal global ModuleLoaded x11 %{ alias global popup x11-terminal 
 
 # Normal mode ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
+# Hot reloading
+map -docstring 'reload kakrc' global normal <F5> ':source-kakrc<ret>'
+
 # Editing
 map -docstring 'save' global normal <c-s> ':write<ret>'
 map -docstring 'quit' global normal <c-q> ':quit<ret>'
