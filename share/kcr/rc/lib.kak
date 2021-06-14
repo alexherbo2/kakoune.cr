@@ -148,10 +148,23 @@ define-command -override show-palette -docstring 'show palette' %{
   }
 }
 
+define-command -override set-indent -params 2 -docstring 'set-indent <scope> <width>: set indent in <scope> to <width>' %{
+  set-option %arg{1} tabstop %arg{2}
+  set-option %arg{1} indentwidth %arg{2}
+}
+
 define-command -override enable-detect-indent -docstring 'enable detect indent' %{
   remove-hooks global detect-indent
   hook -group detect-indent global BufOpenFile '.*' detect-indent
   hook -group detect-indent global BufWritePost '.*' detect-indent
+}
+
+define-command -override disable-detect-indent -docstring 'disable detect indent' %{
+  remove-hooks global detect-indent
+  evaluate-commands -buffer '*' %{
+    unset-option buffer tabstop
+    unset-option buffer indentwidth
+  }
 }
 
 define-command -override detect-indent -docstring 'detect indent' %{
@@ -164,8 +177,10 @@ define-command -override detect-indent -docstring 'detect indent' %{
       # https://youtu.be/V7PLxL8jIl8
       try %{
         execute-keys '<a-k>\t<ret>'
+        set-option buffer tabstop 8
         set-option buffer indentwidth 0
       } catch %{
+        set-option buffer tabstop %val{selection_length}
         set-option buffer indentwidth %val{selection_length}
       }
     }

@@ -149,6 +149,7 @@ add-cursor-character-unicode-expansion
 set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}} {{mode_info}} - U+%opt{cursor_character_unicode} - %val{client}@%val{session}'
 
 # Indentation
+set-indent global 2
 enable-detect-indent
 enable-auto-indent
 

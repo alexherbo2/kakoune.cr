@@ -98,6 +98,14 @@ set-face global Search 'black,bright-yellow'
 map -docstring 'show palette' global view p '<esc>:show-palette<ret>'
 --------------------------------------------------------------------------------
 
+== set-indent
+
+--------------------------------------------------------------------------------
+set-indent global 2
+--------------------------------------------------------------------------------
+
+set indent in `scope` to `width`.
+
 == enable-detect-indent
 
 --------------------------------------------------------------------------------
@@ -105,6 +113,8 @@ enable-detect-indent
 --------------------------------------------------------------------------------
 
 automatically set indent level from buffer content.
+
+== disable-detect-indent
 
 == detect-indent
 
