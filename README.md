@@ -197,6 +197,7 @@ map -docstring 'reload kakrc' global normal <F5> ':source-kakrc<ret>'
 # Editing
 map -docstring 'save' global normal <c-s> ':write<ret>'
 map -docstring 'quit' global normal <c-q> ':quit<ret>'
+map -docstring 'close buffer' global normal <c-w> ':delete-buffer<ret>'
 map -docstring 'last buffer' global normal <c-a> ga
 
 # Search
