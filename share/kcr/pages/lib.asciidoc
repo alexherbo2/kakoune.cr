@@ -40,8 +40,7 @@ execute-keys-with-register p 'Hello, World!'
 == enter-insert-mode-with-main-selection
 
 --------------------------------------------------------------------------------
-map -docstring 'enter insert mode with main selection' global normal I ':enter-insert-mode-with-main-selection<ret>'
-map -docstring 'enter insert mode at line begin' global goto i '<esc>I'
+map -docstring 'enter insert mode with main selection' global normal ^ ':enter-insert-mode-with-main-selection<ret>'
 --------------------------------------------------------------------------------
 
 == select-next-word
