@@ -87,9 +87,9 @@ define-command -override -hidden surround-add-space %{
 }
 
 define-command -override -hidden surround-add-line %{
-  # Extract selected text on its own line
-  execute-keys -draft 'i<ret>'
-  execute-keys -draft 'a<ret>'
+  # Extract selected text on its own line; clean whitespaces around the selection.
+  try %{ execute-keys -draft 'i<ret><esc>kgl<a-i><space>d' }
+  try %{ execute-keys -draft 'a<ret><esc>jgl<a-i><space>d' }
 
   # Indent selection
   execute-keys -draft '<a-:><a-;>K<a-:>J<a-&>'
