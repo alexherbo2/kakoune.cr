@@ -1,0 +1,32 @@
+= Auto-pairing of characters
+
+Auto-pairing of characters.
+
+Heavily based on https://code.visualstudio.com[Visual Studio Code].
+
+== Usage
+
+Enter `enable-auto-pairs` to enable auto-pairing of characters.
+
+== Configuration
+
+--------------------------------------------------------------------------------
+set-option global auto_pairs ( ) { } [ ] '"' '"' "'" "'" ` ` “ ” ‘ ’ « » ‹ ›
+--------------------------------------------------------------------------------
+
+== How does it work?
+
+The script installs insert hooks on opening pair characters, such as brackets and quotes.
+
+When auto-closing has been triggered, it activates the following functionalities:
+
+- `closing-pair` ⇒ Insert character or move right in pair
+- `Enter` ⇒ Insert a new indented line in pair (only for the next key)
+
+When moving or leaving insert mode, the functionalities deactivate.
+
+=== Technical details
+
+- Insert hooks are added on opening pair characters from `auto_pairs` option.
+- Evaluates `auto_close_trigger` option to activate auto-pairing.
+- Provides `opening_pair` expansion in expressions.

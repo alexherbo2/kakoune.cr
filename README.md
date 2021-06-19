@@ -153,6 +153,9 @@ set-indent global 2
 enable-detect-indent
 enable-auto-indent
 
+# Auto-pairing of characters
+enable-auto-pairs
+
 # Disable indentation hooks
 set-option global disabled_hooks '(?!auto)(?!detect)\K(.+)-(trim-indent|insert|indent)'
 
