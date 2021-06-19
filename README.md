@@ -233,6 +233,7 @@ map -docstring 'deindent' global insert <s-tab> '<a-;><lt>'
 
 # View mode ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
+map -docstring 'view mode' global normal v V
 map -docstring 'show palette' global view p '<esc>:show-palette<ret>'
 ```
 
