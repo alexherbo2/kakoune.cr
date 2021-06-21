@@ -98,18 +98,23 @@ define-command -override -hidden surround-add-line %{
 
 # Delete surrounding
 define-command -override -hidden surround-delete %{
-  # Delete left surrounding
+  # Tag support
   try %{
-    execute-keys -draft '<a-:><a-;>h<a-a><space>d'
+    execute-keys 'y<a-a>c<lt>.+?<gt>,<lt>/.+?<gt><ret>R'
   } catch %{
-    execute-keys -draft 'i<backspace>'
-  }
+    # Delete left surrounding
+    try %{
+      execute-keys -draft '<a-:><a-;>h<a-a><space>d'
+    } catch %{
+      execute-keys -draft 'i<backspace>'
+    }
 
-  # Delete right surrounding
-  try %{
-    execute-keys -draft '<a-:>l<a-a><space>d'
-  } catch %{
-    execute-keys -draft 'a<del>'
+    # Delete right surrounding
+    try %{
+      execute-keys -draft '<a-:>l<a-a><space>d'
+    } catch %{
+      execute-keys -draft 'a<del>'
+    }
   }
 }
 
