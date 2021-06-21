@@ -133,6 +133,9 @@ try %sh{
 
 try lsp-enable
 
+# Adapt the location
+source /path/to/alacritty.kak
+
 # Options ──────────────────────────────────────────────────────────────────────
 
 # UI options
@@ -186,9 +189,13 @@ set-option global makecmd 'make -j 8'
 set-option global grepcmd 'rg --column'
 
 # Windowing
-remove-hooks global terminal
-hook -group terminal global ModuleLoaded wayland %{ alias global popup wayland-terminal }
-hook -group terminal global ModuleLoaded x11 %{ alias global popup x11-terminal }
+alacritty-integration-enable
+
+# Optional
+# If you don’t have a popup command
+remove-hooks global terminal-integration
+hook -group terminal-integration global ModuleLoaded wayland %{ alias global popup wayland-terminal }
+hook -group terminal-integration global ModuleLoaded x11 %{ alias global popup x11-terminal }
 
 # Mappings ─────────────────────────────────────────────────────────────────────
 
