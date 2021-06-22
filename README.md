@@ -124,6 +124,11 @@ Kakoune example configuration:
 `~/.config/kak/kakrc`
 
 ``` kak
+# Documentation ────────────────────────────────────────────────────────────────
+
+# kcr-open-doc ⇒ open kakoune.cr documentation
+# kcr-open-kakrc ⇒ open kakoune.cr kakrc
+
 # Preamble ─────────────────────────────────────────────────────────────────────
 
 try %sh{
