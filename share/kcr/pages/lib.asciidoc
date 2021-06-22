@@ -51,6 +51,18 @@ map -docstring 'select next word' global normal w ':select-next-word<ret>'
 
 move by word with `w`, `e` and `b` – which are symmetrical.
 
+== move-lines-down
+
+--------------------------------------------------------------------------------
+map -docstring 'move line down' global normal <down> ':move-lines-down<ret>'
+--------------------------------------------------------------------------------
+
+== move-lines-up
+
+--------------------------------------------------------------------------------
+map -docstring 'move line up' global normal <up> ':move-lines-up<ret>'
+--------------------------------------------------------------------------------
+
 == select-highlights
 
 --------------------------------------------------------------------------------

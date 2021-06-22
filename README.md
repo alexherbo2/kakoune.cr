@@ -220,6 +220,8 @@ map -docstring 'select next word' global normal w ':select-next-word<ret>'
 map -docstring 'surround' global normal q ':surround<ret>'
 map -docstring 'select objects' global normal S ':select-objects<ret>'
 map -docstring 'select all occurrences of current selection' global normal <a-percent> ':select-highlights<ret>'
+map -docstring 'move line down' global normal <down> ':move-lines-down<ret>'
+map -docstring 'move line up' global normal <up> ':move-lines-up<ret>'
 
 # Tools
 map -docstring 'math' global normal = ':math<ret>'
