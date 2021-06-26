@@ -46,7 +46,7 @@ define-command -override execute-keys-with-register -params 2 -docstring 'execut
 }
 
 define-command -override enter-insert-mode-with-main-selection -docstring 'enter insert mode with main selection and iterate selections with Alt+N and Alt+P' %{
-  execute-keys -save-regs '' 'Z<space>i'
+  execute-keys -save-regs '' '<a-:><a-;>Z<space>i'
 
   # Internal mappings
   map -docstring 'iterate next selection' window insert <a-n> '<a-;>z<a-;>)<a-;>Z<a-;><space>'
