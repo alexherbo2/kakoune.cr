@@ -43,6 +43,8 @@ execute-keys-with-register p 'Hello, World!'
 map -docstring 'enter insert mode with main selection' global normal ^ ':enter-insert-mode-with-main-selection<ret>'
 --------------------------------------------------------------------------------
 
+enter insert mode with main selection and iterate selections with `Alt+N` and `Alt+P`.
+
 == select-next-word
 
 --------------------------------------------------------------------------------
