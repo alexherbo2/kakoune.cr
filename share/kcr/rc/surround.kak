@@ -43,9 +43,9 @@ define-command -override -hidden surround-init %{
 
 # Declare surrounding pairs
 define-command -override declare-surrounding-pair -params 4 -docstring 'declare-surrounding-pair <description> [alias] <opening> <closing>: declare surrounding pair' %{
-  try %{ map -docstring %arg{1} global surround %arg{2} ":surround-add %%🐈%arg{3}🐈 %%🐈%arg{4}🐈<ret>" }
-  try %{ map -docstring %arg{1} global surround %arg{3} ":surround-add %%🐈%arg{3}🐈 %%🐈%arg{4}🐈<ret>" }
-  try %{ map -docstring %arg{1} global surround %arg{4} ":surround-add %%🐈%arg{3}🐈 %%🐈%arg{4}🐈<ret>" }
+  try %{ map -docstring %arg{1} global surround %arg{2} ": surround-add %%🐈%arg{3}🐈 %%🐈%arg{4}🐈<ret>" }
+  try %{ map -docstring %arg{1} global surround %arg{3} ": surround-add %%🐈%arg{3}🐈 %%🐈%arg{4}🐈<ret>" }
+  try %{ map -docstring %arg{1} global surround %arg{4} ": surround-add %%🐈%arg{3}🐈 %%🐈%arg{4}🐈<ret>" }
 }
 
 # Enter insert mode
