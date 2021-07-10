@@ -25,7 +25,7 @@
 # – Insert hooks are added on opening pair characters from %opt{auto_pairs} option.
 # – Evaluates %opt{auto_close_trigger} option to activate auto-pairing.
 # – Provides %opt{opening_pair} expansion in expressions.
-# – Uses %opt{inserted_pairs} count to keep track of inserted pairs.
+# – Uses %opt{inserted_pairs} count to keep track of inserted pairs for inserting or moving in pair.
 # – Uses the same implementation for nestable (such as brackets) and non-nestable (such as quotes) pairs.
 # Since insert hooks are added on opening pair characters (for auto-pairing) and mappings on closing pair characters (for moving in pair),
 # we can distinguish same pair characters once auto-pairing has been activated.
