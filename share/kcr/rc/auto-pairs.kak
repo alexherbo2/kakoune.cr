@@ -149,7 +149,7 @@ define-command -override -hidden auto-pairs-insert-character -params 1 %{
 
 # Enter ⇒ Insert a new indented line in pair (only for the next key)
 define-command -override -hidden auto-pairs-insert-new-line %{
-  execute-keys '<esc>;i<ret><ret><esc>KK<a-&>j<a-gt>'
+  execute-keys '<a-;>;<ret><ret><esc>KK<a-&>j<a-gt>'
   execute-keys -with-hooks A
   reset-inserted-pairs-count
 }
