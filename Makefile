@@ -21,13 +21,16 @@ release: $(target)
 	zip -r releases/$(name)-$(version)-$(target).zip bin share
 
 install: build
+
 	# Install bin/kcr
 	install -d ~/.local/bin
 	install bin/kcr ~/.local/bin
+
 	# Install share/kcr
 	install -d ~/.local/share
 	rm -Rf ~/.local/share/kcr
 	cp -R share/kcr ~/.local/share
+
 	# Install support
 	bin/kcr install commands
 	bin/kcr install desktop
