@@ -215,6 +215,18 @@ define-command -override disable-auto-indent -docstring 'disable auto-indent' %{
   remove-hooks global auto-indent
 }
 
+define-command -override make-directory-on-save -docstring 'make directory on save' %{
+  remove-hooks global make-directory-on-save
+  hook -group make-directory-on-save global BufWritePre '.*' %{
+    nop %sh{
+      buffer_directory_path=${kak_buffile%/*}
+      if [ ! -d "$buffer_directory_path" ]; then
+        mkdir -p "$buffer_directory_path"
+      fi
+    }
+  }
+}
+
 # Documentation: https://xfree86.org/current/ctlseqs.html#:~:text=clipboard
 define-command -override synchronize-clipboard -docstring 'synchronize clipboard' %{
   remove-hooks global synchronize-clipboard

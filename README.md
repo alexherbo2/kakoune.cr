@@ -185,6 +185,9 @@ add-highlighter -override global/show-unicode-2014 regex '—' '0:green+bf'
 add-highlighter -override global/show-math-symbols regex '[−×]' '0:cyan+f'
 add-highlighter -override global/show-limit regex '(?S)^.{79}[=-─┈]\K\n' '0:green+f'
 
+# Save buffer
+make-directory-on-save
+
 # Clipboard
 synchronize-clipboard
 synchronize-buffer-directory-name-with-register d
