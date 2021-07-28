@@ -276,10 +276,6 @@ alias cd:='cd $(kcr get --raw --shell pwd)'
 alias :br='KK broot'
 alias :st='KK sidetree'
 alias :cat='kcr cat --raw'
-
-alias val='kcr get --value'
-alias opt='kcr get --option'
-alias reg='kcr get --register'
 ```
 
 [Environment variables] example configuration:
