@@ -267,15 +267,8 @@ alias k='kcr edit'
 alias K='kcr-fzf-shell'
 alias KK='K --working-directory .'
 alias ks='kcr shell --session'
-alias ksa='kcr shell --session "${PWD##*/}"'
 alias kl='kcr list'
 alias a='kcr attach'
-alias :='kcr send'
-alias :cd='kcr send cd "$PWD"'
-alias cd:='cd $(kcr get --raw --shell pwd)'
-alias :br='KK broot'
-alias :st='KK sidetree'
-alias :cat='kcr cat --raw'
 ```
 
 [Environment variables] example configuration:
