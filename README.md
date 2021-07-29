@@ -237,7 +237,7 @@ map -docstring 'math' global normal = ':math<ret>'
 # Windowing
 map -docstring 'new client' global normal <c-t> ':new<ret>'
 map -docstring 'terminal' global normal <c-n> ':connect-terminal<ret>'
-map -docstring 'file explorer' global normal <c-e> ':$ dolphin .<ret>'
+map -docstring 'file explorer' global normal <c-e> ':> sidetree<ret>'
 map -docstring 'file picker' global normal <c-f> ':+ kcr-fzf-files<ret>'
 map -docstring 'buffer picker' global normal <c-b> ':+ kcr-fzf-buffers<ret>'
 map -docstring 'grep picker' global normal <c-g> ':+ kcr-fzf-grep<ret>'
@@ -253,10 +253,6 @@ map -docstring 'deindent' global insert <s-tab> '<a-;><lt>'
 map -docstring 'view mode' global normal v V
 map -docstring 'show palette' global view p '<esc>:show-palette<ret>'
 ```
-
-**Note**: If you are feeling adventurous, you can try [sidetree] as a project drawer.
-
-[sidetree]: https://github.com/topisani/sidetree
 
 Bash example configuration:
 
@@ -521,16 +517,13 @@ $ dolphin
 
 Connect a terminal.
 
-**Example** – Connect [Broot]:
+**Example** – Connect [sidetree]:
 
 ``` kak
-> broot
+> sidetree
 ```
 
-**ProTip!** You probably want Broot being [modal][Broot – Modal].
-
-[Broot]: https://dystroy.org/broot/
-[Broot – Modal]: https://dystroy.org/broot/vim_mode/
+[sidetree]: https://github.com/topisani/sidetree
 
 ###### `connect-popup`
 
