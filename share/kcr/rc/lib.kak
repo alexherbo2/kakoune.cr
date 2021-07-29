@@ -248,3 +248,21 @@ define-command -override synchronize-buffer-directory-name-with-register -params
 define-command -override -hidden save-directory-name-to-register -params 2 -docstring 'save-directory-name-to-register <path> <register>: save directory name to register' %{
   set-register %arg{2} %sh{printf '%s/' "${1%/*}"}
 }
+
+define-command -override link-window -params 1 -client-completion -docstring 'link-window <client>: link window to client' %{
+  execute-keys '"sZ'
+  execute-keys -client %arg{1} '"sz'
+}
+
+define-command -override move-window -params 1 -client-completion -docstring 'move-window <client>: move window to client' %{
+  execute-keys '"sZ'
+  execute-keys -client %arg{1} '"sz'
+  buffer-next
+}
+
+define-command -override swap-window -params 1 -client-completion -docstring 'swap-window <client>: swap window with client' %{
+  execute-keys '"sZ'
+  execute-keys -client %arg{1} '"tZ'
+  execute-keys '"tz'
+  execute-keys -client %arg{1} '"sz'
+}
