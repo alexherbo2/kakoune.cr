@@ -12,7 +12,7 @@ define-command -override connect -params 1.. -command-completion -docstring 'Run
 
 define-command -override run -params 1.. -shell-completion -docstring 'Run a program in a new session' %{
   nop %sh{
-    setsid "$@" < /dev/null > /dev/null 2>&1 &
+    nohup "$@" < /dev/null > /dev/null 2>&1 &
   }
 }
 
