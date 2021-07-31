@@ -21,6 +21,7 @@ class Kakoune::Client
   # Add a few switches to evaluate-commands for perfect command forwarding to another context.
   def send(command, arguments)
     session.send("evaluate-commands", ["-try-client", name, "-verbatim", "--", command] + arguments)
+    send("try focus")
   end
 
   def exists?
