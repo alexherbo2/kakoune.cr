@@ -1,3 +1,13 @@
+# Search
+
+try %{ declare-user-mode search }
+
+define-command -override search -docstring 'search' %{
+  enter-user-mode search
+}
+
+# Options ──────────────────────────────────────────────────────────────────────
+
 # Internal variables
 declare-option -hidden str-list search_register
 declare-option -hidden str-list search_selections
@@ -6,8 +16,33 @@ declare-option -hidden str-list search_selections
 set-face global SearchBackground 'white'
 set-face global SearchOccurrence 'yellow+b'
 
-# Search command
-define-command -override search -docstring 'search' %{
+# Mappings ─────────────────────────────────────────────────────────────────────
+
+# Reference:
+# https://github.com/mawww/kakoune/blob/master/src/normal.cc#:~:text=SelectMode
+map -docstring 'replace' global search r ':search-replace<ret>'
+map -docstring 'extend' global search e ':search-extend<ret>'
+map -docstring 'append' global search a ':search-append<ret>'
+
+# Commands ─────────────────────────────────────────────────────────────────────
+
+define-command -override search-replace -docstring 'search (replace)' %{
+  search-implementation replace ''
+}
+
+define-command -override search-extend -docstring 'search (extend)' %{
+  search-implementation extend %{
+    execute-keys '<space>"mZ<c-o>Z<space>"m<a-z>u<a-z>a'
+  }
+}
+
+define-command -override search-append -docstring 'search (append)' %{
+  search-implementation append %{
+    execute-keys '<space>"mZ<c-o>Z"mz<a-z>a'
+  }
+}
+
+define-command -override -hidden search-implementation -params 2 -docstring 'search-implementation <select-mode-name> <select-mode-command>' %{
   # Save values
   set-option window search_register %reg{/}
   set-option window search_selections %val{selections_desc}
@@ -37,7 +72,7 @@ define-command -override search -docstring 'search' %{
   }
 
   # Enter search
-  prompt search: '' -on-change %{
+  prompt "search (%arg{1}):" %arg{2} -on-change %{
     # Update search
     set-register / %val{text}
 

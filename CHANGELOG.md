@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-07-31
+
+- Add `search` select mode
+
 ## 2021-06-12
 
 - Add scripts

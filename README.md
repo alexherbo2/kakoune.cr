@@ -219,8 +219,9 @@ map -docstring 'close buffer' global normal <c-w> ':delete-buffer<ret>'
 map -docstring 'last buffer' global normal <c-a> ga
 
 # Search
-map -docstring 'search' global normal f ':search<ret>'
-map -docstring 'jump backward' global normal F <c-o>
+map -docstring 'search (replace)' global normal f ':search-replace<ret>'
+map -docstring 'search (extend)' global normal F ':search-extend<ret>'
+map -docstring 'search (append)' global normal <a-f> ':search-append<ret>'
 
 # Selection primitives
 map -docstring 'enter insert mode with main selection' global normal ^ ':enter-insert-mode-with-main-selection<ret>'
