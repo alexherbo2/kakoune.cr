@@ -152,6 +152,7 @@ try lsp-enable
 
 # Adapt the location
 source /path/to/alacritty.kak
+source /path/to/tmux.kak
 
 # Options ──────────────────────────────────────────────────────────────────────
 
@@ -210,6 +211,7 @@ set-option global grepcmd 'rg --column'
 
 # Windowing
 alacritty-integration-enable
+tmux-integration-enable
 
 # Optional
 # If you don’t have a popup command
