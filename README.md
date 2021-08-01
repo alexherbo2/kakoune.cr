@@ -236,13 +236,13 @@ map -docstring 'move line up' global normal <up> ':move-lines-up<ret>'
 map -docstring 'math' global normal = ':math<ret>'
 
 # Windowing
-map -docstring 'new client' global normal <c-t> ':new<ret>'
+map -docstring 'client' global normal <c-t> ':new<ret>'
 map -docstring 'terminal' global normal <c-n> ':connect-terminal<ret>'
-map -docstring 'file explorer' global normal <c-e> ':> sidetree<ret>'
-map -docstring 'file picker' global normal <c-f> ':+ kcr-fzf-files<ret>'
-map -docstring 'buffer picker' global normal <c-b> ':+ kcr-fzf-buffers<ret>'
-map -docstring 'grep picker' global normal <c-g> ':+ kcr-fzf-grep<ret>'
-map -docstring 'git' global normal <c-l> ':+ gitui<ret>'
+map -docstring 'file explorer' global normal <c-e> ':connect panel sidetree --select %val{buffile}<ret>'
+map -docstring 'file picker' global normal <c-f> ':connect popup kcr fzf files<ret>'
+map -docstring 'buffer picker' global normal <c-b> ':connect popup kcr fzf buffers<ret>'
+map -docstring 'grep picker' global normal <c-g> ':connect popup kcr fzf grep<ret>'
+map -docstring 'git' global normal <c-l> ':connect popup gitui<ret>'
 
 # Insert mode ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
 
