@@ -1,7 +1,7 @@
 define-command -override initialize -params 1 -file-completion -docstring 'Initialize the playground' %{
   edit -fifo %arg{1} '*playground*'
   set-option buffer filetype kak
-  map -docstring 'Reload the playground' buffer normal <F5> ': reload<ret>'
+  map -docstring 'Reload the playground' buffer normal <F5> ':reload<ret>'
   info -title Playground 'Press F5 or enter :reload to reload the *playground* buffer'
 }
 
