@@ -35,8 +35,20 @@ kcr edit --session=kanto --client=main pokemon.json
 ```
 
 Most of the time, you don’t need to specify them.
-[`>`] will [`connect terminal`][`connect-terminal`] and forward [`$KAKOUNE_SESSION`] and [`$KAKOUNE_CLIENT`] environment variables,
+[`connect`] will forward [`$KAKOUNE_SESSION`] and [`$KAKOUNE_CLIENT`] environment variables,
 which will be used by [`kcr`] to run commands in the specified context.
+
+**Example** – Connect a terminal:
+
+``` kak
+connect terminal
+```
+
+**Example** – Connect a program:
+
+``` kak
+connect run alacritty
+```
 
 ## Dependencies
 
@@ -88,7 +100,7 @@ kcr [-s, --session <name>] [-c, --client <name>] [-r, --raw] <command> [argument
 
 [`kcr`]: #usage
 
-Open Kakoune, then a connected terminal with [`>`] or [`+`] or a GUI program with [`$`].
+Open Kakoune, then a connected terminal with `connect terminal` or `connect run alacritty`.
 Edit files with [`kcr edit`][`edit`] and see them being opened in the Kakoune client.
 You can set your [`$EDITOR`] to [`kcr edit`][`edit`] and configure your graphical applications to open files with Kakoune.
 
@@ -449,17 +461,13 @@ evaluate-commands %sh{
 
 ### Kakoune commands
 
-###### [`connect`] | [`run`] | [`$`] [`connect-program`] | [`>`] [`connect-terminal`] | [`+`] [`connect-popup`] | [`|`] [`pipe`]
+###### [`connect`] | [`run`]
 
 [Kakoune commands]: #kakoune-commands
 
 ```
 connect <command> [arguments] ⇒ Run a command as <command> sh -c {connect} -- [arguments].  Example: connect terminal sh.
 run <command> [arguments] ⇒ Run a program in a new session
-[$] connect-program <command> [arguments] ⇒ Connect a program
-[>] connect-terminal [command] [arguments] ⇒ Connect a terminal
-[+] connect-popup [command] [arguments] ⇒ Connect a popup
-[|] pipe <program> [arguments] ⇒ Pipe selections to a program
 ```
 
 ###### `connect`
@@ -487,80 +495,6 @@ run <command> [arguments]
 ```
 
 Run a program in a new session.
-
-###### `connect-program`
-
-[`$`]: #connect-program
-[`connect-program`]: #connect-program
-
-```
-[$] connect-program <command> [arguments]
-```
-
-Connect a program.
-
-**Example** – Connect [Dolphin]:
-
-``` kak
-$ dolphin
-```
-
-[Dolphin]: https://apps.kde.org/en/dolphin
-
-###### `connect-terminal`
-
-[`>`]: #connect-terminal
-[`connect-terminal`]: #connect-terminal
-
-```
-[>] connect-terminal [command] [arguments]
-```
-
-Connect a terminal.
-
-**Example** – Connect [sidetree]:
-
-``` kak
-> sidetree
-```
-
-[sidetree]: https://github.com/topisani/sidetree
-
-###### `connect-popup`
-
-[`+`]: #connect-popup
-[`connect-popup`]: #connect-popup
-
-```
-[+] connect-popup [command] [arguments]
-```
-
-Connect a popup.
-
-**Example** – Open buffers with [fzf integration]:
-
-``` kak
-+ kcr-fzf-buffers
-```
-
-[fzf integration]: https://github.com/alexherbo2/kakoune.cr/tree/master/share/kcr/commands/fzf
-
-###### `pipe`
-
-[`|`]: #pipe
-[`pipe`]: #pipe
-
-```
-[|] pipe <program> [arguments]
-```
-
-Pipe selections to a program.
-
-**Example** – Sort selections:
-
-``` kak
-| jq sort
-```
 
 ###### `init starship`
 

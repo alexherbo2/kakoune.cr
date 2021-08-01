@@ -36,13 +36,13 @@
 # – Nushell (https://nushell.sh)
 
 define-command -override fzf-files %{
-  + nu --commands %{
+  connect popup nu --commands %{
     fzf --preview 'cat {}' | lines | each { kcr edit $it }
   }
 }
 
 define-command -override fzf-buffers %{
-  + nu --commands %{
+  connect popup nu --commands %{
     kcr get --raw --value buflist | fzf --preview 'kcr cat --raw {}' | lines | each { kcr send buffer $it }
   }
 }
@@ -81,7 +81,7 @@ map global normal <c-b> ': fzf-buffers<ret>'
 # – jq (https://stedolan.github.io/jq/)
 
 define-command -override rotate-selections-content %{
-  $ kcr pipe jq '.[-1:] + .[:-1]'
+  connect run kcr pipe jq '.[-1:] + .[:-1]'
 }
 
 # ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
@@ -95,7 +95,7 @@ define-command -override rotate-selections-content %{
 # – json.lua (https://github.com/rxi/json.lua)
 
 define-command -override lua-index-selections %{
-  $ kcr pipe lua -l json -e %{
+  connect run kcr pipe lua -l json -e %{
     local selections = json.decode(io.read('*a'))
 
     for index, selection in ipairs(selections) do
@@ -134,7 +134,7 @@ define-command -override insert-closing-pair -params 2 %{
 }
 
 define-command -override map-pairs %{
-  $ sh -c %{
+  connect run sh -c %{
     filter='
       _nwise(2) as [$opening, $closing] |
 
@@ -151,7 +151,7 @@ define-command -override map-pairs %{
 }
 
 define-command -override unmap-pairs %{
-  $ sh -c %{
+  connect run sh -c %{
     kcr get %opt{pairs} |
     jq 'map(["unmap", "global", "insert", .])' |
     kcr send -

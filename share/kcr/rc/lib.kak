@@ -91,11 +91,11 @@ define-command -override select-highlights -docstring 'select all occurrences of
 }
 
 define-command -override sort-selections -docstring 'sort selections' %{
-  $ kcr pipe jq sort
+  connect run kcr pipe jq sort
 }
 
 define-command -override reverse-selections -docstring 'reverse selections' %{
-  $ kcr pipe jq reverse
+  connect run kcr pipe jq reverse
 }
 
 define-command -override math -docstring 'math' %{

@@ -6,7 +6,7 @@ define-command -override initialize -params 1 -file-completion -docstring 'Initi
 }
 
 define-command -override reload -docstring 'Reload the playground' %{
-  $ sh -c %{
+  connect run sh -c %{
     playground=$(kcr cat --raw '*playground*')
     kcr send evaluate-commands "$playground"
   }
