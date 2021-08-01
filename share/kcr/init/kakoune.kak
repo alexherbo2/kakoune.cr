@@ -8,7 +8,7 @@ define-command -override connect-terminal -docstring 'connect terminal' %{
 
 # Mappings ─────────────────────────────────────────────────────────────────────
 
-map -docstring 'default' global connect d ':connect terminal<ret>'
+map -docstring 'normal' global connect n ':connect terminal<ret>'
 map -docstring 'horizontal' global connect h ':connect terminal-horizontal<ret>'
 map -docstring 'vertical' global connect v ':connect terminal-vertical<ret>'
 map -docstring 'tab' global connect t ':connect terminal-tab<ret>'
