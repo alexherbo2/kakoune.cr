@@ -18,12 +18,7 @@
 
 # ──────────────────────────────────────────────────────────────────────────────
 
-# fzf integration with Nushell.
-#
-# Note:
-#
-# If you don’t have Nushell installed, edit this code for POSIX-compliance
-# and press F5 to reload.
+# fzf integration.
 #
 # Usage:
 #
@@ -33,17 +28,16 @@
 # Dependencies:
 #
 # – fzf (https://github.com/junegunn/fzf)
-# – Nushell (https://nushell.sh)
 
 define-command -override fzf-files %{
-  connect popup nu --commands %{
-    fzf --preview 'cat {}' | lines | each { kcr edit $it }
+  connect popup sh -c %{
+    fzf --preview 'cat {}' | xargs kcr edit --
   }
 }
 
 define-command -override fzf-buffers %{
-  connect popup nu --commands %{
-    kcr get --raw --value buflist | fzf --preview 'kcr cat --raw {}' | lines | each { kcr send buffer $it }
+  connect popup sh -c %{
+    kcr get --raw --value buflist | fzf --preview 'kcr cat --raw {}' | xargs kcr send buffer --
   }
 }
 
