@@ -157,6 +157,7 @@ source /path/to/tmux.kak
 # Kakoune support
 # https://github.com/mawww/kakoune/tree/master/rc
 try %{
+  source-runtime rc/detection/file.kak
   source-runtime rc/filetype/asciidoc.kak
   source-runtime rc/filetype/c-family.kak
   source-runtime rc/filetype/crystal.kak
