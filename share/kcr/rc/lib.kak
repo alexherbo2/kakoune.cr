@@ -30,6 +30,14 @@ define-command -override source-kakrc -docstring 'source kakrc' %{
   source "%val{config}/kakrc"
 }
 
+define-command -override source-runtime -menu -params 1 -shell-script-candidates 'cd "$kak_runtime" && find -type f -name "*.kak"' -docstring 'source from %val{runtime}' %{
+  source "%val{runtime}/%arg{1}"
+}
+
+define-command -override source-config -menu -params 1 -shell-script-candidates 'cd "$kak_config" && find -type f -name "*.kak"' -docstring 'source from %val{config}' %{
+  source "%val{config}/%arg{1}"
+}
+
 define-command -override evaluate-selections -docstring 'evaluate selections' %{
   evaluate-commands -itersel %{
     evaluate-commands %val{selection}

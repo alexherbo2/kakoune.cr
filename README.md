@@ -154,6 +154,12 @@ try lsp-enable
 source /path/to/alacritty.kak
 source /path/to/tmux.kak
 
+# Kakoune support
+# https://github.com/mawww/kakoune/tree/master/rc
+try %{
+  source-runtime rc/filetype/crystal.kak
+}
+
 # Options ──────────────────────────────────────────────────────────────────────
 
 # UI options
@@ -163,7 +169,7 @@ delete-scratch-message
 
 # Color scheme
 # Dracula – https://draculatheme.com/kakoune
-colorscheme dracula-transparent
+source-config colors/dracula.kak
 
 # Status line
 add-cursor-character-unicode-expansion

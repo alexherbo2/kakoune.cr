@@ -29,6 +29,22 @@ set-option global find_command 'fd --type file'
 
 == source-kakrc
 
+== source-runtime
+
+--------------------------------------------------------------------------------
+source-runtime rc/filetype/crystal.kak
+--------------------------------------------------------------------------------
+
+source from `%val{runtime}`.
+
+== source-config
+
+--------------------------------------------------------------------------------
+source-config colors/dracula.kak
+--------------------------------------------------------------------------------
+
+source from `%val{config}`.
+
 == evaluate-selections, =
 
 == execute-keys-with-register
