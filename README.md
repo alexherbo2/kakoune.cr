@@ -157,7 +157,21 @@ source /path/to/tmux.kak
 # Kakoune support
 # https://github.com/mawww/kakoune/tree/master/rc
 try %{
+  source-runtime rc/filetype/asciidoc.kak
+  source-runtime rc/filetype/c-family.kak
   source-runtime rc/filetype/crystal.kak
+  source-runtime rc/filetype/git.kak
+  source-runtime rc/filetype/kakrc.kak
+  source-runtime rc/filetype/makefile.kak
+  source-runtime rc/filetype/markdown.kak
+  source-runtime rc/filetype/sh.kak
+  source-runtime rc/tools/comment.kak
+  source-runtime rc/tools/doc.kak
+  source-runtime rc/tools/git.kak
+  source-runtime rc/tools/grep.kak
+  source-runtime rc/tools/make.kak
+  source-runtime rc/tools/man.kak
+  source-runtime rc/windowing/new-client.kak
 }
 
 # Options ──────────────────────────────────────────────────────────────────────
