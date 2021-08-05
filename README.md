@@ -161,6 +161,7 @@ try %{
   source-runtime rc/filetype/asciidoc.kak
   source-runtime rc/filetype/c-family.kak
   source-runtime rc/filetype/crystal.kak
+  source-runtime rc/filetype/etc.kak
   source-runtime rc/filetype/git.kak
   source-runtime rc/filetype/ini.kak
   source-runtime rc/filetype/json.kak
