@@ -161,12 +161,14 @@ try %{
   source-runtime rc/filetype/c-family.kak
   source-runtime rc/filetype/crystal.kak
   source-runtime rc/filetype/git.kak
+  source-runtime rc/filetype/json.kak
   source-runtime rc/filetype/kakrc.kak
   source-runtime rc/filetype/makefile.kak
   source-runtime rc/filetype/markdown.kak
   source-runtime rc/filetype/rust.kak
   source-runtime rc/filetype/sh.kak
   source-runtime rc/filetype/toml.kak
+  source-runtime rc/filetype/yaml.kak
   source-runtime rc/tools/comment.kak
   source-runtime rc/tools/doc.kak
   source-runtime rc/tools/git.kak
