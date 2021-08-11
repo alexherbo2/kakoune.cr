@@ -27,9 +27,9 @@ Kakoune example configuration:
 `~/.config/kak/kakrc`
 
 ``` kak
-map -docstring 'file picker' global normal <c-f> ':+ kcr-fzf-files<ret>'
-map -docstring 'buffer picker' global normal <c-b> ':+ kcr-fzf-buffers<ret>'
-map -docstring 'grep picker' global normal <c-g> ':+ kcr-fzf-grep<ret>'
+map -docstring 'file picker' global normal <c-f> ':connect popup kcr fzf files<ret>'
+map -docstring 'buffer picker' global normal <c-b> ':connect popup kcr fzf buffers<ret>'
+map -docstring 'grep picker' global normal <c-g> ':connect popup kcr fzf grep<ret>'
 ```
 
 Bash example configuration:
