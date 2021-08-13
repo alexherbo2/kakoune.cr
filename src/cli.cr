@@ -417,6 +417,7 @@ module Kakoune::CLI
 
         context.edit(absolute_paths)
         context.edit(absolute_paths.first, options.position) if options.position
+        context.send("try focus")
       else
         Process.run("kak", options.kakoune_arguments + ["--"] + argv, input: :inherit, output: :inherit, error: :inherit)
       end
@@ -431,6 +432,7 @@ module Kakoune::CLI
 
         context.edit(absolute_paths)
         context.edit(absolute_paths.first, options.position) if options.position
+        context.send("try focus")
       else
         open_client = <<-EOF
           rename-client dummy
