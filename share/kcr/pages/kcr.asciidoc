@@ -1,9 +1,0 @@
-= kakoune.cr
-
-== kcr-open-kakrc
-
-open kakoune.cr kakrc.
-
-== kcr-open-doc
-
-open kakoune.cr documentation.

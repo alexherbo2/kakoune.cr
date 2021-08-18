@@ -136,147 +136,12 @@ Kakoune example configuration:
 `~/.config/kak/kakrc`
 
 ``` kak
-# Documentation ────────────────────────────────────────────────────────────────
-
-# kcr-open-doc ⇒ open kakoune.cr documentation
-# kcr-open-kakrc ⇒ open kakoune.cr kakrc
-
-# Preamble ─────────────────────────────────────────────────────────────────────
-
-try %sh{
+# Preamble
+evaluate-commands %sh{
   kcr init kakoune
-  kak-lsp --kakoune --session "$kak_session"
 }
 
-try lsp-enable
-
-# Adapt the location
-source /path/to/alacritty.kak
-source /path/to/tmux.kak
-
-# Kakoune support
-# https://github.com/mawww/kakoune/tree/master/rc
-try %{
-  source-runtime rc/detection/file.kak
-  source-runtime rc/filetype/asciidoc.kak
-  source-runtime rc/filetype/c-family.kak
-  source-runtime rc/filetype/crystal.kak
-  source-runtime rc/filetype/etc.kak
-  source-runtime rc/filetype/git.kak
-  source-runtime rc/filetype/ini.kak
-  source-runtime rc/filetype/json.kak
-  source-runtime rc/filetype/kakrc.kak
-  source-runtime rc/filetype/makefile.kak
-  source-runtime rc/filetype/markdown.kak
-  source-runtime rc/filetype/rust.kak
-  source-runtime rc/filetype/sh.kak
-  source-runtime rc/filetype/toml.kak
-  source-runtime rc/filetype/yaml.kak
-  source-runtime rc/tools/comment.kak
-  source-runtime rc/tools/doc.kak
-  source-runtime rc/tools/git.kak
-  source-runtime rc/tools/grep.kak
-  source-runtime rc/tools/make.kak
-  source-runtime rc/tools/man.kak
-  source-runtime rc/windowing/new-client.kak
-}
-
-# Options ──────────────────────────────────────────────────────────────────────
-
-# UI options
-set-option global startup_info_version 20211231
-set-option global ui_options terminal_assistant=none
-delete-scratch-message
-
-# Color scheme
-# Dracula – https://draculatheme.com/kakoune
-source-config colors/dracula.kak
-
-# Status line
-add-cursor-character-unicode-expansion
-set-option global modelinefmt '%val{bufname} %val{cursor_line}:%val{cursor_char_column} {{context_info}} {{mode_info}} - U+%opt{cursor_character_unicode} - %val{client}@%val{session}'
-
-# Indentation
-set-indent global 2
-enable-detect-indent
-enable-auto-indent
-
-# Auto-pairing of characters
-enable-auto-pairs
-
-# Disable indentation hooks
-set-option global disabled_hooks '(?!auto)(?!detect)\K(.+)-(trim-indent|insert|indent)'
-
-# Highlighters
-add-highlighter -override global/number-lines number-lines
-add-highlighter -override global/show-matching show-matching
-
-# Show selections
-show-selected-text
-
-# Show whitespaces
-add-highlighter -override global/show-whitespaces show-whitespaces
-add-highlighter -override global/show-trailing-whitespaces regex '\h+$' '0:red+f'
-add-highlighter -override global/show-non-breaking-spaces regex ' +' '0:red+f'
-
-# Show characters
-add-highlighter -override global/show-unicode-2013 regex '–' '0:green+f'
-add-highlighter -override global/show-unicode-2014 regex '—' '0:green+bf'
-add-highlighter -override global/show-math-symbols regex '[−×]' '0:cyan+f'
-add-highlighter -override global/show-limit regex '(?S)^.{79}[=-─┈]\K\n' '0:green+f'
-
-# Save buffer
-make-directory-on-save
-
-# Clipboard
-synchronize-clipboard
-synchronize-buffer-directory-name-with-register d
-
-# Tools
-set-option global makecmd 'make -j 8'
-set-option global grepcmd 'rg --column'
-
-# Windowing
-alacritty-integration-enable
-tmux-integration-enable
-
-# Optional
-# If you don’t have a popup command
-remove-hooks global terminal-integration
-hook -group terminal-integration global ModuleLoaded wayland %{ alias global popup wayland-terminal }
-hook -group terminal-integration global ModuleLoaded x11 %{ alias global popup x11-terminal }
-
-# Mappings ─────────────────────────────────────────────────────────────────────
-
-# Normal mode ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-
-# Hot reloading
-map -docstring 'reload kakrc' global normal <F5> ':source-kakrc; echo reloaded kakrc<ret>'
-
-# Editing
-map -docstring 'save' global normal <c-s> ':write; echo saved<ret>'
-map -docstring 'quit' global normal <c-q> ':quit<ret>'
-map -docstring 'close buffer' global normal <c-w> ':delete-buffer<ret>'
-map -docstring 'last buffer' global normal <c-a> ga
-
-# Search
-map -docstring 'search (replace)' global normal f ':search-replace<ret>'
-map -docstring 'search (extend)' global normal F ':search-extend<ret>'
-map -docstring 'search (append)' global normal <a-f> ':search-append<ret>'
-
-# Selection primitives
-map -docstring 'enter insert mode with main selection' global normal ^ ':enter-insert-mode-with-main-selection<ret>'
-map -docstring 'select next word' global normal w ':select-next-word<ret>'
-map -docstring 'surround' global normal q ':surround<ret>'
-map -docstring 'select objects' global normal S ':select-objects<ret>'
-map -docstring 'select all occurrences of current selection' global normal <a-percent> ':select-highlights<ret>'
-map -docstring 'move line down' global normal <down> ':move-lines-down<ret>'
-map -docstring 'move line up' global normal <up> ':move-lines-up<ret>'
-
-# Tools
-map -docstring 'math' global normal = ':math<ret>'
-
-# Windowing
+# Mappings
 map -docstring 'client' global normal <c-t> ':new<ret>'
 map -docstring 'terminal' global normal <c-n> ':connect-terminal<ret>'
 map -docstring 'file explorer' global normal <c-e> ':connect panel sidetree --select %val{buffile}<ret>'
@@ -285,16 +150,6 @@ map -docstring 'buffer picker' global normal <c-b> ':connect popup kcr fzf buffe
 map -docstring 'grep picker' global normal <c-g> ':connect popup kcr fzf grep<ret>'
 map -docstring 'grep picker (buffer)' global normal <c-r> ':connect popup kcr fzf grep %val{buflist}<ret>'
 map -docstring 'git' global normal <c-l> ':connect popup gitui<ret>'
-
-# Insert mode ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-
-map -docstring 'indent' global insert <tab> '<a-;><a-gt>'
-map -docstring 'deindent' global insert <s-tab> '<a-;><lt>'
-
-# View mode ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈
-
-map -docstring 'view mode' global normal v V
-map -docstring 'show palette' global view p '<esc>:show-palette<ret>'
 ```
 
 Bash example configuration:
@@ -365,7 +220,7 @@ text/x-shellscript=kcr.desktop
 
 ## Commands
 
-###### [`tldr`] | [`doc`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`kill`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`pipe`] | [`escape`] | [`help`]
+###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`kill`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`pipe`] | [`escape`] | [`help`]
 
 [Commands]: #commands
 
@@ -399,7 +254,6 @@ text/x-shellscript=kcr.desktop
 
 ```
 kcr tldr ⇒ Show usage
-kcr doc ⇒ Display documentation
 kcr prompt ⇒ Print prompt
 kcr init <name> ⇒ Print functions
 kcr init kakoune ⇒ Print Kakoune definitions
@@ -436,18 +290,6 @@ kcr tldr
 Show [usage][`tldr.txt`].
 
 [`tldr.txt`]: share/kcr/pages/tldr.txt
-
-###### `doc`
-
-[`doc`]: #doc
-
-```
-kcr doc
-```
-
-Display [documentation][pages].
-
-[Pages]: share/kcr/pages
 
 ###### `prompt`
 
@@ -933,7 +775,7 @@ kcr play
 
 See the [`play`] command and [`example.kak`] file.
 
-Learn more with [`doc`] and [`init kakoune`].
+Learn more with [`init kakoune`].
 
 ## Troubleshooting
 

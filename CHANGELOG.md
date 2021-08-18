@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-08-18
+
+- Remove integrated scripts
+
 ## 2021-07-31
 
 - Add `search` select mode

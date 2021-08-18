@@ -106,10 +106,6 @@ module Kakoune::CLI
         options.command = :tldr
       end
 
-      parser.on("doc", "Display documentation") do
-        options.command = :doc
-      end
-
       parser.on("prompt", "Print prompt") do
         options.command = :prompt
       end
@@ -256,13 +252,6 @@ module Kakoune::CLI
     case options.command
     when :tldr
       puts read("pages/tldr.txt")
-
-    when :doc
-      documentation = Dir[RUNTIME_PATH / "pages" / "*.asciidoc"].join('\n') do |file|
-        File.read(file)
-      end
-
-      puts documentation
 
     when :prompt
       case context
