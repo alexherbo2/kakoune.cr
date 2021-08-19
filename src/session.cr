@@ -30,6 +30,16 @@ class Kakoune::Session
     send(command)
   end
 
+  def edit(files : Array(Path | String), position : Position?)
+    kakoune_arguments = [] of String
+
+    if position
+      kakoune_arguments << "+%d:%d" % { position.line, position.column }
+    end
+
+    Process.run("kak", ["-c", name] + kakoune_arguments + ["--"] + files, input: :inherit, output: :inherit, error: :inherit)
+  end
+
   def create
     Process.setsid("kak", { "-s", name, "-d" })
   end

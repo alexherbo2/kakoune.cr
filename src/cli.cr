@@ -397,31 +397,14 @@ module Kakoune::CLI
     when :edit
       if context
         context.fifo(STDIN) if options.stdin
-
-        return if argv.empty?
-
-        absolute_paths = argv.map do |file|
-          Path[file].expand
-        end
-
-        context.edit(absolute_paths)
-        context.edit(absolute_paths.first, options.position) if options.position
-        context.send("try focus")
+        context.edit(argv, options.position)
       else
         Process.run("kak", options.kakoune_arguments + ["--"] + argv, input: :inherit, output: :inherit, error: :inherit)
       end
 
     when :open
       if context
-        return if argv.empty?
-
-        absolute_paths = argv.map do |file|
-          Path[file].expand
-        end
-
-        context.edit(absolute_paths)
-        context.edit(absolute_paths.first, options.position) if options.position
-        context.send("try focus")
+        context.edit(argv, options.position)
       else
         open_client = <<-EOF
           rename-client dummy

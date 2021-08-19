@@ -23,6 +23,24 @@ class Kakoune::Client
     session.send("evaluate-commands", ["-try-client", name, "-verbatim", "--", command] + arguments)
   end
 
+  def edit(files : Array(Path | String), position : Position?)
+    return if files.empty?
+
+    command = String.build do |string|
+      files.each do |file|
+        string.puts(Arguments.escape("edit", file.to_s))
+      end
+
+      if position
+        string.puts(Arguments.escape("edit", files.first.to_s, position.line.to_s, position.column.to_s))
+      end
+
+      string.puts("try focus")
+    end
+
+    send(command)
+  end
+
   def exists?
     session.clients.any? do |client|
       client.name == name
