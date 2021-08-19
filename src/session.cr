@@ -12,7 +12,15 @@ class Kakoune::Session
   def initialize(@name)
   end
 
+  # Add -working-directory switch to evaluate-commands
+  # https://github.com/mawww/kakoune/issues/4065
   def send(command)
+    command = <<-EOF
+      declare-option -hidden str working_directory %sh{pwd}
+      cd #{Arguments.escape Dir.current}
+      try #{Arguments.escape command}
+      cd %opt{working_directory}
+    EOF
     input = IO::Memory.new(command)
     Process.run("kak", { "-p", name }, input: input)
   end
