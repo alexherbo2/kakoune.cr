@@ -222,7 +222,7 @@ module Kakoune::CLI
         options.command = :help
       end
 
-      parser.on("version", "Show version") do
+      parser.on("version", "Display version") do
         options.command = :version
       end
 

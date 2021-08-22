@@ -277,7 +277,7 @@ kcr cat [buffers] ⇒ Print buffer content
 kcr pipe <program> [arguments] [input: json-selections] ⇒ Pipe selections to a program
 kcr escape [arguments] [input: json-format] ⇒ Escape arguments
 kcr help [command] ⇒ Show help
-kcr version ⇒ Show version
+kcr version ⇒ Display version
 ```
 
 ###### `tldr`
@@ -764,7 +764,7 @@ Show help.
 kcr version
 ```
 
-Show version.
+Display version.
 
 ## Extending kcr
 
