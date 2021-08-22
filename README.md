@@ -220,7 +220,7 @@ text/x-shellscript=kcr.desktop
 
 ## Commands
 
-###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`kill`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`pipe`] | [`escape`] | [`help`]
+###### [`tldr`] | [`prompt`] | [`init`] | [`init kakoune`] | [`init starship`] | [`install`] | [`install commands`] | [`install desktop`] | [`env`] | [`play`] | [`create`] | [`attach`] | [`kill`] | [`list`] | [`shell`] | [`edit`] | [`open`] | [`send`] | [`echo`] | [`get`] | [`cat`] | [`pipe`] | [`escape`] | [`help`] | [`version`]
 
 [Commands]: #commands
 
@@ -277,6 +277,7 @@ kcr cat [buffers] ⇒ Print buffer content
 kcr pipe <program> [arguments] [input: json-selections] ⇒ Pipe selections to a program
 kcr escape [arguments] [input: json-format] ⇒ Escape arguments
 kcr help [command] ⇒ Show help
+kcr version ⇒ Show version
 ```
 
 ###### `tldr`
@@ -754,6 +755,16 @@ kcr help [command]
 ```
 
 Show help.
+
+###### `version`
+
+[`version`]: #version
+
+```
+kcr version
+```
+
+Show version.
 
 ## Extending kcr
 

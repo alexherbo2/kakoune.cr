@@ -222,6 +222,10 @@ module Kakoune::CLI
         options.command = :help
       end
 
+      parser.on("version", "Show version") do
+        options.command = :version
+      end
+
       parser.invalid_option do |flag|
         STDERR.puts "Error: Unknown option: #{flag}"
         STDERR.puts parser
@@ -524,6 +528,10 @@ module Kakoune::CLI
 
     when :help
       option_parser.parse(argv + ["--help"])
+
+    when :version
+      puts VERSION
+      exit
 
     else
       # Missing command
