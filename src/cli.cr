@@ -13,7 +13,7 @@ module Kakoune::CLI
   KCR_LOGO_URL = "https://github.com/alexherbo2/kcr-resources/raw/master/logo/kcr.svg"
 
   struct Options
-    property command = :command
+    property command : Symbol?
     property context = Context.new(session: ENV["KAKOUNE_SESSION"]?, client: ENV["KAKOUNE_CLIENT"]?)
     property working_directory : Path?
     property position : Position?
