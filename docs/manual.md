@@ -8,10 +8,10 @@ kcr [-s, --session <name>] [-c, --client <name>] [-r, --raw] <command> [argument
 
 Open Kakoune, then a connected terminal with `connect terminal` or `connect run alacritty`.
 Edit files with [`kcr edit`] and see them being opened in the Kakoune client.
-You can set your [`$EDITOR`] to [`kcr edit`] and configure your graphical applications to open files with Kakoune.
+You can set your [`EDITOR`] to [`kcr edit`] and configure your graphical applications to open files with Kakoune.
 
 [`kcr edit`]: #edit
-[`$EDITOR`]: https://wiki.archlinux.org/index.php/Environment_variables#Default_programs
+[`EDITOR`]: https://wiki.archlinux.org/index.php/Environment_variables#Default_programs
 
 ## Configuration
 
@@ -27,20 +27,20 @@ evaluate-commands %sh{
 
 ## Options
 
-- `-s`, `--session <name>` ⇒ Session name (Default: [`$KAKOUNE_SESSION`])
-- `-c`, `--client <name>` ⇒ Client name (Default: [`$KAKOUNE_CLIENT`])
+- `-s`, `--session <name>` ⇒ Session name (Default: [`KAKOUNE_SESSION`])
+- `-c`, `--client <name>` ⇒ Client name (Default: [`KAKOUNE_CLIENT`])
 - `-r`, `--raw` ⇒ Use raw output
 - `-R`, `--no-raw` ⇒ Do not use raw output
-- `-d`, `--debug` ⇒ Debug mode (Default: [`$KAKOUNE_DEBUG`], **1** for true, **0** for false)
+- `-d`, `--debug` ⇒ Debug mode (Default: [`KAKOUNE_DEBUG`], **1** for true, **0** for false)
 - `-v`, `--version` ⇒ Display version
 - `-V`, `--version-notes` ⇒ Display version notes
 - `-h`, `--help` ⇒ Show help
 - `--` ⇒ Stop handling options
 - `-` ⇒ Stop handling options and read stdin
 
-[`$KAKOUNE_SESSION`]: #environment-variables
-[`$KAKOUNE_CLIENT`]: #environment-variables
-[`$KAKOUNE_DEBUG`]: #environment-variables
+[`KAKOUNE_SESSION`]: #environment-variables
+[`KAKOUNE_CLIENT`]: #environment-variables
+[`KAKOUNE_DEBUG`]: #environment-variables
 
 ## Commands
 
@@ -500,17 +500,17 @@ See the [shipped commands] for examples.
 
 ## Environment variables
 
-- `$KAKOUNE_SESSION`: Kakoune session
-- `$KAKOUNE_CLIENT`: Kakoune client
-- `$KAKOUNE_DEBUG`: Kakoune debug flag (**1** for true, **0** for false)
+- `KAKOUNE_SESSION`: Kakoune session
+- `KAKOUNE_CLIENT`: Kakoune client
+- `KAKOUNE_DEBUG`: Kakoune debug flag (**1** for true, **0** for false)
 
 ## Troubleshooting
 
-Use the [`-d`] | [`--debug`] flag or set [`$KAKOUNE_DEBUG`] to write a log message in the terminal and in Kakoune if available (see the `*debug*` buffer).
+Use the [`-d`] | [`--debug`] flag or set [`KAKOUNE_DEBUG`] to write a log message in the terminal and in Kakoune if available (see the `*debug*` buffer).
 
 [`-d`]: #options
 [`--debug`]: #options
-[`$KAKOUNE_DEBUG`]: #environment-variables
+[`KAKOUNE_DEBUG`]: #environment-variables
 
 **Example** – with command-line flag:
 

@@ -13,7 +13,7 @@ Kakoune definitions:
 
 Open Kakoune, then a connected terminal with `connect terminal` or `connect run alacritty`.
 Edit files with `kcr edit` and see them being opened in the Kakoune client.
-You can set your `$EDITOR` to `kcr edit` and configure your graphical applications to open files with Kakoune.
+You can set your `EDITOR` to `kcr edit` and configure your graphical applications to open files with Kakoune.
 
 ────────────────────────────────────────────────────────────────────────────────
 

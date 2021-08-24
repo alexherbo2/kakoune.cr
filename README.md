@@ -48,13 +48,13 @@ kcr edit --session=kanto --client=main pokemon.json
 ```
 
 Most of the time, you don’t need to specify them.
-[`connect`] will forward [`$KAKOUNE_SESSION`] and [`$KAKOUNE_CLIENT`] environment variables,
+[`connect`] will forward [`KAKOUNE_SESSION`] and [`KAKOUNE_CLIENT`] environment variables,
 which will be used by [`kcr`] to run commands in the specified context.
 
 [`kcr`]: docs/manual.md
 [`connect`]: docs/manual.md#connect
-[`$KAKOUNE_SESSION`]: docs/manual.md#environment-variables
-[`$KAKOUNE_CLIENT`]: docs/manual.md#environment-variables
+[`KAKOUNE_SESSION`]: docs/manual.md#environment-variables
+[`KAKOUNE_CLIENT`]: docs/manual.md#environment-variables
 
 **Example** – Connect a terminal:
 
