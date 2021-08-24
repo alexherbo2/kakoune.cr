@@ -11,9 +11,23 @@ Kakoune definitions:
 
 ────────────────────────────────────────────────────────────────────────────────
 
-Open Kakoune, then a connected terminal with [>] or [+] or a GUI program with [$].
+Open Kakoune, then a connected terminal with `connect terminal` or `connect run alacritty`.
 Edit files with `kcr edit` and see them being opened in the Kakoune client.
-You can set your $EDITOR to `kcr edit` and configure your graphical applications to open files with Kakoune.
+You can set your `$EDITOR` to `kcr edit` and configure your graphical applications to open files with Kakoune.
+
+────────────────────────────────────────────────────────────────────────────────
+
+Open a terminal:
+	:connect-terminal
+
+Open a file picker:
+	:connect popup kcr fzf files
+
+Open a buffer picker:
+	:connect popup kcr fzf buffers
+
+Open a grep picker:
+	:connect popup kcr fzf grep
 
 ────────────────────────────────────────────────────────────────────────────────
 
@@ -47,29 +61,10 @@ Print the current buffer:
 	alias :cat='kcr cat --raw'
 	:cat
 
-See [Configuration] for aliases.
-
 ────────────────────────────────────────────────────────────────────────────────
 
-kakoune.cr has a lot of commands and options, but you only need to remember a few things to be productive.
+Guide
+	https://github.com/alexherbo2/kakoune.cr/blob/master/docs/guide.md
 
-Terminal:
-	k ⇒ Open files.
-	K[K] ⇒ Open shell or program.
-	ks ⇒ Create session.
-	kl ⇒ List sessions.
-	a ⇒ Attach session.
-
-Kakoune:
-	Ctrl-o ⇒ Open files with GUI program.
-	Ctrl-e ⇒ Open files with TUI program.
-	Ctrl-f ⇒ Open files with fuzzy finder.
-	Ctrl-b ⇒ Open buffers with fuzzy finder.
-
-See [Configuration] for aliases and mappings.
-
-────────────────────────────────────────────────────────────────────────────────
-
-https://github.com/alexherbo2/kakoune.cr
-https://github.com/alexherbo2/kakoune.cr#configuration
-https://github.com/alexherbo2/kakoune.cr#workflows
+Manual
+	https://github.com/alexherbo2/kakoune.cr/blob/master/docs/manual.md

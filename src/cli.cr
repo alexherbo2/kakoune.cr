@@ -446,13 +446,10 @@ module Kakoune::CLI
       context.send(command)
 
     when :echo
-      # Streaming data
-      #
-      # Example:
+      # Example – Streaming data:
       #
       # kcr echo -- evaluate-commands -draft {} |
-      # kcr echo - execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
-      # jq --slurp
+      # kcr echo - execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>'
       IO.copy(STDIN, STDOUT) if options.stdin
 
       if argv.any?
@@ -465,13 +462,10 @@ module Kakoune::CLI
         exit(1)
       end
 
-      # Streaming data
+      # Example – Streaming data:
       #
-      # Example:
-      #
-      # kcr get %val{bufname} |
-      # kcr get - %val{buflist} |
-      # jq --slurp
+      # kcr get --option pokemon |
+      # kcr get --option regions -
       IO.copy(STDIN, STDOUT) if options.stdin
 
       arguments = options.kakoune_arguments + argv
