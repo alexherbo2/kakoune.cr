@@ -303,11 +303,7 @@ module Kakoune::CLI
       end
 
     when :play
-      file = if argv.first?
-        argv.first
-      else
-        RUNTIME_PATH / "init/example.kak"
-      end
+      file = argv.fetch(0, RUNTIME_PATH / "init/example.kak")
 
       config = <<-EOF
         source #{RUNTIME_PATH / "init/kakoune.kak"}
