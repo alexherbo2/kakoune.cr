@@ -140,7 +140,7 @@ Install files.
 kcr install commands
 ```
 
-Install [commands][Shipped commands].
+Install [commands][shipped commands].
 
 [Shipped commands]: ../share/kcr/commands
 
