@@ -14,7 +14,7 @@ class Kakoune::Client
 
   def send(command)
     session.send <<-EOF
-      evaluate-commands -try-client #{Arguments.escape name} -- #{Arguments.escape command}
+      evaluate-commands -try-client #{Arguments.quote name} -- #{Arguments.quote command}
     EOF
   end
 
@@ -28,11 +28,11 @@ class Kakoune::Client
 
     command = String.build do |string|
       files.each do |file|
-        string.puts(Arguments.escape("edit", file.to_s))
+        string.puts(Arguments.quote("edit", file.to_s))
       end
 
       if position
-        string.puts(Arguments.escape("edit", files.first.to_s, position.line.to_s, position.column.to_s))
+        string.puts(Arguments.quote("edit", files.first.to_s, position.line.to_s, position.column.to_s))
       end
 
       string.puts("try focus")

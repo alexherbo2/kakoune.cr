@@ -42,7 +42,7 @@ module Kakoune::Commands
 
   def set_selections_content(selections)
     pipe_selections = <<-EOF
-      set-register dquote #{Arguments.escape selections}
+      set-register dquote #{Arguments.quote selections}
       execute-keys R
     EOF
     send("evaluate-commands", ["-save-regs", %("), pipe_selections])

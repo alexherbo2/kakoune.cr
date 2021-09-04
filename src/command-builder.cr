@@ -64,7 +64,7 @@ class Kakoune::CommandBuilder
 
     # Initialize the stack with the last set of arguments.
     stack = [
-      escape(input.pop)
+      quote(input.pop)
     ]
 
     input.reverse_each do |arguments|
@@ -74,7 +74,7 @@ class Kakoune::CommandBuilder
         end
       end.to_a.reverse
 
-      stack << escape(arguments)
+      stack << quote(arguments)
     end
 
     command = stack.reverse.join('\n')

@@ -4,40 +4,48 @@ module Kakoune::Arguments
   extend self
 
   # Returns a string.
-  # Wraps each argument in single quotes, doubling-up embedded quotes.
+  # Escapes Kakoune string wrapped into single quote.
   def escape(string : String)
-    "'" + string.gsub("'", "''") + "'"
+    string.gsub("'", "''")
   end
 
-  def escape(*strings)
-    escape(strings)
+  # Returns a string.
+  # Converts to Kakoune string by wrapping into quotes and escaping.
+  def quote(string : String)
+    "'%s'" % escape(string)
   end
 
-  def escape(strings : Iterable)
+  def quote(*strings)
+    quote(strings)
+  end
+
+  # Returns a string.
+  # Wraps each argument in single quotes, doubling-up embedded quotes.
+  def quote(strings : Iterable)
     strings.join(' ') do |string|
-      escape(string)
+      quote(string)
     end
   end
 
   # Returns a string.
   # Removes doubling-up embedded quotes.
-  def unescape(string)
+  def unescape(string : String)
     string.gsub("''", "'")
   end
 
   # Returns an array of strings.
   # Parses the output of `echo -quoting kakoune`.
-  def parse(string)
+  def parse(string : String)
     tokens = [] of String
 
     string_scanner = StringScanner.new(string.chomp)
 
     until string_scanner.eos?
-      # Opening quote
+      # Search for opening single quote.
       string_scanner.skip_until(/'/)
       opening_position = string_scanner.offset
 
-      # Closing quote
+      # Search for closing single quote.
       loop do
         # Scans the string until the closing quote,
         string_scanner.skip_until(/'/)
@@ -48,7 +56,7 @@ module Kakoune::Arguments
       end
       closing_position = string_scanner.offset - 2
 
-      # Quoted string
+      # Select the resulting quoted string.
       quoted_string = string[opening_position..closing_position]
 
       token = unescape(quoted_string)

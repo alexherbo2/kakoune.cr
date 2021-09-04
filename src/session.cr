@@ -17,8 +17,8 @@ class Kakoune::Session
   def send(command)
     command = <<-EOF
       declare-option -hidden str working_directory %sh{pwd}
-      cd #{Arguments.escape Dir.current}
-      try #{Arguments.escape command}
+      cd #{Arguments.quote Dir.current}
+      try #{Arguments.quote command}
       cd %opt{working_directory}
     EOF
     input = IO::Memory.new(command)
@@ -26,7 +26,7 @@ class Kakoune::Session
   end
 
   def send(command, arguments)
-    command = Arguments.escape([command] + arguments)
+    command = Arguments.quote([command] + arguments)
     send(command)
   end
 

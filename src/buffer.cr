@@ -20,7 +20,7 @@ class Kakoune::Buffer
 
   def send(command)
     session.send <<-EOF
-      evaluate-commands -buffer #{Arguments.escape name} -- #{Arguments.escape command}
+      evaluate-commands -buffer #{Arguments.quote name} -- #{Arguments.quote command}
     EOF
   end
 
