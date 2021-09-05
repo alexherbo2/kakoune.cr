@@ -11,6 +11,10 @@ class Kakoune::Buffer
   def initialize(@session, @name)
   end
 
+  def path
+    Path[name]
+  end
+
   def content
     FIFO.consume do |fifo|
       send("write", [fifo.path.to_s])
