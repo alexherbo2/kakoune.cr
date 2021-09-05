@@ -31,7 +31,7 @@ evaluate-commands %sh{
 - `-c`, `--client <name>` ⇒ Client name (Default: [`KAKOUNE_CLIENT`])
 - `-r`, `--raw` ⇒ Use raw output
 - `-R`, `--no-raw` ⇒ Do not use raw output
-- `-d`, `--debug` ⇒ Debug mode (Default: [`KAKOUNE_DEBUG`], **1** for true, **0** for false)
+- `-d`, `--debug` ⇒ Debug mode (Default: [`KCR_DEBUG`], **1** for true, **0** for false)
 - `-v`, `--version` ⇒ Display version
 - `-V`, `--version-notes` ⇒ Display version notes
 - `-h`, `--help` ⇒ Show help
@@ -40,7 +40,7 @@ evaluate-commands %sh{
 
 [`KAKOUNE_SESSION`]: #environment-variables
 [`KAKOUNE_CLIENT`]: #environment-variables
-[`KAKOUNE_DEBUG`]: #environment-variables
+[`KCR_DEBUG`]: #environment-variables
 
 ## Commands
 
@@ -168,8 +168,9 @@ Output example:
 {
   "KAKOUNE_SESSION": "kanto",
   "KAKOUNE_CLIENT": "main",
-  "KAKOUNE_DEBUG": "0",
-  "KAKOUNE_VERSION": "nightly"
+  "KCR_RUNTIME": "/home/red/.local/share/kcr",
+  "KCR_DEBUG": "0",
+  "KCR_VERSION": "nightly"
 }
 ```
 
@@ -502,15 +503,17 @@ See the [shipped commands] for examples.
 
 - `KAKOUNE_SESSION`: Kakoune session
 - `KAKOUNE_CLIENT`: Kakoune client
-- `KAKOUNE_DEBUG`: Kakoune debug flag (**1** for true, **0** for false)
+- `KCR_RUNTIME`: Location of the runtime path (Default: `../share/kcr` relative to the `kcr` binary directory)
+- `KCR_DEBUG`: Specifies the debug flag (**1** for true, **0** for false)
+- `KCR_VERSION`: Program version
 
 ## Troubleshooting
 
-Use the [`-d`] | [`--debug`] flag or set [`KAKOUNE_DEBUG`] to write a log message in the terminal and in Kakoune if available (see the `*debug*` buffer).
+Use the [`-d`] | [`--debug`] flag or set [`KCR_DEBUG`] to write a log message in the terminal and in Kakoune if available (see the `*debug*` buffer).
 
 [`-d`]: #options
 [`--debug`]: #options
-[`KAKOUNE_DEBUG`]: #environment-variables
+[`KCR_DEBUG`]: #environment-variables
 
 **Example** – with command-line flag:
 
@@ -521,7 +524,7 @@ kcr --debug send -- echo pokemon
 **Example** – with environment variable:
 
 ``` sh
-export KAKOUNE_DEBUG=1
+export KCR_DEBUG=1
 kcr send -- echo pokemon
 ```
 

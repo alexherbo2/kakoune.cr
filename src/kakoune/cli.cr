@@ -1,14 +1,11 @@
 require "option_parser"
 require "json"
 require "file_utils"
-require "./kakoune"
-require "./env"
-
-PROGRAM_PATH = Path[Process.executable_path || PROGRAM_NAME]
-RUNTIME_PATH = PROGRAM_PATH.join("../../share/kcr").expand
 
 module Kakoune::CLI
   extend self
+
+  RUNTIME_PATH = Path[ENV["KCR_RUNTIME"]]
 
   KCR_LOGO_URL = "https://github.com/alexherbo2/kcr-resources/raw/master/logo/kcr.svg"
 
@@ -19,7 +16,7 @@ module Kakoune::CLI
     property position : Position?
     property raw = false
     property stdin = false
-    property debug : Bool = ENV["KAKOUNE_DEBUG"]? == "1"
+    property debug : Bool = ENV["KCR_DEBUG"] == "1"
     property kakoune_arguments = [] of String
   end
 
@@ -248,8 +245,9 @@ module Kakoune::CLI
     environment = {
       "KAKOUNE_SESSION" => options.context.session_name,
       "KAKOUNE_CLIENT" => options.context.client_name,
-      "KAKOUNE_DEBUG" => options.debug ? "1" : "0",
-      "KAKOUNE_VERSION" => VERSION
+      "KCR_RUNTIME" => RUNTIME_PATH.to_s,
+      "KCR_DEBUG" => options.debug ? "1" : "0",
+      "KCR_VERSION" => VERSION
     }
 
     # Run command
@@ -306,7 +304,7 @@ module Kakoune::CLI
       EOF
 
       # Forward the --debug flag
-      environment["KAKOUNE_DEBUG"] = "1"
+      environment["KCR_DEBUG"] = "1"
 
       # Start playground
       Process.run("kak", ["-e", config], env: environment, input: :inherit, output: :inherit, error: :inherit)
@@ -608,5 +606,3 @@ module Kakoune::CLI
     arguments.replace(unhandled_arguments)
   end
 end
-
-Kakoune::CLI.start(ARGV)

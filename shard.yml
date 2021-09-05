@@ -4,7 +4,7 @@ crystal: 1.0.0
 license: Unlicense
 targets:
   kcr:
-    main: src/cli.cr
+    main: src/main.cr
 dependencies:
   fifo:
     github: alexherbo2/fifo.cr

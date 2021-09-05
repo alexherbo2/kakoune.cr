@@ -1,6 +1,6 @@
 # Edit me and press F5 to reload.
 #
-# Inspect the *debug* buffer populated with `kcr send --debug` or via `export KAKOUNE_DEBUG=1`.
+# Inspect the *debug* buffer populated with `kcr send --debug` or via `export KCR_DEBUG=1`.
 #
 # Open a connected terminal with [>] or [+] and experiment the following commands.
 #
