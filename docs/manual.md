@@ -505,7 +505,6 @@ See the [shipped commands] for examples.
 - `KAKOUNE_CLIENT`: Kakoune client
 - `KCR_RUNTIME`: Location of the runtime path (Default: `../share/kcr` relative to the `kcr` binary directory)
 - `KCR_DEBUG`: Specifies the debug flag (**1** for true, **0** for false)
-- `KCR_VERSION`: Program version
 
 ## Troubleshooting
 
