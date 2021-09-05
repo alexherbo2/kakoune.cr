@@ -273,12 +273,6 @@ module Kakoune::CLI
     when :init_kakoune
       puts read("init/kakoune.kak")
 
-      script = Dir[RUNTIME_PATH / "rc" / "*.kak"].join('\n') do |file|
-        File.read(file)
-      end
-
-      puts script
-
     when :init_starship
       puts read("init/starship.toml")
 
