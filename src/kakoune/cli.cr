@@ -343,9 +343,7 @@ module Kakoune::CLI
         [{ session: session.name, client: nil, buffer_name: nil, working_directory: working_directory }] +
 
         session.clients.map do |client|
-          buffer_name = client.get("%val{bufname}")[0]
-
-          { session: session.name, client: client.name, buffer_name: buffer_name, working_directory: working_directory }
+          { session: session.name, client: client.name, buffer_name: client.current_buffer.name, working_directory: working_directory }
         end
       end
 
