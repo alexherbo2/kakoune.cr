@@ -338,7 +338,7 @@ module Kakoune::CLI
 
     when :list
       data = Session.all.flat_map do |session|
-        working_directory = session.get("%sh{pwd}")[0]
+        working_directory = session.working_directory
 
         [{ session: session.name, client: nil, buffer_name: nil, working_directory: working_directory }] +
 

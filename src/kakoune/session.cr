@@ -92,4 +92,8 @@ class Kakoune::Session
   def buffer(name)
     Buffer.new(self, name)
   end
+
+  def working_directory
+    Path[get("%sh{pwd}")[0]]
+  end
 end
