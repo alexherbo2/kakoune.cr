@@ -29,6 +29,7 @@ evaluate-commands %sh{
 
 - `-s`, `--session <name>` ⇒ Session name (Default: [`KAKOUNE_SESSION`])
 - `-c`, `--client <name>` ⇒ Client name (Default: [`KAKOUNE_CLIENT`])
+- `-b`, `--buffer <name>` ⇒ Buffer name (can be specified multiple times)
 - `-r`, `--raw` ⇒ Use raw output
 - `-R`, `--no-raw` ⇒ Do not use raw output
 - `-d`, `--debug` ⇒ Debug mode (Default: [`KCR_DEBUG`], **1** for true, **0** for false)

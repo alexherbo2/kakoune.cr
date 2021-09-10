@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-09-11
+
+- Add `--buffer` option
+
 ## 2021-08-18
 
 - Remove integrated scripts

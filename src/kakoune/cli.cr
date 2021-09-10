@@ -12,6 +12,7 @@ module Kakoune::CLI
   struct Options
     property command : Symbol?
     property context = Context.new(session: ENV["KAKOUNE_SESSION"]?, client: ENV["KAKOUNE_CLIENT"]?)
+    property buffer_names = [] of String
     property working_directory : Path?
     property position : Position?
     property raw = false
@@ -51,6 +52,10 @@ module Kakoune::CLI
 
       parser.on("-c NAME", "--client=NAME", "Client name") do |name|
         options.context.client_name = name
+      end
+
+      parser.on("-b NAME", "--buffer=NAME", "Buffer name") do |name|
+        options.buffer_names << name
       end
 
       parser.on("-r", "--raw", "Use raw output") do
@@ -472,10 +477,12 @@ module Kakoune::CLI
         exit(1)
       end
 
-      buffer_contents = if argv.empty?
+      buffer_names = options.buffer_names + argv
+
+      buffer_contents = if buffer_names.empty?
         [options.context.client.current_buffer.content]
       else
-        argv.map { |name| options.context.session.buffer(name).content }
+        buffer_names.map { |name| options.context.session.buffer(name).content }
       end
 
       if options.raw
