@@ -478,11 +478,13 @@ module Kakoune::CLI
       end
 
       buffer_names = options.buffer_names + argv
+      session = options.context.session
+      client = options.context.client
 
       buffer_contents = if buffer_names.empty?
-        [options.context.client.current_buffer.content]
+        [client.current_buffer.content]
       else
-        buffer_names.map { |name| options.context.session.buffer(name).content }
+        buffer_names.map { |name| session.buffer(name).content }
       end
 
       if options.raw
