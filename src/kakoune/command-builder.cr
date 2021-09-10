@@ -17,7 +17,7 @@ require "./arguments"
 class Kakoune::CommandBuilder
   include Arguments
 
-  property constructor
+  property constructor : Array(Array(String))
 
   # Creates a new builder.
   def initialize
