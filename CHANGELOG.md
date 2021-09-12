@@ -3,6 +3,7 @@
 ## 2021-09-12
 
 - Add support for [JSON Lines]
+- Add `kcr set-completion` command
 
 [JSON Lines]: https://jsonlines.org
 

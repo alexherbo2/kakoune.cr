@@ -477,6 +477,80 @@ See also [Multiple commands] and [Nested commands].
 [Multiple commands]: #multiple-commands
 [Nested commands]: #nested-commands
 
+###### `set-completion`
+
+**Options**
+
+- `--line <value>` ⇒ Line number
+- `--column <value>` ⇒ Column number
+- `--length <value>` ⇒ Length value
+- `--timestamp <value>` ⇒ Timestamp value
+
+```
+kcr set-completion [flags] <name> [input: completions]
+```
+
+Set completion [option][options].
+
+[Options]: https://github.com/mawww/kakoune/blob/master/doc/pages/options.asciidoc
+
+**Example**
+
+``` kak
+# Declare a new type of completion.
+declare-option completions pokemon_completions
+
+# Install the completer.
+set-option global completers option=pokemon_completions %opt{completers}
+
+# Declare Pokémon results as JSON.
+# Get the first 151 Pokémon.
+declare-option str pokemon_results %sh{
+  curl 'https://pokeapi.co/api/v2/pokemon?limit=151'
+}
+
+# Generate completions
+define-command pokemon-generate-completions -params 5 -docstring 'pokemon-generate-completions <line> <column> <length> <timestamp> <items>' %{
+  connect run sh -c %{
+
+    echo "$5" |
+    jq '[.results[] | [.name, [["info", .name]], .name]]' |
+    kcr set-completion pokemon_completions --line "$1" --column "$2" --length "$3" --timestamp "$4"
+
+  } -- %arg{@}
+}
+
+# Update completions
+hook -group pokemon-completion global InsertIdle '' %{
+  try %{
+    # Generate the completions (header and body).
+    # Execute in a “draft” context, so if we move the cursor it won’t move the “real” cursor.
+    evaluate-commands -draft %{
+      # Try to select the entire word before the cursor,
+      # putting the cursor at the left-end of the selection.
+      execute-keys 'h<a-i>w<a-;>'
+
+      # The selection’s cursor is at the anchor point for completions,
+      # and the selection covers the text the completions should replace,
+      # exactly the information we need for the header item.
+      pokemon-generate-completions %val{cursor_line} %val{cursor_column} %val{selection_length} %val{timestamp} %opt{pokemon_results}
+    }
+  } catch %{
+    # This is not a place to suggest completions,
+    # so clear our list of completions.
+    set-option window pokemon_completions
+  }
+}
+```
+
+Direct link to [the first 151 Pokémon] results.
+
+[The first 151 Pokémon]: https://pokeapi.co/api/v2/pokemon?limit=151
+
+See also [Intro to Kakoune completions].
+
+[Intro to Kakoune completions]: https://zork.net/~st/jottings/Intro_to_Kakoune_completions.html
+
 ###### `help`
 
 ```

@@ -14,7 +14,9 @@ module Kakoune::CLI
     property context = Context.new(session: ENV["KAKOUNE_SESSION"]?, client: ENV["KAKOUNE_CLIENT"]?)
     property buffer_names = [] of String
     property working_directory : Path?
-    property position : Position?
+    property position = Position.new
+    property length = 0
+    property timestamp = 0
     property raw = false
     property lines = false
     property stdin = false
@@ -223,6 +225,26 @@ module Kakoune::CLI
 
       parser.on("escape", "Escape arguments") do
         options.command = :escape
+      end
+
+      parser.on("set-completion", "Set completion") do
+        options.command = :set_completion
+
+        parser.on("--line=VALUE", "Line number") do |value|
+          options.position.line = value.to_i
+        end
+
+        parser.on("--column=VALUE", "Column number") do |value|
+          options.position.column = value.to_i
+        end
+
+        parser.on("--length=VALUE", "Length value") do |value|
+          options.length = value.to_i
+        end
+
+        parser.on("--timestamp=VALUE", "Timestamp value") do |value|
+          options.timestamp = value.to_i
+        end
       end
 
       parser.on("help", "Show help") do
@@ -519,6 +541,20 @@ module Kakoune::CLI
       end
 
       puts command
+
+    when :set_completion
+      if !context.is_a?(Client)
+        STDERR.puts "No client in context"
+        exit(1)
+      end
+
+      name = argv.first
+
+      command = CompletionBuilder.build(name, options.position.line, options.position.column, options.length, options.timestamp) do |builder|
+        builder.add(STDIN)
+      end
+
+      context.send(command)
 
     when :help
       option_parser.parse(argv + ["--help"])

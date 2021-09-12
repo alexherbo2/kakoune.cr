@@ -65,10 +65,4 @@ module Kakoune::Arguments
 
     tokens
   end
-
-  # Returns a string.
-  # Escapes Kakoune completion field.
-  def escape_completion_field(string : String)
-    string.gsub({ '|' => "\\|", '\\' => "\\\\" })
-  end
 end
