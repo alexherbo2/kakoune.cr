@@ -16,6 +16,7 @@ module Kakoune::CLI
     property working_directory : Path?
     property position : Position?
     property raw = false
+    property lines = false
     property stdin = false
     property debug : Bool = ENV["KCR_DEBUG"] == "1"
     property kakoune_arguments = [] of String
@@ -64,6 +65,10 @@ module Kakoune::CLI
 
       parser.on("-R", "--no-raw", "Do not use raw output") do
         options.raw = false
+      end
+
+      parser.on("-l", "--lines", "Read input as JSON Lines") do
+        options.lines = true
       end
 
       parser.on("-d", "--debug", "Debug mode") do
@@ -421,7 +426,7 @@ module Kakoune::CLI
         STDIN.gets_to_end
       else
         command_builder.add(argv) if argv.any?
-        command_builder.add(STDIN) if options.stdin
+        command_builder.add(STDIN, options.lines) if options.stdin || options.lines
         command_builder.build
       end
 
@@ -510,7 +515,7 @@ module Kakoune::CLI
     when :escape
       command = CommandBuilder.build do |builder|
         builder.add(argv) if argv.any?
-        builder.add(STDIN) if options.stdin
+        builder.add(STDIN, options.lines) if options.stdin || options.lines
       end
 
       puts command

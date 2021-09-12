@@ -1,5 +1,11 @@
 # Changelog
 
+## 2021-09-12
+
+- Add support for [JSON Lines]
+
+[JSON Lines]: https://jsonlines.org
+
 ## 2021-09-11
 
 - Add `--buffer` option

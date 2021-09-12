@@ -32,12 +32,15 @@ evaluate-commands %sh{
 - `-b`, `--buffer <name>` ⇒ Buffer name (can be specified multiple times)
 - `-r`, `--raw` ⇒ Use raw output
 - `-R`, `--no-raw` ⇒ Do not use raw output
+- `-l`, `--lines` ⇒ Read input as [JSON Lines]
 - `-d`, `--debug` ⇒ Debug mode (Default: [`KCR_DEBUG`], **1** for true, **0** for false)
 - `-v`, `--version` ⇒ Display version
 - `-V`, `--version-notes` ⇒ Display version notes
 - `-h`, `--help` ⇒ Show help
 - `--` ⇒ Stop handling options
 - `-` ⇒ Stop handling options and read stdin
+
+[JSON Lines]: https://jsonlines.org
 
 [`KAKOUNE_SESSION`]: #environment-variables
 [`KAKOUNE_CLIENT`]: #environment-variables
@@ -285,7 +288,7 @@ It is possible to send multiple commands in a single request with pipes.
 ``` sh
 kcr echo -- echo kanto |
 kcr echo - echo johto |
-kcr send -
+kcr send --lines
 ```
 
 ### Nested commands
@@ -295,7 +298,7 @@ It is possible to create nested commands with `{}` placeholders and pipes.
 ``` sh
 kcr echo -- evaluate-commands -draft {} |
 kcr echo - execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>' |
-kcr send -
+kcr send --lines
 ```
 
 The `{}` denotes a block for the next pipe.
@@ -342,9 +345,9 @@ Output:
 ["execute-keys", "<a-i>b", "i<backspace><esc>", "a<del><esc>"]
 ```
 
-Add [`kcr send -`] for sending the nested command.
+Add [`kcr send --lines`] for sending the nested command.
 
-[`kcr send -`]: #send
+[`kcr send --lines`]: #send
 
 ###### `get`
 
