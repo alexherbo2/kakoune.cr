@@ -17,11 +17,14 @@ require "./arguments"
 class Kakoune::CommandBuilder
   include Arguments
 
-  property constructor : Array(Array(String))
+  # Aliases
+  alias Command = Array(String)
+
+  # Properties
+  property constructor = [] of Command
 
   # Creates a new builder.
   def initialize
-    @constructor = Array(Array(String)).new
   end
 
   # Creates a new builder, with its configuration specified in the block.
@@ -32,30 +35,57 @@ class Kakoune::CommandBuilder
   end
 
   # Builds command from block.
-  def self.build(&block)
-    builder = new
-    yield builder
-    builder.build
+  def self.build(&block : self ->)
+    new(&block).build
   end
 
-  # Adds a single command to the constructor.
+  # Adds a single command.
   def add(command : String, arguments : Array(String))
     command = [command] + arguments
     add(command)
   end
 
-  def add(command : Array(String))
+  def add(command : Command)
     constructor.push(command)
   end
 
-  # Adds multiple commands to the constructor.
-  def add(commands : Array(Array(String)))
+  # Adds multiple commands.
+  def add(commands : Array(Command))
     constructor.concat(commands)
   end
 
-  # Adds commands from a JSON stream to the constructor.
+  # Adds commands from a JSON stream.
+  #
+  # Input example:
+  #
+  # [["echo", "kanto"]]
   def add(io : IO)
-    add(from_json(io))
+    add(Array(Command).from_json(io))
+  end
+
+  # Support for JSON Lines
+  # https://jsonlines.org
+  def add(io : IO, lines : Bool)
+    if lines
+      add(from_lines(io))
+    else
+      add(io)
+    end
+  end
+
+  # JSON Lines
+  # https://jsonlines.org
+  #
+  # Reads the entire input stream into a large array.
+  #
+  # Input example:
+  #
+  # ["echo", "kanto"]
+  # ["echo", "johto"]
+  private def from_lines(io : IO)
+    io.each_line.map do |line|
+      Command.from_json(line)
+    end.to_a
   end
 
   # Builds command.
@@ -78,29 +108,5 @@ class Kakoune::CommandBuilder
     end
 
     command = stack.reverse.join('\n')
-  end
-
-  # Parses command constructor from JSON.
-  #
-  # Example:
-  #
-  # [
-  #   ["echo", "kanto"],
-  #   ["echo", "johto"]
-  # ]
-  #
-  # Accepts chunks.
-  # Reads the entire input stream into a large array.
-  #
-  # Example:
-  #
-  # ["echo", "kanto"]
-  # ["echo", "johto"]
-  def from_json(json)
-    Array(Array(String)).from_json(json)
-  rescue
-    json.each_line.map do |json|
-      Array(String).from_json(json)
-    end.to_a
   end
 end
