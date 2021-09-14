@@ -17,10 +17,10 @@ module Kakoune::CLI
     property position = Position.new
     property length = 0
     property timestamp = 0
-    property raw = false
-    property lines = false
-    property stdin = false
-    property debug : Bool = ENV["KCR_DEBUG"] == "1"
+    property? raw = false
+    property? lines = false
+    property? stdin = false
+    property? debug : Bool = ENV["KCR_DEBUG"] == "1"
     property kakoune_arguments = [] of String
   end
 
@@ -278,7 +278,7 @@ module Kakoune::CLI
       "KAKOUNE_SESSION" => options.context.session_name,
       "KAKOUNE_CLIENT" => options.context.client_name,
       "KCR_RUNTIME" => RUNTIME_PATH.to_s,
-      "KCR_DEBUG" => options.debug ? "1" : "0",
+      "KCR_DEBUG" => options.debug? ? "1" : "0",
       "KCR_VERSION" => VERSION
     }
 
@@ -316,7 +316,7 @@ module Kakoune::CLI
       install_desktop_application
 
     when :env
-      if options.raw
+      if options.raw?
         text = environment.join('\n') do |key, value|
           "#{key}=#{value}"
         end
@@ -379,7 +379,7 @@ module Kakoune::CLI
         end
       end
 
-      if options.raw
+      if options.raw?
         text = data.join('\n') do |data|
           data.values.join('\t') do |field|
             field || "null"
@@ -418,7 +418,7 @@ module Kakoune::CLI
 
     when :edit
       if context
-        context.fifo(STDIN) if options.stdin
+        context.fifo(STDIN) if options.stdin?
         context.edit(argv, options.position)
       else
         Process.run("kak", options.kakoune_arguments + ["--"] + argv, input: :inherit, output: :inherit, error: :inherit)
@@ -444,15 +444,15 @@ module Kakoune::CLI
 
       command_builder = CommandBuilder.new
 
-      command = if options.raw
+      command = if options.raw?
         STDIN.gets_to_end
       else
         command_builder.add(argv) if argv.any?
-        command_builder.add(STDIN, options.lines) if options.stdin || options.lines
+        command_builder.add(STDIN, options.lines?) if options.stdin? || options.lines?
         command_builder.build
       end
 
-      if options.debug
+      if options.debug?
         message = {
           constructor: command_builder.constructor,
           command: command
@@ -468,7 +468,7 @@ module Kakoune::CLI
       #
       # kcr echo -- evaluate-commands -draft {} |
       # kcr echo - execute-keys '<a-i>b' 'i<backspace><esc>' 'a<del><esc>'
-      IO.copy(STDIN, STDOUT) if options.stdin
+      IO.copy(STDIN, STDOUT) if options.stdin?
 
       if argv.any?
         print_json(argv)
@@ -484,14 +484,14 @@ module Kakoune::CLI
       #
       # kcr get --option pokemon |
       # kcr get --option regions -
-      IO.copy(STDIN, STDOUT) if options.stdin
+      IO.copy(STDIN, STDOUT) if options.stdin?
 
       arguments = options.kakoune_arguments + argv
 
       if arguments.any?
         data = context.get(arguments)
 
-        if options.raw
+        if options.raw?
           puts data.join('\n')
         else
           print_json(data)
@@ -514,7 +514,7 @@ module Kakoune::CLI
         buffer_names.map { |name| session.buffer(name).content }
       end
 
-      if options.raw
+      if options.raw?
         puts buffer_contents.join('\n')
       else
         print_json(buffer_contents)
@@ -526,7 +526,7 @@ module Kakoune::CLI
         exit(1)
       end
 
-      if options.stdin
+      if options.stdin?
         selections = Array(String).from_json(STDIN)
         context.set_selections_content(selections)
       else
@@ -537,7 +537,7 @@ module Kakoune::CLI
     when :escape
       command = CommandBuilder.build do |builder|
         builder.add(argv) if argv.any?
-        builder.add(STDIN, options.lines) if options.stdin || options.lines
+        builder.add(STDIN, options.lines?) if options.stdin? || options.lines?
       end
 
       puts command
