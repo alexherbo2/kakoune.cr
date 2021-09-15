@@ -256,9 +256,7 @@ module Kakoune::CLI
       end
 
       parser.invalid_option do |flag|
-        STDERR.puts "Error: Unknown option: #{flag}"
-        STDERR.puts parser
-        exit(1)
+        abort "Error: Unknown option: #{flag}"
       end
     end
 
@@ -352,8 +350,7 @@ module Kakoune::CLI
       session_name = argv.fetch(0, options.context.session_name)
 
       if !session_name
-        STDERR.puts "No session in context"
-        exit(1)
+        abort "No session in context"
       end
 
       Session.new(session_name).attach
@@ -362,8 +359,7 @@ module Kakoune::CLI
       session_name = argv.fetch(0, options.context.session_name)
 
       if !session_name
-        STDERR.puts "No session in context"
-        exit(1)
+        abort "No session in context"
       end
 
       Session.new(session_name).kill
@@ -393,8 +389,7 @@ module Kakoune::CLI
 
     when :shell
       if !context
-        STDERR.puts "No session in context"
-        exit(1)
+        abort "No session in context"
       end
 
       command, arguments = if argv.any?
@@ -438,8 +433,7 @@ module Kakoune::CLI
 
     when :send
       if !context
-        STDERR.puts "No session in context"
-        exit(1)
+        abort "No session in context"
       end
 
       command_builder = CommandBuilder.new
@@ -476,8 +470,7 @@ module Kakoune::CLI
 
     when :get
       if !context
-        STDERR.puts "No session in context"
-        exit(1)
+        abort "No session in context"
       end
 
       # Example – Streaming data:
@@ -500,8 +493,7 @@ module Kakoune::CLI
 
     when :cat
       if !context
-        STDERR.puts "No session in context"
-        exit(1)
+        abort "No session in context"
       end
 
       buffer_names = options.buffer_names + argv
@@ -522,8 +514,7 @@ module Kakoune::CLI
 
     when :pipe
       if !context
-        STDERR.puts "No session in context"
-        exit(1)
+        abort "No session in context"
       end
 
       if options.stdin?
@@ -544,8 +535,7 @@ module Kakoune::CLI
 
     when :set_completion
       if !context.is_a?(Client)
-        STDERR.puts "No client in context"
-        exit(1)
+        abort "No client in context"
       end
 
       name = argv.first
@@ -566,8 +556,7 @@ module Kakoune::CLI
     else
       # Missing command
       if argv.empty?
-        STDERR.puts option_parser
-        exit(1)
+        abort option_parser
       end
 
       # Extending kakoune.cr
@@ -576,8 +565,7 @@ module Kakoune::CLI
 
       # Cannot find executable
       if !Process.find_executable(command)
-        STDERR.puts "Cannot find executable: #{command}"
-        exit(1)
+        abort "Cannot find executable: #{command}"
       end
 
       # Run subcommand
