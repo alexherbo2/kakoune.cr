@@ -52,13 +52,19 @@ class Kakoune::CompletionBuilder
 
   # Builds the completion command.
   def build
-    String.build do |string|
+    Log.debug { constructor.to_json }
+
+    command = String.build do |string|
       string << quote("set-option", "window", name, build_header(line, column, length, timestamp)) << " "
 
       constructor.each do |text, select_command, menu_text|
         string << quote(build_candidate(text, select_command, menu_text)) << " "
       end
     end
+
+    Log.debug { command }
+
+    command
   end
 
   private def build_header(line, column, length, timestamp)

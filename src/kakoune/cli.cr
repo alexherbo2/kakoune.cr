@@ -20,28 +20,15 @@ module Kakoune::CLI
     property? raw = false
     property? lines = false
     property? stdin = false
-    property? debug : Bool = ENV["KCR_DEBUG"] == "1"
     property kakoune_arguments = [] of String
   end
 
-  def debug(context, message extended_message)
-    message = {
-      session: context.session_name,
-      client: context.client_name
-    }
-    message = message.merge(extended_message)
-
-    # Write a log message in the terminal.
-    print_json(message)
-
-    # Write a log message in Kakoune if available.
-    session = context.session
-    if session.exists?
-      session.send("echo", ["-debug", "kcr", message.to_json])
-    end
-  end
-
   def start(argv)
+    # Environment variables
+    if ENV["KCR_DEBUG"] == "1"
+      Log.level = ::Log::Severity::Debug
+    end
+
     # Options
     options = Options.new
 
@@ -74,7 +61,7 @@ module Kakoune::CLI
       end
 
       parser.on("-d", "--debug", "Debug mode") do
-        options.debug = true
+        Log.level = ::Log::Severity::Debug
       end
 
       parser.on("-v", "--version", "Display version") do
@@ -276,7 +263,7 @@ module Kakoune::CLI
       "KAKOUNE_SESSION" => options.context.session_name,
       "KAKOUNE_CLIENT" => options.context.client_name,
       "KCR_RUNTIME" => RUNTIME_PATH.to_s,
-      "KCR_DEBUG" => options.debug? ? "1" : "0",
+      "KCR_DEBUG" => Log.level.debug? ? "1" : "0",
       "KCR_VERSION" => VERSION
     }
 
@@ -444,15 +431,6 @@ module Kakoune::CLI
         command_builder.add(argv) if argv.any?
         command_builder.add(STDIN, options.lines?) if options.stdin? || options.lines?
         command_builder.build
-      end
-
-      if options.debug?
-        message = {
-          constructor: command_builder.constructor,
-          command: command
-        }
-
-        debug(options.context, message)
       end
 
       context.send(command)

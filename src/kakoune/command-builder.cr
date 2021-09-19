@@ -92,6 +92,8 @@ class Kakoune::CommandBuilder
   def build
     input = constructor.dup
 
+    Log.debug { input.to_json }
+
     # Initialize the stack with the last set of arguments.
     stack = [
       quote(input.pop)
@@ -108,5 +110,9 @@ class Kakoune::CommandBuilder
     end
 
     command = stack.reverse.join('\n')
+
+    Log.debug { command }
+
+    command
   end
 end
