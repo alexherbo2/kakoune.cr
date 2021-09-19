@@ -17,7 +17,7 @@ class Kakoune::CompletionBuilder
   property timestamp : Int32
 
   # Constructor
-  property constructor = [] of Candidate
+  property input = [] of Candidate
 
   # Creates a new builder.
   def initialize(@name, @line, @column, @length, @timestamp)
@@ -37,12 +37,12 @@ class Kakoune::CompletionBuilder
 
   # Adds a single candidate.
   def add(text : String, command : Array(Command), menu : String)
-    constructor.push({ text, command, menu })
+    input.push({ text, command, menu })
   end
 
   # Adds multiple candidates.
   def add(candidates : Array(Candidate))
-    constructor.concat(candidates)
+    input.concat(candidates)
   end
 
   # Adds candidates from a JSON stream.
@@ -52,12 +52,12 @@ class Kakoune::CompletionBuilder
 
   # Builds the completion command.
   def build
-    Log.debug { constructor.to_json }
+    Log.debug { input.to_json }
 
     command = String.build do |string|
       string << quote("set-option", "window", name, build_header(line, column, length, timestamp)) << " "
 
-      constructor.each do |text, select_command, menu_text|
+      input.each do |text, select_command, menu_text|
         string << quote(build_candidate(text, select_command, menu_text)) << " "
       end
     end

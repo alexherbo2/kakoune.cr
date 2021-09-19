@@ -21,7 +21,7 @@ class Kakoune::CommandBuilder
   alias Command = Array(String)
 
   # Properties
-  property constructor = [] of Command
+  property input = [] of Command
 
   # Creates a new builder.
   def initialize
@@ -46,12 +46,12 @@ class Kakoune::CommandBuilder
   end
 
   def add(command : Command)
-    constructor.push(command)
+    input.push(command)
   end
 
   # Adds multiple commands.
   def add(commands : Array(Command))
-    constructor.concat(commands)
+    input.concat(commands)
   end
 
   # Adds commands from a JSON stream.
@@ -90,8 +90,6 @@ class Kakoune::CommandBuilder
 
   # Builds command.
   def build
-    input = constructor.dup
-
     Log.debug { input.to_json }
 
     # Initialize the stack with the last set of arguments.
