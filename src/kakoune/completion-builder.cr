@@ -52,7 +52,7 @@ class Kakoune::CompletionBuilder
 
   # Builds the completion command.
   def build
-    Log.debug { input.to_json }
+    Log.debug &.emit("Building completion command", input: input.to_s)
 
     command = String.build do |string|
       string << quote("set-option", "window", name, build_header(line, column, length, timestamp)) << " "
@@ -62,7 +62,7 @@ class Kakoune::CompletionBuilder
       end
     end
 
-    Log.debug { command }
+    Log.debug &.emit("Building completion command", output: command)
 
     command
   end

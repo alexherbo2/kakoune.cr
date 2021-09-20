@@ -21,8 +21,7 @@ class Kakoune::Session
       try #{Arguments.quote command}
       cd %opt{working_directory}
     EOF
-    Log.debug { name }
-    Log.debug { command }
+    Log.debug &.emit("Sending command", session: name, command: command)
     input = IO::Memory.new(command)
     Process.run("kak", { "-p", name }, input: input)
   end

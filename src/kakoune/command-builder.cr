@@ -90,7 +90,7 @@ class Kakoune::CommandBuilder
 
   # Builds command.
   def build
-    Log.debug { input.to_json }
+    Log.debug &.emit("Building command", input: input)
 
     # Initialize the stack with the last set of arguments.
     stack = [
@@ -109,7 +109,7 @@ class Kakoune::CommandBuilder
 
     command = stack.reverse.join('\n')
 
-    Log.debug { command }
+    Log.debug &.emit("Building command", output: command)
 
     command
   end
