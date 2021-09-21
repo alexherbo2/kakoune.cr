@@ -64,6 +64,10 @@ module Kakoune::CLI
         Log.level = ::Log::Severity::Debug
       end
 
+      parser.on("-L PATH", "--log=PATH", "Log path") do |path|
+        ::Log.setup(:debug, ::Log::IOBackend.new(File.new(path, "a")))
+      end
+
       parser.on("-v", "--version", "Display version") do
         puts VERSION
         exit

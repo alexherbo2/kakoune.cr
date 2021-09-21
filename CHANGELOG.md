@@ -1,5 +1,9 @@
 # Changelog
 
+## 2021-09-21
+
+- Add `--log` option
+
 ## 2021-09-12
 
 - Add support for [JSON Lines]
