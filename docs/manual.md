@@ -11,7 +11,7 @@ Edit files with [`kcr edit`] and see them being opened in the Kakoune client.
 You can set your [`EDITOR`] to [`kcr edit`] and configure your graphical applications to open files with Kakoune.
 
 [`kcr edit`]: #edit
-[`EDITOR`]: https://wiki.archlinux.org/index.php/Environment_variables#Default_programs
+[`EDITOR`]: https://wiki.archlinux.org/title/Environment_variables#Default_programs
 
 ## Configuration
 

@@ -45,7 +45,7 @@ export EDITOR='kcr edit'
 export FZF_DEFAULT_OPTS='--multi --layout=reverse --preview-window=down:60%'
 ```
 
-[Environment variables]: https://wiki.archlinux.org/index.php/Environment_variables
+[Environment variables]: https://wiki.archlinux.org/title/Environment_variables
 
 [XDG MIME Applications] example configuration:
 
@@ -62,7 +62,7 @@ You can get the MIME type with:
 file -b -i -L <file>
 ```
 
-[XDG MIME Applications]: https://wiki.archlinux.org/index.php/XDG_MIME_Applications
+[XDG MIME Applications]: https://wiki.archlinux.org/title/XDG_MIME_Applications
 
 ## Writing plugins
 
