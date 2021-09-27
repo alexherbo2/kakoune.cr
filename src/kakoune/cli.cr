@@ -185,19 +185,19 @@ module Kakoune::CLI
       parser.on("get", "Get states from a client in session") do
         options.command = :get
 
-        parser.on("-V NAME", "--value=NAME", "Value name") do |name|
+        parser.on("-v NAME", "--value=NAME", "Value name") do |name|
           options.kakoune_arguments << "%val{#{name}}"
         end
 
-        parser.on("-O NAME", "--option=NAME", "Option name") do |name|
+        parser.on("-o NAME", "--option=NAME", "Option name") do |name|
           options.kakoune_arguments << "%opt{#{name}}"
         end
 
-        parser.on("-R NAME", "--register=NAME", "Register name") do |name|
+        parser.on("-r NAME", "--register=NAME", "Register name") do |name|
           options.kakoune_arguments << "%reg{#{name}}"
         end
 
-        parser.on("-S COMMAND", "--shell=COMMAND", "Shell command") do |command|
+        parser.on("-s COMMAND", "--shell=COMMAND", "Shell command") do |command|
           options.kakoune_arguments << "%sh{#{command}}"
         end
       end

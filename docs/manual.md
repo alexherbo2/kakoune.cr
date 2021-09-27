@@ -353,10 +353,10 @@ Add [`kcr send --lines`] for sending the nested command.
 
 **Options**
 
-- `-V`, `--value <name>` ⇒ Value name
-- `-O`, `--option <name>` ⇒ Option name
-- `-R`, `--register <name>` ⇒ Register name
-- `-S`, `--shell <command>` ⇒ Shell command
+- `-v`, `--value <name>` ⇒ Value name
+- `-o`, `--option <name>` ⇒ Option name
+- `-r`, `--register <name>` ⇒ Register name
+- `-s`, `--shell <command>` ⇒ Shell command
 
 ```
 kcr get [flags] [expansions]
