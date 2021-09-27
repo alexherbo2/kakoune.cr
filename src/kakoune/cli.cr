@@ -52,10 +52,6 @@ module Kakoune::CLI
         options.raw = true
       end
 
-      parser.on("-R", "--no-raw", "Do not use raw output") do
-        options.raw = false
-      end
-
       parser.on("-l", "--lines", "Read input as JSON Lines") do
         options.lines = true
       end
