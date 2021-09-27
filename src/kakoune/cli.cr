@@ -60,7 +60,7 @@ module Kakoune::CLI
         Log.level = ::Log::Severity::Debug
       end
 
-      parser.on("-L PATH", "--log=PATH", "Log path") do |path|
+      parser.on("-D PATH", "--log=PATH", "Log path") do |path|
         ::Log.setup(:debug, ::Log::IOBackend.new(File.new(path, "a")))
       end
 

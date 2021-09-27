@@ -33,7 +33,7 @@ evaluate-commands %sh{
 - `-r`, `--raw` ⇒ Use raw output
 - `-l`, `--lines` ⇒ Read input as [JSON Lines]
 - `-d`, `--debug` ⇒ Debug mode (Default: [`KCR_DEBUG`], **1** for true, **0** for false)
-- `-L`, `--log <path>` ⇒ Log path (Default: **stderr**)
+- `-D`, `--log <path>` ⇒ Log path (Default: **stderr**)
 - `-v`, `--version` ⇒ Display version
 - `-V`, `--version-notes` ⇒ Display version notes
 - `-h`, `--help` ⇒ Show help
