@@ -39,6 +39,17 @@ Bash example configuration:
 
 ``` sh
 alias K='kcr-fzf-shell'
+alias KK='K --working-directory .'
+
+# Open files _from_ and _to_ a session.
+# $ :f src
+# $ f: mawww/kakoune
+alias :f='kcr fzf files'
+alias f:='KK kcr fzf files'
+alias fm:='K sidetree --working-directory'
+
+alias :g='kcr fzf grep'
+alias g:='KK kcr fzf grep'
 ```
 
 Environment variables example configuration:
