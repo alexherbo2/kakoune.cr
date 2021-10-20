@@ -41,8 +41,8 @@ define-command -override fzf-buffers %{
   }
 }
 
-map global normal <c-f> ':fzf-files<ret>'
-map global normal <c-b> ':fzf-buffers<ret>'
+map global normal <c-f> ': fzf-files<ret>'
+map global normal <c-b> ': fzf-buffers<ret>'
 
 # ──────────────────────────────────────────────────────────────────────────────
 
