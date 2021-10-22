@@ -2,7 +2,7 @@
 
 try %[ declare-user-mode connect ]
 
-define-command -override connect-terminal -docstring 'connect terminal' %{
+define-command -override connect-mode -docstring 'connect mode' %{
   enter-user-mode connect
 }
 
