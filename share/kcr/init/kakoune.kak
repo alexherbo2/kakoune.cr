@@ -1,6 +1,6 @@
 # Connect a program to Kakoune
 
-try %{ declare-user-mode connect }
+try %[ declare-user-mode connect ]
 
 define-command -override connect-terminal -docstring 'connect terminal' %{
   enter-user-mode connect
