@@ -21,13 +21,13 @@ Open a terminal:
 	:connect-terminal
 
 Open a file picker:
-	:connect popup kcr fzf files
+	:connect terminal-popup kcr fzf files
 
 Open a buffer picker:
-	:connect popup kcr fzf buffers
+	:connect terminal-popup kcr fzf buffers
 
 Open a grep picker:
-	:connect popup kcr fzf grep
+	:connect terminal-popup kcr fzf grep
 
 ────────────────────────────────────────────────────────────────────────────────
 

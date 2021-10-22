@@ -30,13 +30,13 @@
 # – fzf (https://github.com/junegunn/fzf)
 
 define-command -override fzf-files %{
-  connect popup sh -c %{
+  connect terminal-popup sh -c %{
     fzf --preview 'cat {}' | xargs kcr edit --
   }
 }
 
 define-command -override fzf-buffers %{
-  connect popup sh -c %{
+  connect terminal-popup sh -c %{
     kcr get --raw --value buflist | fzf --preview 'kcr cat --raw {}' | xargs kcr send buffer --
   }
 }
