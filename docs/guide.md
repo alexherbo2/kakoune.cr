@@ -13,7 +13,7 @@ evaluate-commands %sh{
 }
 
 # Mappings
-map -docstring 'connect mode' global normal <c-t> ': connect-mode<ret>'
+map -docstring 'new client' global normal <c-t> ': new<ret>'
 map -docstring 'file explorer' global normal <c-e> ': connect panel sidetree --select %val{buffile}<ret>'
 map -docstring 'file picker' global normal <c-f> ': connect popup kcr fzf files<ret>'
 map -docstring 'buffer picker' global normal <c-b> ': connect popup kcr fzf buffers<ret>'
