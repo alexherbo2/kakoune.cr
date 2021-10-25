@@ -14,12 +14,13 @@ evaluate-commands %sh{
 
 # Mappings
 map -docstring 'new client' global normal <c-t> ': new<ret>'
+map -docstring 'terminal (popup)' global normal <c-ret> ': connect terminal-popup<ret>'
+map -docstring 'git (popup)' global normal <c-l> ': connect terminal-popup gitui<ret>'
 map -docstring 'file explorer' global normal <c-e> ': connect terminal-panel sidetree --select %val{buffile}<ret>'
 map -docstring 'file picker' global normal <c-f> ': connect terminal-popup kcr fzf files<ret>'
 map -docstring 'buffer picker' global normal <c-b> ': connect terminal-popup kcr fzf buffers<ret>'
 map -docstring 'grep picker' global normal <c-g> ': connect terminal-popup kcr fzf grep<ret>'
 map -docstring 'grep picker (buffer)' global normal <c-r> ': connect terminal-popup kcr fzf grep %val{buflist}<ret>'
-map -docstring 'git' global normal <c-l> ': connect terminal-popup gitui<ret>'
 ```
 
 Bash example configuration:
