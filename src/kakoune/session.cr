@@ -43,6 +43,9 @@ class Kakoune::Session
 
   def create
     Process.setsid("kak", { "-s", name, "-d" })
+    until exists?
+      sleep 0.1
+    end
   end
 
   def self.create(name)
