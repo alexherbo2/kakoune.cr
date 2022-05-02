@@ -34,8 +34,6 @@ class Kakoune::Client
       if position
         string.puts(Arguments.quote("edit", files.first.to_s, position.line.to_s, position.column.to_s))
       end
-
-      string.puts("try focus")
     end
 
     send(command)
