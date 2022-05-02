@@ -6,6 +6,8 @@ define-command -override connect -params 1.. -command-completion -docstring 'Run
     export KAKOUNE_CLIENT=$2
     shift 3
 
+    export EDITOR='kcr edit'
+
     [ $# = 0 ] && set "$SHELL"
 
     "$@"
